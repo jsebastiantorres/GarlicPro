@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>inventary</title>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- <link rel="stylesheet" href="src/input.css"> -->
+    <link href="./src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="src/custom.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="flex flex-col p-2 h-screen">
+
+        <!-- Barra de navegación -->
+        <div class="max-w-screen">
+            <section class="barra_navegacion ">
+                <nav class="max-w-screen bg-emerald-700 p-2 rounded-xl shadow-md shadow-gray-400">
+                    <ul class="flex justify-between">
+                        <li class="p-2 text-white">
+                            <div class="w-8">
+                                <a href="index.html" class="flex justify-between">
+                                    <img src="./img/logo1.png" alt="">
+                                    <h1 class="font-bold">GarlicPro</h1>
+                                </a>
+                                <!-- <a class="font-bold text-xl" href="#">LOGO</a> -->
+                            </div>
+                        </li>
+                        <div class="flex justify-between ">
+                            <li class="p-2">
+                                <h4 class="text-white font-bold">Nombre Completo</h4>
+                            </li>
+                            <li class="p-2 content-center">
+                                <i id="menuToggle"
+                                    class="fa-solid fa-circle-user text-white text-xl hover:text-green-500 text-bold"></i>
+                                <div x-show="open" id="menu"
+                                    class="absolute right-2 mt-2 w-48 bg-white rounded shadow-lg hidden">
+                                    <!-- <button class="block px-4 py-2 text-left w-full hover:bg-gray-200 hover:rounded">Perfil</button> -->
+                                    <button
+                                        class="flex items-center space-x-2 px-4 py-2 text-left w-full hover:bg-red-500 hover:text-white hover:rounded hover:font-semibold">
+                                        <i class="fa-solid fa-power-off "></i>
+                                        <p>Cerrar sesión</p>
+                                    </button>
+                                </div>
+                            </li>
+                        </div>
+                    </ul>
+                </nav>
+            </section>
+        </div>
+
+        <!-- main -->
+        <div class="flex flex-1 py-2 ">
+
+            <!-- Sidebar -->
+            <section class="sidebar flex">
+                <aside class="flex flex-col  w-64 p-4 rounded-xl shadow-md bg-gray-800 text-white shadow-gray-400">
+                    <!--<h2 class="text-xl font-bold mb-4">Menú</h2>-->
+                    <ul class="space-y-3 pb-4">
+                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
+                            <a href="index.html" class="">
+                                <i class="fa-solid fa-boxes-stacked px-4 py-2"></i>
+                                Inventario
+                            </a>
+                        </li>
+                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
+                            <a href="ingresos.html" class="">
+                                <i class="fa-solid fa-right-to-bracket px-4 py-2"></i>
+                                Ingresos
+                            </a>
+                        </li>
+                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
+                            <a href="salidas.html" class="">
+                                <i class="fa-solid fa-right-from-bracket px-4 py-2"></i>
+                                Salidas
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Empujar la segunda lista al final -->
+                    <div class="flex-grow max-h"></div>
+
+                    <ul class="space-y-3 pb-4">
+
+                        <li class="justify-between hover:bg-red-700 hover:font-semibold px-4 py-2 rounded">
+                            <a href="#" class="w-full">
+                                <i class="fa-solid fa-power-off px-4 py-2"></i>
+                                Cerrar Sesión
+                            </a>
+                        </li>
+                    </ul>
+                </aside>
+            </section>
+
+            <!-- Contenido principal -->
+            <section class="contenido block ml-2 bg-gray-200 shadow-md shadow-gray-400 rounded-xl w-screen">
+                <div class="pt-2 px-4">
+                    <h2 class="font-bold text-2xl text-gray-800 self-center">Salidas</h2>
+                </div>
+
+                <section id="formulario_ingreso" class="flex max-w-2xl mx-auto">
+                    <form class="">
+                        <div class="flex-row space-y-6">
+
+                            <div class="flex space-x-2">
+                                <div class="flex-col">
+                                    <label for="vale" class="block mb-2 text-sm font-medium text-gray-900">#
+                                        Vale</label>
+                                    <input type="number" id="vale" aria-describedby="helper-text-explanation" min="0"
+                                        max="99999"
+                                        class="no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-gray-500 "
+                                        placeholder="lote" required />
+                                </div>
+
+                                <div class="flex-col">
+                                    <label for="destino" class="block mb-2 text-sm font-medium text-gray-900">
+                                        Destino
+                                    </label>
+                                    <select id="destino"
+                                        class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-300 focus:ring-gray-950 focus:border-gray-950">
+                                        <option value="opcion1">Ajos Extras</option>
+                                        <option value="opcion2">Dialsa</option>
+                                        <option value="opcion3">De Calidad</option>
+                                        <option value="opcion3">FV</option>
+                                        <option value="opcion3">Hermanos Vasquez</option>
+                                    </select>
+                                </div>
+
+                                <div class="flex-col">
+                                    <label for="select_marca" class="block mb-2 text-sm font-medium text-gray-900">
+                                        Marca
+                                    </label>
+                                    <select id="select_marca"
+                                        class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-300 focus:ring-gray-950 focus:border-gray-950">
+                                    </select>
+                                </div>
+
+                                <div class="flex-col">
+                                    <label for="select_clase" class="block mb-2 text-sm font-medium text-gray-900">
+                                        Clase
+                                    </label>
+                                    <select id="select_clase"
+                                        class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-300 focus:ring-gray-950 focus:border-gray-950">
+                                    </select>
+                                </div>
+                                <div class="flex-col">
+                                    <label for="lote" class="block mb-2 text-sm font-medium text-gray-900">#
+                                        Lote</label>
+                                    <input type="number" id="lote" aria-describedby="helper-text-explanation" min="0"
+                                        max="99999"
+                                        class="no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-gray-500 "
+                                        placeholder="lote" required />
+                                </div>
+                                <div class="flex-col">
+                                    <label for="cantidad"
+                                        class="block mb-2 text-sm font-medium text-gray-900">Cantidad</label>
+                                    <input type="number" id="cantidad" aria-describedby="helper-text-explanation"
+                                        class="no-spinner bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-gray-500 "
+                                        placeholder="cantidad" min="0" required />
+                                </div>
+                            </div>
+
+                            <div class="flex flex-row justify-end items-end">
+                                <div class="">
+                                    <button type="submit" min="0" max="9999"
+                                        class="w-full text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-md px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800 shadow-md shadow-gray-500">
+                                        Finalizar salida
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- SCRIPTS -->
+    <!-- Iconos de fontawesome -->
+    <!-- <script src="https://kit.fontawesome.com/3469b67fa1.js" crossorigin="anonymous"></script> -->
+
+    <!-- Script interfaz -->
+    <script src="app/iu.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link href="./src/output.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
+</head>
+
+<body class="bg-gray-200">
+
+    <div class="flex justify-center shadow-lg items-center spae-x-4 h-screen">
+        <div class="shadow-lg flex justify-center items-center rounded-lg "
+            style="background: linear-gradient(150deg, rgba(4, 217, 57, 0.441) 1.08%, rgba(203, 202, 127, 0.4) 48.16%, rgba(175, 97, 97, 0.071) 75.08%);">
+
+            <div id="imagenLogo" class="min-w-40 max-w-96 flex justify-center items-center ">
+                <img src="img/imagenIniciarSesion.png" alt="logoLogin" class="rounded-l-lg">
+            </div>
+
+            <div class="flex justify-center items-center rounded-lg ">
+                <div class="w-full max-w-sm sm:p-4 md:p-12 ">
+                    <form class="space-y-6 py-4" action="#">
+                        <div class="flex items-center justify-center mb-4">
+                            <h5 class=" text-xl font-medium text-gray-900">Iniciar sesión</h5>
+                        </div>
+
+                        <div clas="credenciales space-y-4">
+
+                            <div class="mb-2">
+                                <label for="user"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Usuario
+                                </label>
+                                <input type="text" name="user" id="user"
+                                    class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:text-gray-500"
+                                    placeholder="Ingresa tu usuario" required>
+                            </div>
+                            <div class="mb-2">
+                                <label for="password"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">Contraseña</label>
+                                <input type="password" name="password" id="password" placeholder="••••••••"
+                                    class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:text-gray-500"
+                                    required />
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full text-white bg-emerald-700 hover:bg-emerald-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800">
+                            Aceptar
+                        </button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
