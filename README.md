@@ -91,3 +91,9 @@
        2. git add .
        3. git commit -m "Resolved merge conflicts"
        4. git push origin <name-rama>
+
+### Reconectar el repositorio
+    ubicarse dentro de la carpeta del proyecto
+    1. git init
+    2. Verificar la conexión: git remote -v
+    3. git status
