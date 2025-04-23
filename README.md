@@ -78,5 +78,16 @@
 
     1. Obtener tadas las ramas: git fetch --all
     2. Trabajar en las ramas: ejemplo develop: git checkout -b develop origin/develop
+    3. Incorporar los ultimos cambios
+       1. git pull origin <name-rama>
+        
    
-##
+### Guardar temporalmente los cambios locales
+    1. git stash
+    2. descargar ultimos cambios: git pull origin
+    3. restaurar los cambios guardados: git stash pop
+    4. resolver conflictos: 
+       1. git status
+       2. git add .
+       3. git commit -m "Resolved merge conflicts"
+       4. git push origin <name-rama>
