@@ -54,9 +54,12 @@
 
 ## Descargar las ultimas actualizaciones del repositorio
 
-    1. git pull origin main
-    2. Ver todas las ramas remotas: git branch -r
-    3. Obtener todas las ramas remotas: git fetch --all
+    1. Obtener todas las ramas remotas: git fetch --all
+    2. git pull origin main 
+       1. nota: asegurarse de estar en la rama indicada
+       2. git checkout qa 
+          1. git pull origin qa
+    3. Ver todas las ramas remotas: git branch -r
     4. Crear ramas locales basadas en las remotas: git checkout -b <branch-name> origin/<branch-name>
        1. git checkout -b develop origin/develop
     5. verificara las ramas disponibles: git branch
@@ -76,3 +79,4 @@
     1. Obtener tadas las ramas: git fetch --all
     2. Trabajar en las ramas: ejemplo develop: git checkout -b develop origin/develop
    
+##
