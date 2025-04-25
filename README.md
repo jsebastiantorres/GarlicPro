@@ -81,7 +81,6 @@
     3. Incorporar los ultimos cambios
        1. git pull origin <name-rama>
         
-   
 ### Guardar temporalmente los cambios locales
     1. git stash
     2. descargar ultimos cambios: git pull origin
@@ -97,3 +96,10 @@
     1. git init
     2. Verificar la conexión: git remote -v
     3. git status
+
+### Traer los cambios de main a las ramas
+    1. git checkout <branch-name> && git pull origin main
+    2. git merge main
+
+### Actualizar los cambio de las ramas en main
+    1. git checkout main && git merge <branch-name>

@@ -17,7 +17,7 @@ document.addEventListener('click', (event) => {
 
 // Listar Marcas
 // array de marcas
-const marcas = ["Nasa", "Surti Abarrotes BJ", "Fruyt Garlic", "PAG", "Opcion"];
+const marcas = ["Nasa", "Surti Abarrotes BJ", "Fruyt Garlic", "PAG", "Posso", "El Rey", "Barajas", "Import chiki"];
 // selector de marcas
 const selectorMarca = document.getElementById("select_marca");
 // iterar sobre el array y agregar opciones al selector
@@ -55,3 +55,6 @@ destinos.forEach(destino => {
   nuevaOpcion.value = destino;
   selectorDestino.appendChild(nuevaOpcion);
 });
+
+
+
