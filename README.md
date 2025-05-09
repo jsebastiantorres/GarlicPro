@@ -5,6 +5,8 @@
     2. Instalacion de npm
        1. npm install
        2. npm init -y
+       3. npm instal express --save 
+       4. npm install mysql2
 
 
 ## 2. Instalacion de librerias 📚
