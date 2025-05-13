@@ -32,7 +32,9 @@
                         </li>
                         <div class="flex justify-between ">
                             <li class="p-2">
-                                <h4 class="text-white font-bold">Nombre Completo</h4>
+                                <!-- Trae el nombre del usuario del login correspondiente script:iu/navbar.js -->
+                                <div id="nav_nombre_usuario"></div>
+                                <!-- <h4 class="text-white font-bold">Nombre Completo</h4> -->
                             </li>
                             <li class="p-2 content-center">
                                 <i id="menuToggle"
@@ -87,7 +89,7 @@
                     <ul class="space-y-3 pb-4">
 
                         <li class="justify-between hover:bg-red-700 hover:font-semibold px-4 py-2 rounded">
-                            <a href="#" class="w-full">
+                            <a href="./login/login.html" class="w-full">
                                 <i class="fa-solid fa-power-off px-4 py-2"></i>
                                 Cerrar Sesión
                             </a>
@@ -120,13 +122,13 @@
                                     <label for="destino" class="block mb-2 text-sm font-medium text-gray-900">
                                         Destino
                                     </label>
-                                    <select id="destino"
+                                    <select id="select_destino"
                                         class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-300 focus:ring-gray-950 focus:border-gray-950">
-                                        <option value="opcion1">Ajos Extras</option>
+                                        <!-- <option value="opcion1">Ajos Extras</option>
                                         <option value="opcion2">Dialsa</option>
                                         <option value="opcion3">De Calidad</option>
                                         <option value="opcion3">FV</option>
-                                        <option value="opcion3">Hermanos Vasquez</option>
+                                        <option value="opcion3">Hermanos Vasquez</option> -->
                                     </select>
                                 </div>
                                 <div class="flex-col">
@@ -154,7 +156,7 @@
                                         class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-300 focus:ring-gray-950 focus:border-gray-950">
                                     </select>
                                 </div>
-                                
+
                                 <div class="flex-col">
                                     <label for="cantidad"
                                         class="block mb-2 text-sm font-medium text-gray-900">Cantidad</label>
@@ -185,7 +187,11 @@
     <!-- <script src="https://kit.fontawesome.com/3469b67fa1.js" crossorigin="anonymous"></script> -->
 
     <!-- Script interfaz -->
-    <script src="app/iu.js"></script>
+    <script src="app/ui.js"></script>
+    <!-- Script navbar -->
+    <script src="app/navbar.js"></script>
+    <!-- Script formularios -->
+    <script src="app/forms.js"></script>
 </body>
 
 </html>

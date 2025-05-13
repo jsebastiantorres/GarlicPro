@@ -1,20 +1,4 @@
 
-
-// Toggle Cerrar sesión
-const menuToggle = document.getElementById('menuToggle');
-const menu = document.getElementById('menu');
-
-menuToggle.addEventListener('click', () => {
-  menu.classList.toggle('hidden');
-});
-
-document.addEventListener('click', (event) => {
-  if (!menuToggle.contains(event.target) && !menu.contains(event.target)) {
-    menu.classList.add('hidden');
-  }
-});
-
-
 // Listar Marcas
 // array de marcas
 const marcas = ["Nasa", "Surti Abarrotes BJ", "Fruyt Garlic", "PAG", "Posso", "El Rey", "Barajas", "Import chiki"];
@@ -55,6 +39,3 @@ destinos.forEach(destino => {
   nuevaOpcion.value = destino;
   selectorDestino.appendChild(nuevaOpcion);
 });
-
-
-

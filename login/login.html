@@ -5,8 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <link href="../src/output.css" rel="stylesheet">
 
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansita:wght@400;700&display=swap" rel="stylesheet">
+
+    <link href="../src/output.css" rel="stylesheet">
+    <link href="../src/custom.css" rel="stylesheet">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 
 </head>
@@ -26,14 +32,15 @@
                 <!-- Formulario de inicio sesión -->
                 <form id="loginForm" class="" action="#">
                     <div class="flex items-center justify-center mb-4">
-                        <h5 class="text-2xl font-bold text-gray-900">Iniciar sesión</h5>
+                        <h5 id="iniciarSesion" class="text-2xl font-bold text-gray-900">Iniciar sesión</h5>
                     </div>
                     <!-- Campos -->
                     <div clas="credenciales">
                         <div class="">
                             <label for="user" class="block text-sm font-medium text-gray-900 dark:text-gray-900">Usuario
                             </label>
-                            <input type="text" id="user" name="user"
+                            <input type="text" id="user" name="user" minlength="5" maxlength="18" pattern="[a-z0-9]+"
+                                title="Solo letras minúsculas y números"
                                 class="bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg  block w-full p-2.5 dark:text-gray-500"
                                 placeholder="Ingresa tu usuario" required>
                         </div>

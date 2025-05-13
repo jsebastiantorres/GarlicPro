@@ -1,20 +1,33 @@
 
-function togglePassword() {
-    const passwordField = document.getElementById("passwordField");
-    passwordField.type = passwordField.type === "password" ? "text" : "password";
-}
+// function togglePassword() {
+//     const passwordField = document.getElementById("passwordField");
+//     passwordField.type = passwordField.type === "password" ? "text" : "password";
+// }
+
+// index.html
+
+console.log("Corriendo el script de login.js en index.html");
 
 
 // Credenciales de inicio de sesión temporales
 const usuario = "jstorresa";
 const password = "12345678";
+const nombre_usuario = "Juan Sebastian Torres";
 
 
-document.addEventListener('DOMContentLoaded', () => {
+// Convertir el texto en minúsculas
+document.getElementById('user').addEventListener('input', function () {
+    this.value = this.value.toLowerCase();
 });
+
+
+// document.addEventListener('DOMContentLoaded', () => {
+// });
 
 const loginForm = document.getElementById('loginForm');
 const messageDiv = document.getElementById('mensaje');
+
+
 
 // Capturar los datos del formulario, sin recargar la página
 loginForm.addEventListener('submit', async (e) => {
@@ -30,15 +43,21 @@ loginForm.addEventListener('submit', async (e) => {
 
     try {
         if (pass == password && user == usuario) {
-            messageDiv.textContent = "Bienvenido " + user ;
+            // Si el usuario y la contraseña son correctos, redirigir a la página principal
+            messageDiv.textContent = "Bienvenido " + user;
             messageDiv.className = "bg-green-100 border border-green-400 text-green-700 rounded";
-
             // Redireccionar a la página de bienvenida después de un login exitoso
+
+            localStorage.setItem('nombre_usuario', nombre_usuario); // Guardar el nombre de usuario en localStorage
+
             setTimeout(() => {
+                // acciones en index.html
                 window.location.href = '../index.html';
                 document.getElementById("loginForm").reset(); // Limpiar el formulario después de un login exitoso
-            }, 1000);
+
+            }, 1000); // 1 segundo de espera antes de redirigir
             console.log("acceso concedido");
+
         } else {
             messageDiv.innerHTML = "Error: Credenciales incorrectas.<br>Por favor, inténtalo de nuevo.";
             messageDiv.className = "bg-red-100 border border-red-400 text-red-700 rounded ";
@@ -51,8 +70,8 @@ loginForm.addEventListener('submit', async (e) => {
         messageDiv.textContent = 'Error de conexión con el servidor';
         messageDiv.className = "bg-red-100 border border-red-400 text-red-700 rounded";
     }
-
 });
+
 
 
 // Enviar la peticion al servidor 
@@ -62,39 +81,39 @@ loginForm.addEventListener('submit', async (e) => {
 
 //     });    
 // } catch (error) {
-    
+
 // }
 
-    // try {
-    //     // Enviar petición al servidor
-    //     const response = await fetch('/api/login', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({ user, pass })
-    //     });
+// try {
+//     // Enviar petición al servidor
+//     const response = await fetch('/api/login', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify({ user, pass })
+//     });
 
-    //     const data = await response.json();
+//     const data = await response.json();
 
-    //     // Manejar respuesta
-    //     if (response.ok) {
-    //         messageDiv.textContent = data.message;
-    //         messageDiv.className = 'success';
+//     // Manejar respuesta
+//     if (response.ok) {
+//         messageDiv.textContent = data.message;
+//         messageDiv.className = 'success';
 
-    //         // Redireccionar a la página de bienvenida después de un login exitoso
-    //         setTimeout(() => {
-    //             window.location.href = './index.html';
-    //         }, 1500);
-    //     } else {
-    //         messageDiv.textContent = data.message;
-    //         messageDiv.className = 'error';
-    //     }
-    // } catch (error) {
-    //     console.error('Error:', error);
-    //     messageDiv.textContent = 'Error de conexión con el servidor';
-    //     messageDiv.className = 'error';
-    // }
+//         // Redireccionar a la página de bienvenida después de un login exitoso
+//         setTimeout(() => {
+//             window.location.href = './index.html';
+//         }, 1500);
+//     } else {
+//         messageDiv.textContent = data.message;
+//         messageDiv.className = 'error';
+//     }
+// } catch (error) {
+//     console.error('Error:', error);
+//     messageDiv.textContent = 'Error de conexión con el servidor';
+//     messageDiv.className = 'error';
+// }
 
 
 
