@@ -42,6 +42,13 @@
         Documentación instalación CLI
         https://fontawesome.com/how-to-use/on-the-web/setup/get-free-font
 
+### instalacion de bcryptjs
+    npm install bcryptjs
+
+### instalacion de cors
+    npm install cors
+
+
 
 # Control de versiones con git 😼
 
