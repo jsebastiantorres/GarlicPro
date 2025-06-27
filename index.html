@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="10">
+
     <title>inventario</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <!-- <link rel="stylesheet" href="src/input.css"> -->
@@ -42,7 +44,8 @@
                                     class="absolute right-2 mt-2 w-48 bg-white rounded shadow-lg hidden">
                                     <!-- <button class="block px-4 py-2 text-left w-full hover:bg-gray-200 hover:rounded">Perfil</button> -->
                                     <button
-                                        class="flex items-center space-x-2 px-4 py-2 text-left w-full hover:bg-red-500 hover:text-white hover:rounded hover:font-semibold">
+                                        class="flex items-center space-x-2 px-4 py-2 text-left w-full hover:bg-red-500 hover:text-white hover:rounded hover:font-semibold"
+                                        id="logoutButton">
                                         <i class="fa-solid fa-power-off "></i>
                                         <p>Cerrar sesión</p>
                                     </button>
@@ -98,178 +101,188 @@
             </section>
 
             <!-- Contenido principal -->
-            <section class="contenido block ml-2 bg-gray-200 shadow-md shadow-gray-400 rounded-xl w-screen">
+            <section id="dashboar"
+                class="contenido block ml-2 bg-gray-200 shadow-md shadow-gray-400 rounded-xl w-screen">
                 <div class="pt-2 px-4">
                     <h2 class="font-bold text-2xl text-gray-800 self-center">Inventario </h2>
                 </div>
                 <section class="flex ">
 
                     <ul id="lista_granel" class="flex flex-col">
-                        <li class="pl-2 pt-2">
+                        <!-- <li class="pl-2 pt-2">
                             <a href="#"
                                 class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
                                     src="./img/logoNASA1x1.png" alt="foto-del-producto">
                                 <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
+                                    <h5 ig="titulo_card_granel"
+                                        class="text-xl font-normal tracking-tight text-white dark:text-white">
                                         Granel</h5>
                                     <p class="text-2xl font-bold text-green-500">321</p>
                                     <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
                                 </div>
                             </a>
-                        </li>
+                        </li> -->
+
                         <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
+                            <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
+                                shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
+                                dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
                                 <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Granel</h5>
-                                    <p class="text-2xl font-bold text-yellow-500">199</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
+                                    <h2 id="titulo_card_granel"
+                                        class="text-2xl font-bold text-white dark:text-white text-center">
+                                        Granel</h2>
+                                    <h6 id="cantidad_total_granel"
+                                        class="text-2xl font-bold text-green-500 text-center">321
+                                    </h6>
+                                    <ul id="lista_lotes_granel" class="flex flex-col">
+                                        <li class="item_granel flex space-x-2 ml-auto">
+                                            <p class="font-bold text-lg text-white dark:text-white">lote</p>
+                                            <p class="font-normal text-left text-lg text-gray-200 dark:text-gray-200">
+                                                marca
+                                            </p>
+                                            <p class="font-bold text-lg text-white dark:text-white">cantidad</p>
+                                        </li>
+                                    </ul>
                                 </div>
                             </a>
                         </li>
-                        <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Granel</h5>
-                                    <p class="text-2xl font-bold text-red-500">49</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li>
+
                     </ul>
                     <ul id="lista_malla" class="flex flex-col">
-                        <li class="pl-2 pt-2">
+                        <!-- <li class="pl-2 pt-2">
                             <a href="#"
                                 class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
                                     src="./img/logoNASA1x1.png" alt="foto-del-producto">
                                 <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Malla</h5>
-                                    <p class="text-2xl font-bold text-green-500">321</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Malla</h5>
-                                    <p class="text-2xl font-bold text-yellow-500">199</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
+                                    <h5 id="titulo_card_malla"
+                                        class="text-xl font-normal tracking-tight text-white dark:text-white">
                                         Malla</h5>
                                     <p class="text-2xl font-bold text-red-500">49</p>
                                     <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
+                                </div>
+                            </a>
+                        </li> -->
+                        <li class="pl-2 pt-2">
+                            <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
+                                shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
+                                dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+                                <div class="flex flex-col justify-between px-2 leading-normal">
+                                    <h2 id="titulo_card_malla"
+                                        class="text-2xl font-bold text-white dark:text-white text-center">
+                                        Malla</h2>
+                                    <h6 id="cantidad_total_malla" class="text-2xl font-bold text-green-500 text-center">
+                                        321
+                                    </h6>
+                                    <ul id="lista_lotes_malla" class="flex flex-col">
+                                        <li class="item_malla flex space-x-2 ml-auto">
+                                            <p class="font-bold text-lg text-white dark:text-white">lote</p>
+                                            <p class="font-normal text-left text-lg text-gray-200 dark:text-gray-200">
+                                                marca
+                                            </p>
+                                            <p class="font-bold text-lg text-white dark:text-white">cantidad</p>
+                                        </li>
+                                    </ul>
                                 </div>
                             </a>
                         </li>
                     </ul>
                     <ul id="lista_kilo" class="flex flex-col">
-                        <li class="pl-2 pt-2">
+
+                        <!-- <li class="pl-2 pt-2">
                             <a href="#"
                                 class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
                                     src="./img/logoNASA1x1.png" alt="foto-del-producto">
                                 <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Kilo</h5>
-                                    <p class="text-2xl font-bold text-green-500">321</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Kilo</h5>
-                                    <p class="text-2xl font-bold text-yellow-500">199</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
+                                    <h5 id="titulo_card_kilo"
+                                        class="text-xl font-normal tracking-tight text-white dark:text-white">
                                         Kilo</h5>
                                     <p class="text-2xl font-bold text-red-500">49</p>
                                     <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
+                                </div>
+                            </a>
+                        </li> -->
+
+                        <li class="pl-2 pt-2">
+                            <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
+                                shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
+                                dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+                                <div class="flex flex-col justify-between px-2 leading-normal">
+                                    <h2 id="titulo_card_kilo"
+                                        class="text-2xl font-bold text-white dark:text-white text-center">
+                                        Kilo</h2>
+                                    <h6 id="cantidad_total_kilo" class="text-2xl font-bold text-green-500 text-center">
+                                        321
+                                    </h6>
+                                    <ul id="lista_lotes_kilo" class="flex flex-col">
+                                        <li class="item_kilo flex space-x-2 ml-auto">
+                                            <p class="font-bold text-lg text-white dark:text-white">lote</p>
+                                            <p class="font-normal text-left text-lg text-gray-200 dark:text-gray-200">
+                                                marca
+                                            </p>
+                                            <p class="font-bold text-lg text-white dark:text-white">cantidad</p>
+                                        </li>
+                                    </ul>
                                 </div>
                             </a>
                         </li>
                     </ul>
                     <ul id="lista_tula" class="flex flex-col">
-                        <li class="pl-2 pt-2">
+                        <!-- <li class="pl-2 pt-2">
                             <a href="#"
                                 class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
                                 <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
                                     src="./img/logoNASA1x1.png" alt="foto-del-producto">
                                 <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Tula</h5>
-                                    <p class="text-2xl font-bold text-green-500">321</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Tula</h5>
-                                    <p class="text-2xl font-bold text-yellow-500">199</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 class="text-xl font-normal tracking-tight text-white dark:text-white">
+                                    <h5 titulo="titulo_card_tula"
+                                        class="text-xl font-normal tracking-tight text-white dark:text-white">
                                         Tula</h5>
                                     <p class="text-2xl font-bold text-red-500">49</p>
                                     <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
                                 </div>
                             </a>
+                        </li> -->
+
+                        <li class="pl-2 pt-2">
+                            <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
+                                shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
+                                dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+
+                                <div class="flex flex-col justify-between px-2 leading-normal">
+                                    <h2 id="titulo_card_tula"
+                                        class="text-2xl font-bold text-white dark:text-white text-center">
+                                        Tula</h2>
+                                    <h6 id="cantidad_total_tula" class="text-2xl font-bold text-green-500 text-center">
+                                        321
+                                    </h6>
+                                    <ul id="lista_lotes_tula" class="flex flex-col">
+                                        <li class="item_tula flex space-x-2 ml-auto">
+                                            <p class="font-bold text-lg text-white dark:text-white">lote</p>
+                                            <p class="font-normal text-left text-lg text-gray-200 dark:text-gray-200">
+                                                marca
+                                            </p>
+                                            <p class="font-bold text-lg text-white dark:text-white">cantidad</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </a>
                         </li>
+
                     </ul>
                 </section>
+
+                <section>
+                    <div id="contenedor_tarjetas" class="flex flex-wrap gap-4"></div>
+                </section>
+
             </section>
+
+
         </div>
     </div>
 
@@ -280,9 +293,20 @@
 
     <!-- Script interfaz -->
     <script src="app/ui.js"></script>
-    
+
     <!-- Script navbar -->
-     <script src="app/navbar.js"></script>
+    <script src="app/navbar.js"></script>
+
+    <!-- Script dashboard -->
+    <script src="app/dashboard.js"></script>
+
+    <!-- Reload -->
+    <!-- <script>
+        setTimeout(() => {
+            window.history.replaceState({}, document.title, window.location.href); // Modifica la URL sin recargar
+            location.reload(); // Recarga la página
+        }, 50000); // Ejecuta cada 5 minutos
+    </script> -->
 
 </body>
 

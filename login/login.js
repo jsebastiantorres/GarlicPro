@@ -63,7 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
             } catch (error) {
-                console.error('Error:', error);
                 messageDiv.textContent = 'Error de conexión con el servidor';
                 messageDiv.className = "bg-red-100 border border-red-400 text-red-700 rounded";
             }

@@ -12,3 +12,18 @@ function cargarNombreUsuario() {
 
 // Llamar a la función cuando el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", cargarNombreUsuario);
+
+
+// Cerrar sesión
+const logoutButton = document.getElementById("logoutButton"); // Obtener el botón de cerrar sesión
+logoutButton.addEventListener("click", () => {
+  // Limpiar el localStorage
+  localStorage.removeItem("usuario_id");
+  localStorage.removeItem("username");
+  localStorage.removeItem("nombre_usuario");
+  localStorage.removeItem("apellido_usuario");
+  localStorage.removeItem("ultimo_acceso");
+
+  // Redireccionar a la página de inicio de sesión
+  window.location.href = "./login/login.html";
+});

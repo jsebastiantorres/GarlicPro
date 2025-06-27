@@ -42,13 +42,12 @@
         Documentación instalación CLI
         https://fontawesome.com/how-to-use/on-the-web/setup/get-free-font
 
+
 ### instalacion de bcryptjs
     npm install bcryptjs
 
 ### instalacion de cors
     npm install cors
-
-
 
 # Control de versiones con git 😼
 
@@ -114,11 +113,8 @@
     1. git checkout main && git merge <branch-name>
  
 
-
-
 ## Fuentes
 1️⃣ Sansita
-
         <!-- google fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

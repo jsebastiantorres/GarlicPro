@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
 </head>
 
-<body>
+<body class="bg-all-pages">
 
     <div class="flex flex-col p-2 h-screen">
 
@@ -43,7 +43,8 @@
                                     class="absolute right-2 mt-2 w-48 bg-white rounded shadow-lg hidden">
                                     <!-- <button class="block px-4 py-2 text-left w-full hover:bg-gray-200 hover:rounded">Perfil</button> -->
                                     <button
-                                        class="flex items-center space-x-2 px-4 py-2 text-left w-full hover:bg-red-500 hover:text-white hover:rounded hover:font-semibold">
+                                        class="flex items-center space-x-2 px-4 py-2 text-left w-full hover:bg-red-500 hover:text-white hover:rounded hover:font-semibold"
+                                        id="logoutButton">
                                         <i class="fa-solid fa-power-off "></i>
                                         <p>Cerrar sesión</p>
                                     </button>
@@ -99,83 +100,92 @@
             </section>
 
             <!-- Contenido principal -->
-            <section class="contenido block ml-2 bg-gray-200 shadow-md shadow-gray-400 rounded-xl w-screen">
+            <section class="contenido block ml-2 bg-white rounded-xl w-screen">
                 <div class="pt-2 px-4">
                     <h2 class="font-bold text-2xl text-gray-800 self-center">Salidas</h2>
                 </div>
 
-                <section id="formulario_ingreso" class="flex max-w-2xl mx-auto">
-                    <form class="">
-                        <div class="flex-row space-y-6">
+                <section class="flex mx-auto w-max-2xl justify-center">
+                    <div id="formulario_ingresos_alert">
+                        <form id="formulario_salidas" class="">
+                            <div class="flex-row space-y-6">
 
-                            <div class="flex space-x-2">
-                                <div class="flex-col">
-                                    <label for="vale" class="block mb-2 text-sm font-medium text-gray-900">#
-                                        Vale</label>
-                                    <input type="number" id="vale" aria-describedby="helper-text-explanation" min="0"
-                                        max="99999"
-                                        class="no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-gray-500 "
-                                        placeholder="lote" required />
+                                <div class="flex space-x-2">
+                                    <div class="flex-col">
+                                        <label for="vale" class="block mb-2 text-sm font-medium text-gray-900">#
+                                            Vale</label>
+                                        <input type="number" id="vale" name="vale"
+                                            aria-describedby="numero del vale físico" min="0" max="99999"
+                                            class="w-32 no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg p-2.5 dark:text-gray-500 "
+                                            placeholder="vale" required />
+                                    </div>
+
+                                    <div class="flex-col">
+                                        <label for="select_destino"
+                                            class="block mb-2 text-sm font-medium text-gray-900">
+                                            Destino
+                                        </label>
+                                        <select id="select_destino" name="select_destino"
+                                            aria-describedby="destino de los productos que salen"
+                                            class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-500 focus:ring-gray-950 focus:border-gray-950">
+                                        </select>
+                                    </div>
+
+                                    <div class="flex-col">
+                                        <label for="lote" class="block mb-2 text-sm font-medium text-gray-900">#
+                                            Lote
+                                        </label>
+                                        <input type="number" id="lote" name="lote"
+                                            aria-describedby="el lote del que se realizara el retiro de producto"
+                                            min="0" max="99999"
+                                            class="w-32 no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg p-2.5 dark:text-gray-500 "
+                                            placeholder="lote" required />
+                                    </div>
+
+                                    <div class="flex-col">
+                                        <label for="marca_asociada"
+                                            class="block mb-2 text-sm font-medium text-gray-900">
+                                            Marca</label>
+                                        <input type="text" id="marca_asociada" name="marca_asociada" disabled
+                                            aria-describedby="Marca asociada al lote" readonly
+                                            class="w-32 bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block p-2.5 dark:text-gray-500" />
+
+                                    </div>
+
+                                    <div class="flex-col">
+                                        <label for="select_clase" class="block mb-2 text-sm font-medium text-gray-900">
+                                            Clase
+                                        </label>
+                                        <select id="select_clase" name="select_clase"
+                                            aria-describedby="clase del producto"
+                                            class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-500 focus:ring-gray-950 focus:border-gray-950">
+
+                                        </select>
+                                    </div>
+
+                                    <div class="flex-col">
+                                        <label for="cantidad"
+                                            class="block mb-2 text-sm font-medium text-gray-900">Cantidad</label>
+                                        <input type="number" id="cantidad" name="cantidad"
+                                            aria-describedby="cantidad de producto a retirar"
+                                            class="w-24 no-spinner bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block  p-2.5 dark:text-gray-500 "
+                                            placeholder="cantidad" min="0" required />
+                                    </div>
                                 </div>
 
-                                <div class="flex-col">
-                                    <label for="destino" class="block mb-2 text-sm font-medium text-gray-900">
-                                        Destino
-                                    </label>
-                                    <select id="select_destino"
-                                        class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-300 focus:ring-gray-950 focus:border-gray-950">
-                                        <!-- <option value="opcion1">Ajos Extras</option>
-                                        <option value="opcion2">Dialsa</option>
-                                        <option value="opcion3">De Calidad</option>
-                                        <option value="opcion3">FV</option>
-                                        <option value="opcion3">Hermanos Vasquez</option> -->
-                                    </select>
-                                </div>
-                                <div class="flex-col">
-                                    <label for="lote" class="block mb-2 text-sm font-medium text-gray-900">#
-                                        Lote</label>
-                                    <input type="number" id="lote" aria-describedby="helper-text-explanation" min="0"
-                                        max="99999"
-                                        class="no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-gray-500 "
-                                        placeholder="lote" required />
-                                </div>
-                                <div class="flex-col">
-                                    <label for="select_marca" class="block mb-2 text-sm font-medium text-gray-900">
-                                        Marca
-                                    </label>
-                                    <select id="select_marca"
-                                        class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-300 focus:ring-gray-950 focus:border-gray-950">
-                                    </select>
-                                </div>
-
-                                <div class="flex-col">
-                                    <label for="select_clase" class="block mb-2 text-sm font-medium text-gray-900">
-                                        Clase
-                                    </label>
-                                    <select id="select_clase"
-                                        class="border text-sm rounded-lg block p-2.5 bg-gray-50 text-gray-900 border-gray-300 focus:ring-gray-950 focus:border-gray-950">
-                                    </select>
-                                </div>
-
-                                <div class="flex-col">
-                                    <label for="cantidad"
-                                        class="block mb-2 text-sm font-medium text-gray-900">Cantidad</label>
-                                    <input type="number" id="cantidad" aria-describedby="helper-text-explanation"
-                                        class="no-spinner bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-gray-500 "
-                                        placeholder="cantidad" min="0" required />
+                                <div class="flex flex-row justify-end items-end">
+                                    <div class="">
+                                        <button type="submit" min="0" max="9999"
+                                            class="w-full text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-md px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800 shadow-md shadow-gray-400">
+                                            Finalizar salida
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+                        </form>
+                    </div>
 
-                            <div class="flex flex-row justify-end items-end">
-                                <div class="">
-                                    <button type="submit" min="0" max="9999"
-                                        class="w-full text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-md px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800 shadow-md shadow-gray-400">
-                                        Finalizar salida
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    <div id="table_salidas"></div>
                 </section>
             </section>
         </div>
@@ -191,7 +201,9 @@
     <!-- Script navbar -->
     <script src="app/navbar.js"></script>
     <!-- Script formularios -->
-    <script src="app/forms.js"></script>
+    <!-- <script src="app/forms.js"></script> -->
+    <!-- Script de salida -->
+    <script src="app/form_salidas.js"></script>
 </body>
 
 </html>

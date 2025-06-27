@@ -47,7 +47,6 @@ async function buscarPorNombreLogin(username) {
 }
 
 
-
 // ACTUALIZAR EL ULTIMO ACCESO - Función para actualizar el último acceso de un usuario
 async function actualizarUltimoAcceso(login_id) {
     const connection = await connectToDatabase(); // Llama a la función de conexión para obtener la conexión
@@ -62,12 +61,346 @@ async function actualizarUltimoAcceso(login_id) {
     }
 }
 
+
+
+// OBTENER INVENTARIO - Función para obtener el inventario agrupado por clase
+async function obtenerInventarioPorClase() {
+    const connection = await connectToDatabase();
+    try {
+        // 🟢 Consulta para obtener los lotes junto con el nombre de la clase y la marca
+        const [lotes] = await connection.execute(`
+            SELECT lotes.lote_codigo, lotes.marca_id, clases.id AS clase_id, clases.nombre AS clase, lotes.cantidad  
+            FROM lotes
+            JOIN clases ON lotes.clase_id = clases.id
+        `);
+        console.log("Consulta SQL - Lotes agrupados por clase:", lotes);
+
+        // 🟢 Consulta para obtener la cantidad total por cada clase
+        const [totalCantidad] = await connection.execute(`
+            SELECT clases.id AS clase_id, clases.nombre AS clase, SUM(lotes.cantidad) AS total 
+            FROM lotes
+            JOIN clases ON lotes.clase_id = clases.id
+            GROUP BY clases.id
+        `);
+        console.log("Consulta SQL - Total cantidad por clase:", totalCantidad);
+
+        // 🟢 Consulta para obtener los nombres de las marcas
+        const [marcas] = await connection.execute(`
+            SELECT id AS marca_id, nombre AS nombre_marca FROM marcas
+        `);
+        console.log("Consulta SQL - Marcas:", marcas);
+
+        // 🔹 Mapear los nombres de las marcas y la cantidad total por clase
+        const marcasMap = new Map(marcas.map(marca => [marca.marca_id, marca.nombre_marca]));
+        const totalMap = new Map(totalCantidad.map(t => [t.clase_id, { nombre: t.clase, total: t.total }]));
+
+        // 🔹 Agrupar lotes por clase
+        const clasesAgrupadas = {};
+        lotes.forEach(lote => {
+            const nombreClase = lote.clase;
+            if (!clasesAgrupadas[nombreClase]) {
+                clasesAgrupadas[nombreClase] = {
+                    total_cantidad: totalMap.get(lote.clase_id)?.total || 0,
+                    lotes: []
+                };
+            }
+            clasesAgrupadas[nombreClase].lotes.push({
+                lote_codigo: lote.lote_codigo,
+                marca: marcasMap.get(lote.marca_id) || "Desconocido",
+                cantidad: lote.cantidad
+            });
+        });
+
+        console.log("Clases agrupadas:", clasesAgrupadas); // Depuración
+        return clasesAgrupadas; // Retornar los datos listos para el frontend
+
+    } catch (error) {
+        console.error("Error en consultas múltiples:", error.message);
+        throw error;
+    } finally {
+        if (connection) await connection.end();
+    }
+}
+
+
+// OBTENER ID DE MARCA - Función para obtener el ID de una marca por su nombre
+async function obtenerIdMarca(nombreMarca) {
+    const connection = await connectToDatabase(); // Llama a la función de conexión para obtener la conexión
+    try {
+        const [rows] = await connection.execute(`SELECT id FROM marcas WHERE nombre = ?`, [nombreMarca]);
+        if (rows.length > 0) {
+            return rows[0].id; // Retorna el ID de la marca
+        } else {
+            throw new Error("Marca no encontrada");
+        }
+    } catch (error) {
+        console.error("Error al obtener el ID de la marca:", error.message);
+        throw error; // Lanza el error para que pueda ser manejado en el nivel supervisor
+    } finally {
+        if (connection) connection.end(); // Cierra la conexión después de la consulta
+    }
+}
+
+
+// OBTENER ID DE CLASE - Función para obtener el ID de una clase por su nombre
+async function obtenerIdClase(nombreClase) {
+    const connection = await connectToDatabase(); // Llama a la función de conexión para obtener la conexión
+    try {
+        const [rows] = await connection.execute(`SELECT id FROM clases WHERE nombre = ?`, [nombreClase]);
+        if (rows.length > 0) {
+            return rows[0].id; // Retorna el ID de la clase
+        } else {
+            throw new Error("Clase no encontrada");
+        }
+    } catch (error) {
+        console.error("Error al obtener el ID de la clase:", error.message);
+        throw error; // Lanza el error para que pueda ser manejado en el nivel supervisor
+    }
+    finally {
+        if (connection) connection.end(); // Cierra la conexión después de la consulta
+    }
+}
+
+
+// OBTENER ID DE DESTINO - Función para obtener el ID de un destino por su nombre
+async function obtenerIdDestino(nombreDestino) {
+    const connection = await connectToDatabase();
+    try {
+        console.log("Buscando destino:", nombreDestino); // 🔍 Depuración
+
+        const [rows] = await connection.execute(`
+            SELECT id FROM destinos WHERE nombre = ?
+        `, [nombreDestino]);
+
+        console.log("Resultado de consulta:", rows); // ✅ Ver datos obtenidos
+
+        return rows.length > 0 ? rows[0].id : null;
+    } catch (error) {
+        console.error("Error al obtener ID de destino:", error.message);
+        return null;
+    } finally {
+        if (connection) await connection.end();
+    }
+}
+
+
+
+
+// REGISTRAR INGRESO DE LOTE - Función para registrar el ingreso de un lote
+async function registrarIngresoLote(lote_codigo, nombreMarca, nombreClase, cantidad, login_id) {
+    const connection = await connectToDatabase(); // Llama a la función de conexión para obtener la conexión
+    try {
+        // Obtener el ID de la marca y la clase
+        const marca_id = await obtenerIdMarca(nombreMarca); // Obtener el ID de la marca
+        const clase_id = await obtenerIdClase(nombreClase); // Obtener el ID de la clase
+
+        const producto_id = 1; // por defecto 1 ya que es el unico producto que se maneja por ahora
+
+        // Insertar el nuevo lote en la base de datos
+        const resultado = await connection.execute(`INSERT INTO ingresos (lote_codigo, marca_id, clase_id, producto_id, cantidad, fecha_ingreso, login_id) VALUES (?, ?, ?, ?, ?, CURDATE(), ?)`,
+            [lote_codigo, marca_id, clase_id, producto_id, cantidad, login_id]
+        );
+
+        console.log("Ingreso registrado exitosamente:", { lote_codigo, marca_id, clase_id, producto_id, cantidad, login_id });
+        return resultado; // Retorna el resultado de la inserción
+    } catch (error) {
+        console.error("Error al registrar el ingreso del lote:", error.message);
+        throw error; // Lanza el error para que pueda ser manejado en el nivel supervisor
+    } finally {
+        if (connection) connection.end(); // Cierra la conexión después de la consulta
+    }
+}
+
+// REGISTRAR SALIDA - funcion para obtener la marca de un lote
+async function obtenerMarcaPorLote(lote_codigo) {
+    const connection = await connectToDatabase();
+    try {
+        const [rows] = await connection.execute(`
+            SELECT marcas.id, marcas.nombre
+            FROM lotes
+            JOIN marcas ON lotes.marca_id = marcas.id
+            WHERE lotes.lote_codigo = ?
+        `, [lote_codigo]);
+
+        return rows.length > 0 ? rows[0] : null;
+    } catch (error) {
+        console.error("Error al obtener marca por lote:", error.message);
+        return null;
+    } finally {
+        if (connection) await connection.end();
+    }
+}
+
+
+// REGISTRAR SALIDA - funcion para regisrar salida de unidades
+
+
+async function registrarSalida(vale, nombreDestino, lote_codigo, nombreMarca, nombreClase, cantidad, usuario_id) {
+    const connection = await connectToDatabase();
+
+    try {
+        const marca_id = await obtenerIdMarca(nombreMarca);
+        const clase_id = await obtenerIdClase(nombreClase);
+        const destino_id = await obtenerIdDestino(nombreDestino);
+
+        console.log("ID Marca:", marca_id, "ID Clase:", clase_id, "ID Destino:", destino_id, "Cantidad:", cantidad);
+
+        // Verificar IDs
+        if (!marca_id || !clase_id || !destino_id) {
+            console.error("Error: Marca, clase o destino no encontrados.");
+            throw new Error("Marca, clase o destino no encontrados.");
+
+        }
+
+        // Verificar disponibilidad del inventario
+        const [inventario] = await connection.execute(`
+            SELECT cantidad FROM lotes WHERE lote_codigo = ? AND clase_id = ?
+        `, [lote_codigo, clase_id]);
+
+        if (!inventario || inventario.length === 0 || inventario[0].cantidad < cantidad) {
+            console.error("Error: Inventario insuficiente.");
+            throw new Error("Inventario insuficiente para procesar la salida.");
+        }
+
+        // No ejecutar la actualizacion si la cantidad de salida es mayor que la disponible
+        // if (inventario[0].cantidad >= cantidad) {
+        //     await connection.execute(`
+        //         UPDATE lotes SET cantidad = cantidad - ? WHERE lote_codigo = ? AND clase_id = ?`,
+        //         [cantidad, lote_codigo, clase_id]);
+        // }
+
+
+        // SENTENCIAS EN BASE DE DATOS
+        // 🟢 Insertar salida en la base de datos
+
+        const resultado = await connection.execute(`
+            INSERT INTO salidas (lote_codigo, marca_id, clase_id, vale, destino_id, cantidad, fecha_salida, login_id)
+            VALUES (?, ?, ?, ?, ?, ?, CURDATE(), ?)
+            `, [lote_codigo, marca_id, clase_id, vale, destino_id, cantidad, usuario_id]);
+
+        console.log("✅ Salida registrada correctamente:", resultado);
+
+        // const resultado = await connection.execute(`
+        //     INSERT INTO salidas (vale, lote_codigo, marca_id, clase_id, destino_id, cantidad, fecha_salida, login_id)
+        //     VALUES (?, ?, ?, ?, ?, ?, CURDATE(), ?)
+        // `, [vale, lote_codigo, marca_id, clase_id, destino_id, cantidad, usuario_id]);
+
+        // 🟢 Actualizar inventario en lotes
+        // await connection.execute(`
+        //     UPDATE lotes SET cantidad = cantidad - ? WHERE lote_codigo = ? AND clase_id = ?
+        // `, [cantidad, lote_codigo, clase_id]);
+
+        console.log("Salida registrada:", resultado);
+        return resultado;
+    } catch (error) {
+        console.error("Error al registrar salida:", error);
+        return { success: false, message: error.message }; // ✅ Enviar un mensaje
+    } finally {
+        if (connection) await connection.end();
+    }
+}
+
+
+
+// Ingresos - tabla de ingresos
+async function obtenerIngresos() {
+    const connection = await connectToDatabase();
+    try {
+        const [rows] = await connection.execute('SELECT lote_codigo, marca_id, clase_id, cantidad, fecha_ingreso FROM ingresos ORDER BY fecha_ingreso DESC');
+        return rows;
+
+    } catch (error) {
+        console.error("Error al obtener los ingresos:", error);
+        return []; // Evita el error en el frontend
+    } finally {
+        if (connection) await connection.end();
+    }
+}
+
+
+
+
+
+
+
+// Este codigo se puede mejorar a futuro creando un for por cada clase o producto 
+// OBTENER INVENTARIO - DASHBOARD
+// async function obtenerInventarioGranel() {
+//     const connection = await connectToDatabase(); // Llama a la función de conexión para obtener la conexión
+//     try {
+
+//         // Consulta para obtener el inventario de granel
+//         const [rows] = await connection.execute(`
+//             SELECT lote_codigo, marca_id, clase_id, cantidad 
+//             FROM lotes WHERE clase_id = 1
+//             `); // Consulta para obtener el inventario de granel
+//         console.log("Consulta SQL - Granel:", rows)
+
+//         // Consulta para obtener el total de cantidad de granel
+//         const [totalCantidad] = await connection.execute(`
+//             SELECT clase_id, SUM(cantidad) AS total 
+//             FROM lotes WHERE clase_id = 1
+//             GROUP BY clase_id
+//         `);
+//         console.log("Consulta SQL - Granel Total:", totalCantidad)
+
+//         // Consulta para obtener los nombres de las marcas
+//         const [marcas] = await connection.execute(`
+//             SELECT id AS marca_id, nombre AS nombre_marca FROM marcas
+//         `);
+//         console.log("Consulta SQL - Marcas:", marcas);
+
+
+//         // unir los resultados y mapear los nombres de las marcas
+//         const marcasMap = new Map(marcas.map(marca => [marca.marca_id, marca.nombre_marca]));
+//         const totalMap = new Map(totalCantidad.map(t => [t.clase_id, t.total]));
+
+//         const lotesConMarca = rows.map(lote => ({
+//             lote_codigo: lote.lote_codigo,
+//             marca: marcasMap.get(lote.marca_id) || "Desconocido", // 🔹 Ahora usa correctamente `marcas`
+//             cantidad: lote.cantidad,
+//             total_cantidad: totalMap.get(lote.clase_id) || 0
+//         }));
+//         console.log("Consulta SQL - Granel con marcas:", lotesConMarca);
+
+
+//         return lotesConMarca; // Retorna los resultados de la consulta
+//     } catch (error) {
+//         console.error("Error al obtener el inventario de granel:", error.message);
+//         throw error; // Lanza el error para que pueda ser manejado en el nivel supervisor
+//     } finally {
+//         if (connection) connection.end(); // Cierra la conexión después de la consulta
+//     }
+// }
+
+
+
+
 // Exportar las funciones para que puedan ser utilizadas en otros módulos
 module.exports = {
     buscarPorNombreLogin,
-    actualizarUltimoAcceso
-
+    actualizarUltimoAcceso,
+    // obtenerInventarioGranel,
+    obtenerInventarioPorClase,
+    obtenerIdMarca,
+    obtenerIdClase,
+    obtenerIdDestino,
+    registrarIngresoLote,
+    obtenerMarcaPorLote,
+    registrarSalida,
+    obtenerIngresos
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 // La funcion de ACTUALIZAR LA CONTRASEÑA DE UN USUARIO estará disponible para los perfiles de ADMINISTRADOR y SUPERADMINISTRADOR proximamente
@@ -93,38 +426,17 @@ module.exports = {
 
 
 
+// REALIZAR INGRESO DE PRODUCTO-LOTE
 
+async function IngresoProducto(lote, marca, clase, cantidad) {
+    const connection = await connectToDatabase(); // Llama a la función de conexión para obtener la conexión
 
-
-
-
-
-// try {
-//     // Tipo de base de datos: MySQL
-//     // const mysql = require("mysql2");
-//     const mysql = require("mysql2/promise"); // Si usas promesas
-
-//     // Objeto de conexión a la base de datos
-//     const connection = mysql.createConnection({
-//         host: "localhost",
-//         user: "root",
-//         password: "123456789",
-//         database: "garlicpro_qa",
-//         port: 3306
-//     });
-
-//     // Conectar a la base de datos
-//     connection.connect(function (err) {
-//         if (err) {
-//             console.error("Error de conexión con la base de datos garlicpro db_qa: " + err.stack);
-//             return;
-//         }
-//         console.log("Conectado a la base de datos garlicpro bd_qa como ID " + connection.threadId);
-//     });
-
-//     // Exportar la conexión para usarla en otros módulos
-//     module.exports = connection;
-// } catch (error) {
-//     console.error("Error al conectar a la base de datos garlicpro db_qa: " + error.message);
-// }
-
+    try {
+        await connection.execute(`UPDATE login SET ultimo_acceso = NOW() WHERE id = ?`, [login_id]);
+        console.log("Ultimo acceso actualizado para el usuario con ID:", login_id);
+    } catch (error) {
+        console.error("Error al actualizar el último acceso:", error.message);
+    } finally {
+        if (connection) connection.end(); // Cierra la conexión después de la consulta
+    }
+}
