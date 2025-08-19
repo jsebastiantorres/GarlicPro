@@ -197,7 +197,7 @@ async function registrarIngresoLote(lote_codigo, nombreMarca, nombreClase, canti
         const producto_id = 1; // por defecto 1 ya que es el unico producto que se maneja por ahora
 
         // Insertar el nuevo lote en la base de datos
-        const resultado = await connection.execute(`INSERT INTO ingresos (lote_codigo, marca_id, clase_id, producto_id, cantidad, fecha_ingreso, login_id) VALUES (?, ?, ?, ?, ?, CURDATE(), ?)`,
+        const resultado = await connection.execute(`INSERT INTO ingresos (lote_codigo, marca_id, clase_id, producto_id, cantidad, login_id) VALUES (?, ?, ?, ?, ?, ?)`,
             [lote_codigo, marca_id, clase_id, producto_id, cantidad, login_id]
         );
 
@@ -233,8 +233,6 @@ async function obtenerMarcaPorLote(lote_codigo) {
 
 
 // REGISTRAR SALIDA - funcion para regisrar salida de unidades
-
-
 async function registrarSalida(vale, nombreDestino, lote_codigo, nombreMarca, nombreClase, cantidad, usuario_id) {
     const connection = await connectToDatabase();
 
@@ -306,7 +304,7 @@ async function registrarSalida(vale, nombreDestino, lote_codigo, nombreMarca, no
 async function obtenerIngresos() {
     const connection = await connectToDatabase();
     try {
-        const [rows] = await connection.execute('SELECT lote_codigo, marca_id, clase_id, cantidad, fecha_ingreso FROM ingresos ORDER BY fecha_ingreso DESC');
+        const [rows] = await connection.execute('SELECT i.lote_codigo, m.nombre AS marca, c.nombre AS clase, i.cantidad, i.fecha_ingreso FROM ingresos i JOIN marcas m ON i.marca_id = m.id JOIN clases c ON i.clase_id = c.id ORDER BY fecha_ingreso DESC');
         return rows;
 
     } catch (error) {

@@ -23,10 +23,20 @@ async function pintarTablaIngresos() {
         resultado.forEach(ingreso => {
             const fila = `<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"> 
             <td class="text-left px-6 py-2">${ingreso.lote_codigo}</td>
-            <td class="text-left px-6 py-2">${ingreso.marca_id}</td>
-            <td class="text-left px-6 py-2">${ingreso.clase_id}</td>
+            <td class="text-left px-6 py-2">${ingreso.marca}</td>
+            <td class="text-left px-6 py-2">${ingreso.clase}</td>
             <td class="text-left px-6 py-2 font-bold">${ingreso.cantidad}</td>
-            <td class="text-left px-6 py-2">${new Date(ingreso.fecha_ingreso).toLocaleDateString()}</td>
+            <td class="text-left px-6 py-2">${new Date(ingreso.fecha_ingreso).toLocaleString('es-CO', {
+                weekday: 'long',   // día de la semana
+                year: 'numeric',
+                month: 'long',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true
+            })
+                }</td>
             </tr>`;
 
             // Agrega cada fila a la tabla

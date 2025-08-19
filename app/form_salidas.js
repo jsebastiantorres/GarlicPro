@@ -26,8 +26,8 @@ const agregarOpciones = (listado, selector, mensajePredeterminado) => {
     });
 };
 // listar los campos de clase y destino
-agregarOpciones(destinos, selectorDestino, "Seleccione un destino");
-agregarOpciones(clases, selectorClase, "Seleccione una clase");
+agregarOpciones(destinos, selectorDestino, "Seleccionar");
+agregarOpciones(clases, selectorClase, "Seleccionar");
 
 
 // Funcion para traer la marca cuando se complete el campo lote

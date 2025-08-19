@@ -106,17 +106,17 @@
                     <h2 class="font-bold text-2xl text-gray-800 self-center">Ingresos</h2>
                 </div>
 
-                <section class="flex mx-auto w-max-2xl justify-center">
-                    <div id="formulario_ingresos_alert">
+                <section class="flex justify-center w-full">
+                    <div id="formulario_ingresos_alert" class="">
                         <form id="formulario_ingresos" class="">
                             <div class="flex-row space-y-2">
-                                <div class="flex space-x-2">
+                                <div class="flex flex-wrap justify-between gap-2 w-full">
                                     <div class="flex-col">
                                         <label for="lote" class="block mb-2 text-sm font-medium text-gray-900">#
                                             Lote</label>
                                         <input type="number" id="lote" aria-describedby="helper-text-explanation"
                                             min="0" max="99999"
-                                            class="no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg p-2.5 px-8 dark:text-gray-500 "
+                                            class="w-32 no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg p-2.5 px-8 dark:text-gray-500 "
                                             placeholder="lote" required />
                                     </div>
                                     <div class="flex-col">
@@ -136,20 +136,18 @@
                                         </select>
                                     </div>
 
-                                    <div class="flex-col">
+                                    <div class="flex flex-col">
                                         <label for="cantidad"
                                             class="block mb-2 text-sm font-medium text-gray-900">Cantidad</label>
                                         <input type="number" id="cantidad" name="cantidad"
                                             aria-describedby="helper-text-explanation"
-                                            class="no-spinner bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:text-gray-500 "
+                                            class="w-32 no-spinner bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block p-2.5 dark:text-gray-500 "
                                             placeholder="cantidad" min="0" required />
                                     </div>
-                                </div>
 
-                                <div class="flex flex-row justify-end items-end">
-                                    <div class="">
+                                    <div class="flex flex-col justify-end items-end">
                                         <button type="submit" min="0" max="9999"
-                                            class="w-full text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-md px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800 shadow-md shadow-gray-400">
+                                            class="text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-md px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800 shadow-md shadow-gray-400">
                                             Finalizar ingreso
                                         </button>
                                     </div>

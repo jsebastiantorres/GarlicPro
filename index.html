@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta http-equiv="refresh" content="10"> -->
+    <meta http-equiv="refresh" content="3600">
 
     <title>inventario</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
@@ -62,38 +62,44 @@
 
             <!-- Sidebar -->
             <section class="sidebar flex">
-                <aside class="flex flex-col  w-64 p-4 rounded-xl shadow-md bg-gray-800 text-white shadow-gray-400">
+                <aside
+                    class="flex flex-col w-16 md:w-32 lg:w-64 md:p-2 lg:p-4 rounded-xl shadow-md bg-gray-800 text-white shadow-gray-400">
                     <!--<h2 class="text-xl font-bold mb-4">Menú</h2>-->
-                    <ul class="space-y-3 pb-4">
-                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
-                            <a href="index.html" class="">
+                    <ul class="space-y-3 pb-4 grid justify-items-stretch">
+                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded-lg">
+                            <a href="index.html"
+                                class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start">
                                 <i class="fa-solid fa-boxes-stacked px-4 py-2"></i>
-                                Inventario
+                                <p>Inventario</p>
                             </a>
                         </li>
-                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
-                            <a href="ingresos.html" class="">
+                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded-lg">
+                            <a href="ingresos.html"
+                                class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start">
                                 <i class="fa-solid fa-right-to-bracket px-4 py-2"></i>
-                                Ingresos
+                                <p class="">Ingresos</p>
                             </a>
                         </li>
-                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
-                            <a href="salidas.html" class="">
+                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded-lg">
+                            <a href="salidas.html"
+                                class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start">
                                 <i class="fa-solid fa-right-from-bracket px-4 py-2"></i>
-                                Salidas
+                                <p>Salidas</p>
                             </a>
                         </li>
+
+
                     </ul>
 
                     <!-- Empujar la segunda lista al final -->
                     <div class="flex-grow max-h"></div>
 
                     <ul class="space-y-3 pb-4">
-
-                        <li class="justify-between hover:bg-red-700 hover:font-semibold px-4 py-2 rounded">
-                            <a href="./login/login.html" class="w-full">
+                        <li class="justify-between hover:bg-red-700 hover:font-semibold px-4 rounded-lg">
+                            <a href="./login/login.html"
+                                class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start py-2">
                                 <i class="fa-solid fa-power-off px-4 py-2"></i>
-                                Cerrar Sesión
+                                <p class="text-center">Cerrar Sesión</p>
                             </a>
                         </li>
                     </ul>
@@ -223,53 +229,94 @@
 
                 </section>
 
-                <section id="taretas_simplificadas" class="flex flex-wrap">
+                <!-- Tarjetas simplificadas -->
+                <section id="taretas_simplificadas" class="">
 
-                    <!-- Tarjeta caja granel -->
-                    <div id="tarjeta_granel"
-                        class="grid grid-flow-col grid-rows-2 bg-gray-600 ml-2 my-2 px-6 py-2 rounded-lg w-52 dark:hover:bg-gray-900 shadow-md
-                                shadow-gray-400">
-                        <div class="row-span-2 flex items-center justify-center mr-2">
-                            <div class="bg-gray-500 rounded-md px-4 py-4">
-                                <i class="fa-solid fa-box text-white text-xl"></i>
-                            </div>
-                        </div>
-                        <div class="col-span-2 flex">
-                            <p class="text-white flex items-end">Granel</p>
-                        </div>
-                        <div class="col-span-2 flex pb-2">
-                            <div>
-                                <p class="text-white flex items-start font-bold text-xl">123</p>
-                            </div>
-                            <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
-                                <p class="text-yellow-800">-200</p>
-                            </div>
-                        </div>
-                    </div>    
+                    <!-- Grid tarjetas simplificadas -->
+                    <div id="grid_tarjetas" class="grid grid-cols-4 gap-2 pr-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
 
-                    <!-- Tarjeta caja granel -->
-                    <div id="tarjeta_granel"
-                        class="grid grid-flow-col grid-rows-2 bg-gray-600 ml-2 my-2 px-6 py-2 rounded-md w-48 dark:hover:bg-gray-800 shadow-md
-                                shadow-gray-400">
-                        <div class="row-span-2 flex items-center justify-center mr-2">
-                            <div class="bg-gray-400 rounded-full px-3 py-2">
-                                <i class="fa-solid fa-box text-white text-xl"></i>
+                        <!-- Tarjeta caja granel -->
+                        <div id="tarjeta_granel"
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 ml-2 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                            <div class="row-span-2 flex items-center justify-center mr-2">
+                                <div class="bg-gray-500 rounded-md px-4 py-4">
+                                    <i class="fa-solid fa-box text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="col-span-2 flex">
+                                <p class="text-white flex items-end">Granel</p>
+                            </div>
+                            <div class="col-span-2 flex items-center justify-between pb-2">
+                                <div>
+                                    <p class="text-white flex items-start font-bold text-xl">123</p>
+                                </div>
+                                <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                    <p class="text-yellow-800">-200</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-span-2 flex">
-                            <p class="text-white flex items-end">Granel</p>
-                        </div>
-                        <div class="col-span-2 flex pb-2">
-                            <div>
-                                <p class="text-white flex items-start font-bold text-xl">123</p>
+                        <!-- Tarjeta caja granel -->
+                        <div id="tarjeta_granel"
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 ml-2 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                            <div class="row-span-2 flex items-center justify-center mr-2">
+                                <div class="bg-gray-500 rounded-md px-4 py-4">
+                                    <i class="fa-solid fa-box text-white text-xl"></i>
+                                </div>
                             </div>
-                            <div class="bg-emerald-400 flex ml-6 rounded-sm px-2">
-                                <p class="text-emerald-800">-200</p>
+                            <div class="col-span-2 flex">
+                                <p class="text-white flex items-end">Granel</p>
+                            </div>
+                            <div class="col-span-2 flex items-center justify-between pb-2">
+                                <div>
+                                    <p class="text-white flex items-start font-bold text-xl">123</p>
+                                </div>
+                                <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                    <p class="text-yellow-800">-200</p>
+                                </div>
                             </div>
                         </div>
-                    </div>    
+                        <!-- Tarjeta caja granel -->
+                        <div id="tarjeta_granel"
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 ml-2 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                            <div class="row-span-2 flex items-center justify-center mr-2">
+                                <div class="bg-gray-500 rounded-md px-4 py-4">
+                                    <i class="fa-solid fa-box text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="col-span-2 flex">
+                                <p class="text-white flex items-end">Granel</p>
+                            </div>
+                            <div class="col-span-2 flex items-center justify-between pb-2">
+                                <div>
+                                    <p class="text-white flex items-start font-bold text-xl">123</p>
+                                </div>
+                                <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                    <p class="text-yellow-800">-200</p>
+                                </div>
+                            </div>
+                        </div>
 
 
+
+
+
+                    </div>
+
+
+                </section>
+                <!-- Fin seccion tarjetas simplificadas -->
+
+
+                <!-- Detalles de la tarjeta -->
+                <section>
+                    <div id="detalles_tarjeta" class="bg-white ml-2 mt-2 mr-2 rounded-md ">
+                        <div id="detalles_tarjeta_inventario">
+                            <h4>Tabla Inventario Detallado</h4>
+                        </div>
+                        <div id="detalles_tarjeta_movimientos">
+                            <h4>Tabla Movimientos</h4>
+                        </div>
+                    </div>
                 </section>
 
                 <section>

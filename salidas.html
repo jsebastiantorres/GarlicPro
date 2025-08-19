@@ -107,16 +107,16 @@
 
                 <section class="flex mx-auto w-max-2xl justify-center">
                     <div id="formulario_ingresos_alert">
+
                         <form id="formulario_salidas" class="">
                             <div class="flex-row space-y-6">
-
                                 <div class="flex space-x-2">
                                     <div class="flex-col">
                                         <label for="vale" class="block mb-2 text-sm font-medium text-gray-900">#
                                             Vale</label>
                                         <input type="number" id="vale" name="vale"
                                             aria-describedby="numero del vale físico" min="0" max="99999"
-                                            class="w-32 no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg p-2.5 dark:text-gray-500 "
+                                            class="w-24 no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg p-2.5 dark:text-gray-500 "
                                             placeholder="vale" required />
                                     </div>
 
@@ -138,7 +138,7 @@
                                         <input type="number" id="lote" name="lote"
                                             aria-describedby="el lote del que se realizara el retiro de producto"
                                             min="0" max="99999"
-                                            class="w-32 no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg p-2.5 dark:text-gray-500 "
+                                            class="w-24 no-spinner appearance-none bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg p-2.5 dark:text-gray-500 "
                                             placeholder="lote" required />
                                     </div>
 
@@ -148,7 +148,7 @@
                                             Marca</label>
                                         <input type="text" id="marca_asociada" name="marca_asociada" disabled
                                             aria-describedby="Marca asociada al lote" readonly
-                                            class="w-32 bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block p-2.5 dark:text-gray-500" />
+                                            class="w-24 bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block p-2.5 dark:text-gray-500" />
 
                                     </div>
 
@@ -171,16 +171,16 @@
                                             class="w-24 no-spinner bg-gray-50 border border-gray-500 text-gray-900 text-sm rounded-lg block  p-2.5 dark:text-gray-500 "
                                             placeholder="cantidad" min="0" required />
                                     </div>
-                                </div>
 
-                                <div class="flex flex-row justify-end items-end">
-                                    <div class="">
+                                    <div class="flex flex-col justify-end items-end">
                                         <button type="submit" min="0" max="9999"
                                             class="w-full text-white bg-emerald-700 hover:bg-emerald-800 font-medium rounded-lg text-md px-5 py-2.5 text-center dark:bg-emerald-600 dark:hover:bg-emerald-700 dark:focus:ring-emerald-800 shadow-md shadow-gray-400">
                                             Finalizar salida
                                         </button>
                                     </div>
                                 </div>
+
+
                             </div>
                         </form>
                     </div>

@@ -25,8 +25,8 @@ const agregarOpciones = (listado, selector, mensajePredeterminado) => {
     });
 };
 
-agregarOpciones(marcas, selectorMarca, "Seleccione una marca");
-agregarOpciones(clases, selectorClase, "Seleccione una clase");
+agregarOpciones(marcas, selectorMarca, "Seleccionar");
+agregarOpciones(clases, selectorClase, "Seleccionar");
 
 console.log("Corriendo el script de forms.js");
 
