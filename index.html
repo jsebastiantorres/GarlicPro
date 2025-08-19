@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="10">
+    <!-- <meta http-equiv="refresh" content="10"> -->
 
     <title>inventario</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
@@ -106,29 +106,14 @@
                 <div class="pt-2 px-4">
                     <h2 class="font-bold text-2xl text-gray-800 self-center">Inventario </h2>
                 </div>
-                <section class="flex ">
 
+                <section id="seccion_tarjetas" class="flex ">
+                    <!-- Tarjeta granel -->
                     <ul id="lista_granel" class="flex flex-col">
-                        <!-- <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 ig="titulo_card_granel"
-                                        class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Granel</h5>
-                                    <p class="text-2xl font-bold text-green-500">321</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li> -->
-
                         <li class="pl-2 pt-2">
                             <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
                                 shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
                                 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-
                                 <div class="flex flex-col justify-between px-2 leading-normal">
                                     <h2 id="titulo_card_granel"
                                         class="text-2xl font-bold text-white dark:text-white text-center">
@@ -148,23 +133,10 @@
                                 </div>
                             </a>
                         </li>
-
                     </ul>
+
+                    <!-- Tarjeta Malla -->
                     <ul id="lista_malla" class="flex flex-col">
-                        <!-- <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 id="titulo_card_malla"
-                                        class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Malla</h5>
-                                    <p class="text-2xl font-bold text-red-500">49</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li> -->
                         <li class="pl-2 pt-2">
                             <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
                                 shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
@@ -190,23 +162,9 @@
                             </a>
                         </li>
                     </ul>
+
+                    <!-- Tarjeta kilo -->
                     <ul id="lista_kilo" class="flex flex-col">
-
-                        <!-- <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 id="titulo_card_kilo"
-                                        class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Kilo</h5>
-                                    <p class="text-2xl font-bold text-red-500">49</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li> -->
-
                         <li class="pl-2 pt-2">
                             <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
                                 shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
@@ -232,22 +190,9 @@
                             </a>
                         </li>
                     </ul>
-                    <ul id="lista_tula" class="flex flex-col">
-                        <!-- <li class="pl-2 pt-2">
-                            <a href="#"
-                                class="p-2 flex flex-col items-center bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                <img class="object-cover w-full h-auto md:w-24 rounded-t md:rounded md:rounded-s"
-                                    src="./img/logoNASA1x1.png" alt="foto-del-producto">
-                                <div class="flex flex-col justify-between px-2 leading-normal">
-                                    <h5 titulo="titulo_card_tula"
-                                        class="text-xl font-normal tracking-tight text-white dark:text-white">
-                                        Tula</h5>
-                                    <p class="text-2xl font-bold text-red-500">49</p>
-                                    <p class="font-normal text-gray-400 dark:text-gray-400">#2345</p>
-                                </div>
-                            </a>
-                        </li> -->
 
+                    <!-- Tarjeta tula -->
+                    <ul id="lista_tula" class="flex flex-col">
                         <li class="pl-2 pt-2">
                             <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
                                 shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
@@ -274,6 +219,57 @@
                         </li>
 
                     </ul>
+
+
+                </section>
+
+                <section id="taretas_simplificadas" class="flex flex-wrap">
+
+                    <!-- Tarjeta caja granel -->
+                    <div id="tarjeta_granel"
+                        class="grid grid-flow-col grid-rows-2 bg-gray-600 ml-2 my-2 px-6 py-2 rounded-lg w-52 dark:hover:bg-gray-900 shadow-md
+                                shadow-gray-400">
+                        <div class="row-span-2 flex items-center justify-center mr-2">
+                            <div class="bg-gray-500 rounded-md px-4 py-4">
+                                <i class="fa-solid fa-box text-white text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="col-span-2 flex">
+                            <p class="text-white flex items-end">Granel</p>
+                        </div>
+                        <div class="col-span-2 flex pb-2">
+                            <div>
+                                <p class="text-white flex items-start font-bold text-xl">123</p>
+                            </div>
+                            <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                <p class="text-yellow-800">-200</p>
+                            </div>
+                        </div>
+                    </div>    
+
+                    <!-- Tarjeta caja granel -->
+                    <div id="tarjeta_granel"
+                        class="grid grid-flow-col grid-rows-2 bg-gray-600 ml-2 my-2 px-6 py-2 rounded-md w-48 dark:hover:bg-gray-800 shadow-md
+                                shadow-gray-400">
+                        <div class="row-span-2 flex items-center justify-center mr-2">
+                            <div class="bg-gray-400 rounded-full px-3 py-2">
+                                <i class="fa-solid fa-box text-white text-xl"></i>
+                            </div>
+                        </div>
+                        <div class="col-span-2 flex">
+                            <p class="text-white flex items-end">Granel</p>
+                        </div>
+                        <div class="col-span-2 flex pb-2">
+                            <div>
+                                <p class="text-white flex items-start font-bold text-xl">123</p>
+                            </div>
+                            <div class="bg-emerald-400 flex ml-6 rounded-sm px-2">
+                                <p class="text-emerald-800">-200</p>
+                            </div>
+                        </div>
+                    </div>    
+
+
                 </section>
 
                 <section>
