@@ -61,38 +61,44 @@
 
             <!-- Sidebar -->
             <section class="sidebar flex">
-                <aside class="flex flex-col  w-64 p-4 rounded-xl shadow-md bg-gray-800 text-white shadow-gray-400">
+                <aside
+                    class="flex flex-col w-16 md:w-32 lg:w-64 md:p-2 lg:p-4 rounded-xl shadow-md bg-gray-800 text-white shadow-gray-400">
                     <!--<h2 class="text-xl font-bold mb-4">Menú</h2>-->
-                    <ul class="space-y-3 pb-4">
-                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
-                            <a href="index.html" class="">
+                    <ul class="space-y-3 pb-4 grid justify-items-stretch">
+                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded-lg">
+                            <a href="index.html"
+                                class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start">
                                 <i class="fa-solid fa-boxes-stacked px-4 py-2"></i>
-                                Inventario
+                                <p>Inventario</p>
                             </a>
                         </li>
-                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
-                            <a href="ingresos.html" class="">
+                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded-lg">
+                            <a href="ingresos.html"
+                                class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start">
                                 <i class="fa-solid fa-right-to-bracket px-4 py-2"></i>
-                                Ingresos
+                                <p class="">Ingresos</p>
                             </a>
                         </li>
-                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded">
-                            <a href="salidas.html" class="">
+                        <li class="justify-between bg-gray-700 hover:bg-gray-700 px-4 py-2 rounded-lg">
+                            <a href="salidas.html"
+                                class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start">
                                 <i class="fa-solid fa-right-from-bracket px-4 py-2"></i>
-                                Salidas
+                                <p>Salidas</p>
                             </a>
                         </li>
+
+
                     </ul>
 
                     <!-- Empujar la segunda lista al final -->
                     <div class="flex-grow max-h"></div>
 
                     <ul class="space-y-3 pb-4">
-
-                        <li class="justify-between hover:bg-red-700 hover:font-semibold px-4 py-2 rounded">
-                            <a href="./login/login.html" class="w-full">
+                        <li class="justify-between hover:bg-red-700 hover:font-semibold px-4 rounded-lg">
+                            <a href="./login/login.html"
+                                class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start py-2">
                                 <i class="fa-solid fa-power-off px-4 py-2"></i>
-                                Cerrar Sesión
+                                <p class="text-center">Cerrar Sesión</p>
                             </a>
                         </li>
                     </ul>

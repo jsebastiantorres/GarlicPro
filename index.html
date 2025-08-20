@@ -66,7 +66,7 @@
                     class="flex flex-col w-16 md:w-32 lg:w-64 md:p-2 lg:p-4 rounded-xl shadow-md bg-gray-800 text-white shadow-gray-400">
                     <!--<h2 class="text-xl font-bold mb-4">Menú</h2>-->
                     <ul class="space-y-3 pb-4 grid justify-items-stretch">
-                        <li class="justify-between hover:bg-gray-700 px-4 py-2 rounded-lg">
+                        <li class="justify-between bg-gray-700 hover:bg-gray-700 px-4 py-2 rounded-lg">
                             <a href="index.html"
                                 class="flex flex-col items-start justify-center sm:items-center sm:justify-center lg:flex-row lg:items-center lg:justify-start">
                                 <i class="fa-solid fa-boxes-stacked px-4 py-2"></i>
@@ -110,12 +110,13 @@
             <section id="dashboar"
                 class="contenido block ml-2 bg-gray-200 shadow-md shadow-gray-400 rounded-xl w-screen">
                 <div class="pt-2 px-4">
-                    <h2 class="font-bold text-2xl text-gray-800 self-center">Inventario </h2>
+                    <!-- <h2 class="font-bold text-2xl text-gray-800 self-center">Inventario </h2> -->
                 </div>
 
-                <section id="seccion_tarjetas" class="flex ">
-                    <!-- Tarjeta granel -->
-                    <ul id="lista_granel" class="flex flex-col">
+                <!-- Tarjetas funcionales -->
+                <!-- <section id="seccion_tarjetas" class="flex "> -->
+                <!-- Tarjeta granel -->
+                <!-- <ul id="lista_granel" class="flex flex-col">
                         <li class="pl-2 pt-2">
                             <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
                                 shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
@@ -139,10 +140,10 @@
                                 </div>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
 
-                    <!-- Tarjeta Malla -->
-                    <ul id="lista_malla" class="flex flex-col">
+                <!-- Tarjeta Malla -->
+                <!-- <ul id="lista_malla" class="flex flex-col">
                         <li class="pl-2 pt-2">
                             <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
                                 shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
@@ -167,10 +168,10 @@
                                 </div>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
 
-                    <!-- Tarjeta kilo -->
-                    <ul id="lista_kilo" class="flex flex-col">
+                <!-- Tarjeta kilo -->
+                <!-- <ul id="lista_kilo" class="flex flex-col">
                         <li class="pl-2 pt-2">
                             <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
                                 shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
@@ -195,10 +196,10 @@
                                 </div>
                             </a>
                         </li>
-                    </ul>
+                    </ul> -->
 
-                    <!-- Tarjeta tula -->
-                    <ul id="lista_tula" class="flex flex-col">
+                <!-- Tarjeta tula -->
+                <!-- <ul id="lista_tula" class="flex flex-col">
                         <li class="pl-2 pt-2">
                             <a href="#" class="p-2 flex bg-white border border-gray-200 shadow-md
                                 shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100
@@ -223,21 +224,20 @@
                                 </div>
                             </a>
                         </li>
-
                     </ul>
+                </section> -->
 
-
-                </section>
 
                 <!-- Tarjetas simplificadas -->
-                <section id="taretas_simplificadas" class="">
+                <section id="taretas_simplificadas" class="px-4">
 
                     <!-- Grid tarjetas simplificadas -->
-                    <div id="grid_tarjetas" class="grid grid-cols-4 gap-2 pr-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+                    <div id="grid_tarjetas"
+                        class="grid grid-cols-4 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
 
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 ml-2 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
@@ -257,7 +257,7 @@
                         </div>
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 ml-2 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
@@ -277,7 +277,7 @@
                         </div>
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 ml-2 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
@@ -295,29 +295,44 @@
                                 </div>
                             </div>
                         </div>
-
-
-
-
-
+                        <!-- Tarjeta caja granel -->
+                        <div id="tarjeta_granel"
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 my-2 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                            <div class="row-span-2 flex items-center justify-center mr-2">
+                                <div class="bg-gray-500 rounded-md px-4 py-4">
+                                    <i class="fa-solid fa-box text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="col-span-2 flex">
+                                <p class="text-white flex items-end">Granel</p>
+                            </div>
+                            <div class="col-span-2 flex items-center justify-between pb-2">
+                                <div>
+                                    <p class="text-white flex items-start font-bold text-xl">123</p>
+                                </div>
+                                <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                    <p class="text-yellow-800">-200</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-
-
                 </section>
                 <!-- Fin seccion tarjetas simplificadas -->
 
 
                 <!-- Detalles de la tarjeta -->
-                <section>
-                    <div id="detalles_tarjeta" class="bg-white ml-2 mt-2 mr-2 rounded-md ">
-                        <div id="detalles_tarjeta_inventario">
+                <section id="seccion_detalle_tarjeta" class="px-2">
+                    <div id="detalle_tarjeta" class="grid grid-cols-2 gap-2 ml-2 mt-2 mr-2 rounded-md">
+                        <div id="detalle_tarjeta_inventario" class="col-span-1 bg-white rounded-md">
                             <h4>Tabla Inventario Detallado</h4>
                         </div>
-                        <div id="detalles_tarjeta_movimientos">
+                        <div id="detalle_tarjeta_movimientos" class="col-span-1 bg-white rounded-md">
                             <h4>Tabla Movimientos</h4>
                         </div>
                     </div>
                 </section>
+
+
 
                 <section>
                     <div id="contenedor_tarjetas" class="flex flex-wrap gap-4"></div>
