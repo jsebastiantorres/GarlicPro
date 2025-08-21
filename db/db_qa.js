@@ -316,6 +316,66 @@ async function obtenerIngresos() {
 }
 
 
+// Dashboard - tabla usuarios prueba
+async function obtenerUsuarios() {
+    // conecta a la base de datos
+    const connection = await connectToDatabase();
+    try {
+        const [rows] = await connection.execute(`SELECT * FROM usuarios`)
+        return rows;
+    } catch (error) {
+        // en caso de error
+        console.error("Error al obtener los usuarios desde BD", error);
+        return [];
+    } finally {
+        //cierra la conexion a DB
+        if (connection) await connection.end();
+    }
+}
+
+
+// Dashboard - obtener cantidad total de cada clases
+async function obtenerCantidadPorClase() {
+    // conectar base de datos
+    console.log("obteniendoCantidadPorClase");
+    
+    const connection = await connectToDatabase();
+    try {
+        const [rows] = await connection.execute(
+            `SELECT lotes.clase_id, clases.nombre, SUM(cantidad) AS sumaXclase 
+            FROM lotes 
+            JOIN clases ON lotes.clase_id = clases.id 
+            GROUP BY lotes.clase_id, clases.nombre;`)
+        return rows
+    } catch (error) {
+        console.error("Error al obtener las cantidades de las clases desde BD", error);
+        return [];
+    } finally {
+        // cierra la conexion a DB
+        if(connection) await connection.end();
+    }
+}
+
+
+// Dashboard - tabla detalles tarjeta
+// async function obtenerDetallesTarjeta() {
+//     const connection = await connectToDatabase();
+//     try {
+//         // consiltar para obtener los lotes junto con el nombre de la clase y marca
+//         const [lotes] = await connection.execute(`SELECT lotes.lote_codigo, lotes.marca_id, marcas.nombre AS marca, clases.id AS clase_id, clases.nombre AS clase, lotes.cantidad FROM lotes JOIN clases ON lotes.clase_id = clases.id JOIN marcas ON lotes.marca_id = marcas.id`);
+//         console.log("Consulta SQL - Detalles de las clases: Lote, Marca, Cantidad");
+//         console.log(lotes);
+
+//         return lotes;
+
+//     } catch (error) {
+//         console.error("Error en la consulta para obtener detalles de las tarjetas", error.message);
+//         throw error;
+//     } finally {
+//         if (connection) await connection.end();
+//     }
+// }
+
 
 
 
@@ -386,7 +446,10 @@ module.exports = {
     registrarIngresoLote,
     obtenerMarcaPorLote,
     registrarSalida,
-    obtenerIngresos
+    obtenerIngresos,
+    // obtenerDetallesTarjeta,
+    obtenerUsuarios,
+    obtenerCantidadPorClase
 }
 
 

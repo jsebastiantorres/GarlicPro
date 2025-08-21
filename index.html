@@ -107,8 +107,7 @@
             </section>
 
             <!-- Contenido principal -->
-            <section id="dashboar"
-                class="contenido block ml-2 bg-gray-200  rounded-xl w-screen">
+            <section id="dashboar" class="contenido block ml-2 bg-gray-200  rounded-xl w-screen">
                 <div class="px-4 py-4">
                     <h3 class="font-medium text-3xl text-gray-800 self-center">Inventario</h3>
                 </div>
@@ -237,7 +236,7 @@
 
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-800  hover:bg-gray-800 ">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
@@ -247,68 +246,70 @@
                                 <p class="text-white flex items-end">Granel</p>
                             </div>
                             <div class="col-span-2 flex items-center justify-between pb-2">
-                                <div>
-                                    <p class="text-white flex items-start font-bold text-xl">123</p>
+                                <div id="cantidad_granel">
+                                    <!-- id trae la cantidad total de la clase -->
+                                    <p class="text-white flex items-start font-bold text-xl"></p>
                                 </div>
                                 <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
                                     <p class="text-yellow-800">-200</p>
                                 </div>
                             </div>
                         </div>
-                        <!-- Tarjeta caja granel -->
-                        <div id="tarjeta_granel"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                        <!-- Tarjeta caja kilo -->
+                        <div id="tarjeta_kilo"
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-800  hover:bg-gray-800 ">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
                                 </div>
                             </div>
                             <div class="col-span-2 flex">
-                                <p class="text-white flex items-end">Granel</p>
+
+                                <p class="text-white flex items-end">Kilo</p>
                             </div>
                             <div class="col-span-2 flex items-center justify-between pb-2">
-                                <div>
-                                    <p class="text-white flex items-start font-bold text-xl">123</p>
+                                <div id="cantidad_kilo">
+                                    <p class="text-white flex items-start font-bold text-xl"></p>
                                 </div>
                                 <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
                                     <p class="text-yellow-800">-200</p>
                                 </div>
                             </div>
                         </div>
-                        <!-- Tarjeta caja granel -->
-                        <div id="tarjeta_granel"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                        <!-- Tarjeta caja malla -->
+                        <div id="tarjeta_malla"
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-800  hover:bg-gray-800 ">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
                                 </div>
                             </div>
                             <div class="col-span-2 flex">
-                                <p class="text-white flex items-end">Granel</p>
+                                <p class="text-white flex items-end">Malla</p>
                             </div>
                             <div class="col-span-2 flex items-center justify-between pb-2">
-                                <div>
-                                    <p class="text-white flex items-start font-bold text-xl">123</p>
+                                <div id="cantidad_malla">
+                                    <p class="text-white flex items-start font-bold text-xl"></p>
                                 </div>
                                 <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
                                     <p class="text-yellow-800">-200</p>
                                 </div>
                             </div>
                         </div>
-                        <!-- Tarjeta caja granel -->
-                        <div id="tarjeta_granel"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 py-2 rounded-lg w-full dark:hover:bg-gray-800 shadow-md hover:bg-gray-800 shadow-gray-400">
+                        <!-- Tarjeta caja tula -->
+                        <div id="tarjeta_tula"
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-800  hover:bg-gray-800 ">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
                                 </div>
                             </div>
                             <div class="col-span-2 flex">
-                                <p class="text-white flex items-end">Granel</p>
+                                <p class="text-white flex items-end">Tula</p>
                             </div>
                             <div class="col-span-2 flex items-center justify-between pb-2">
-                                <div>
-                                    <p class="text-white flex items-start font-bold text-xl">123</p>
+                                <div id="cantidad_tula">
+                                    <p class="text-white flex items-start font-bold text-xl"></p>
                                 </div>
                                 <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
                                     <p class="text-yellow-800">-200</p>
@@ -322,12 +323,100 @@
 
                 <!-- Detalles de la tarjeta -->
                 <section id="seccion_detalle_tarjeta" class="px-2">
+
                     <div id="detalle_tarjeta" class="grid grid-cols-4 gap-2 ml-2 mt-2 mr-2 rounded-md">
                         <div id="detalle_tarjeta_inventario" class="col-span-2 bg-white rounded-md">
-                            <h4>Tabla Inventario Detallado</h4>
+                            <!-- Tabla detalles de la clase SELECCIONADA -->
+                            <!-- Encabezado tabla -->
+                            <div class="px-4 py-2">
+                                <h4 class="font-medium text-xl text-gray-800 self-center">Inventario Detallado
+                                </h4>
+                                <p class="font-light">Detalle de la tarjeta seleccionada</p>
+                            </div>
+                            <!-- Tabla -->
+                            <div class="px-4">
+                                <div id="div_tabla_detalle_tarjeta" class="relative overflow-x-auto rounded-sm">
+                                    <table id="tablaDetallestarjeta"
+                                        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                        <thead
+                                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Lote
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Marca
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    Cantidad
+                                                </th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- aqui cargan los registros de la tabla "ingresos" -->
+                                        </tbody>
+
+
+                                        <!-- Tarjeta granel -->
+                                        <!-- <ul id="lista_granel" class="flex flex-col">
+                                            <li class="pl-2 pt-2">
+                                                <a href="#"
+                                                    class="p-2 flex bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+                                                    <div class="flex flex-col justify-between px-2 leading-normal">
+
+                                                        <ul id="lista_lotes_granel" class="flex flex-col">
+                                                            <li class="item_granel flex space-x-2 ml-auto">
+                                                                <p class="font-bold text-lg text-white dark:text-white">
+                                                                    lote</p>
+                                                                <p
+                                                                    class="font-normal text-left text-lg text-gray-200 dark:text-gray-200">
+                                                                    marca
+                                                                </p>
+                                                                <p class="font-bold text-lg text-white dark:text-white">
+                                                                    cantidad</p>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul> -->
+
+                                    </table>
+                                </div>
+                            </div>
                         </div>
+
                         <div id="detalle_tarjeta_movimientos" class="col-span-2 bg-white rounded-md">
-                            <h4>Tabla Movimientos</h4>
+                            <div class="px-4 py-2">
+                                <h4 class="font-medium text-xl text-gray-800 self-center">Tabla Inventario Detallado
+                                </h4>
+                                <p class="font-light">Detalle de la tarjeta seleccionada</p>
+                            </div>
+
+                            <div>Tabla Prueba de solicitud HTTP
+
+                                <table id="tablaUsuariosPrueba"
+                                    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                    <thead
+                                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3">
+                                                nombre
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                apellido
+                                            </th>
+                                            <th scope="col" class="px-6 py-3">
+                                                documento
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- aqui cargan los registros de la tabla "ingresos" -->
+                                    </tbody>
+                            </div>
                         </div>
                     </div>
                 </section>

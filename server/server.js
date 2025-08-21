@@ -4,11 +4,14 @@ const express = require('express');
 const path = require('path');
 // const db = require('./db');
 const bcryptjs = require('bcryptjs'); // Para comparar contraseñas 
+
+// desestructuración de objetos para importar funciones específicas desde db_qa
 const {
     buscarPorNombreLogin, actualizarUltimoAcceso, obtenerInventarioPorClase, obtenerIdMarca,
-    obtenerIdClase, obtenerIdDestino, registrarIngresoLote, obtenerMarcaPorLote, registrarSalida, obtenerIngresos } = require('../db/db_qa');
+    obtenerIdClase, obtenerIdDestino, registrarIngresoLote, obtenerMarcaPorLote, registrarSalida, obtenerIngresos, obtenerDetallesTarjeta, obtenerUsuarios, obtenerCantidadPorClase } = require('../db/db_qa');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
 
 // CORS (solicitudes entre dominios)
 // Permitir solicitudes desde el frontend (localhost:5500)a nuestro servidor (servidor localhost:3000)
@@ -238,7 +241,47 @@ app.get('/api/tablaIngresos', async (req, res) => {
 });
 
 
-//
+
+// // Enpoint para dashboard tabla tarjeta activa
+// app.get('/api/tablaTarjetaActiva', async (req, res) => {
+//     try {
+//         const resultados = await obtenerDetallesTarjeta();
+//         res.json(resultados);
+//     } catch (error) {
+//         console.error("Error en la tabla de detalles", error.stack);
+//         res.status(500).json({ success: false, message: error.message })
+//     }
+// })
+
+
+
+// endpoint de prueba
+app.get('/api/usuarios', async (req, res) => {
+    try {
+        // dispara la funcion en el backend y recibe los resultados la variable resultados;
+        const resultados = await obtenerUsuarios();
+        // responde los resultados convertidos en JSON
+        res.json(resultados);
+    } catch (error) {
+        console.error("Error en la obtencion de los usuarios");
+        res.status(500).json({ success: false, message: error.message });
+    }
+})
+
+
+
+// endpoint para cantidades por clase
+app.get('/api/cantidadesPorClase', async (req, res) => {
+    try {
+        // dispara la funcion que obtiene las cantidades por clase
+        const resultados = await obtenerCantidadPorClase();
+        // responden los resultados en JSON
+        res.json(resultados);
+    } catch (error) {
+        console.error("Error en la obtencion de las cantidades desde server");
+        res.status(500).json({ success: false, message: error.message });
+    }
+})
 
 
 

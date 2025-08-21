@@ -1,7 +1,6 @@
 console.log("corriendo el script de tabla_ingresos");
 
 
-
 // Obtener los datos del servidor y pintar tabla de ingresos
 async function pintarTablaIngresos() {
     try {
