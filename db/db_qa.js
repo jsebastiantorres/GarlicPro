@@ -337,9 +337,9 @@ async function obtenerUsuarios() {
 // Dashboard - obtener cantidad total de cada clases
 async function obtenerCantidadPorClase() {
     // conectar base de datos
-    console.log("obteniendoCantidadPorClase");
-    
     const connection = await connectToDatabase();
+
+    // resultados al ejecutar la consulta
     try {
         const [rows] = await connection.execute(
             `SELECT lotes.clase_id, clases.nombre, SUM(cantidad) AS sumaXclase 
@@ -352,9 +352,41 @@ async function obtenerCantidadPorClase() {
         return [];
     } finally {
         // cierra la conexion a DB
-        if(connection) await connection.end();
+        if (connection) await connection.end();
     }
 }
+
+
+// Dashboard - obtener detalles de la clase 
+async function obtenerDetallesClase(nombreClase) {
+    // conectar base de datos
+    const connection = await connectToDatabase();
+
+    // resultados al ejecutar la consulta
+    try {
+        const [rows] = await connection.execute(`
+            SELECT lote_codigo, clases.nombre AS clase_nombre, marca_id, marcas.nombre AS marca_nombre, cantidad
+            FROM lotes
+            JOIN marcas ON lotes.marca_id = marcas.id
+            JOIN clases ON lotes.clase_id = clases.id
+            WHERE clases.nombre = ? AND cantidad <> 0 AND cantidad IS NOT NULL
+            ORDER BY cantidad DESC;`, [nombreClase])
+        // retornamos los resultados
+        return rows;
+    } catch (error) {
+        console.error("Error al obtener los detalles de la clase desde DB", error);
+        throw error;
+    } finally {
+        // cerramos la conexion a DB
+        if (connection) await connection.end();
+    }
+}
+
+
+
+
+
+
 
 
 // Dashboard - tabla detalles tarjeta
@@ -449,7 +481,8 @@ module.exports = {
     obtenerIngresos,
     // obtenerDetallesTarjeta,
     obtenerUsuarios,
-    obtenerCantidadPorClase
+    obtenerCantidadPorClase,
+    obtenerDetallesClase
 }
 
 

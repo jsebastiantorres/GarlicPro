@@ -227,18 +227,19 @@ document.addEventListener("DOMContentLoaded", async () => {
                     case "Tula":
                         tarjetaTula.innerHTML += fila
                         break;
-
                     default:
                         break;
                 }
             });
-
-
         } catch (error) {
             console.error("Ha ocurrido un error al pintar las cantidades", error);
         }
-
     }
+
+
+    // 
+
+
 
 
     pintarTablaUsuarios();
@@ -248,3 +249,112 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 
 
+// pintar el detalle de la Tarjeta
+function pintarDetalleTarjeta(idTarjeta) {
+    const divPintar = document.querySelector('#encabezado_tabla_detalle p strong');
+
+    switch (idTarjeta) {
+        case "tarjeta_granel":
+            divPintar.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Granel</strong>`;
+            pintarDetalles("Granel");
+            break;
+        case "tarjeta_kilo":
+            divPintar.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Kilo</strong>`;
+            pintarDetalles("Kilo");
+
+            break;
+        case "tarjeta_malla":
+            divPintar.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Malla</strong>`;
+            pintarDetalles("Malla");
+
+            break;
+        case "tarjeta_tula":
+            divPintar.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Tula</strong>`;
+            pintarDetalles("Tula");
+
+            break;
+        default:
+            break;
+    }
+}
+
+
+
+// Manejar las activaciones de las tarjetas
+function activacionDeTarjetas() {
+    const tarjetas = document.querySelectorAll('.card');
+
+    tarjetas.forEach(tarjeta => {
+        tarjeta.addEventListener('click', function () {
+            // desactivar las tarjetas
+            tarjetas.forEach(t => t.classList.remove('bg-gray-800', 'ring-2'));
+
+            // activa la tarjeta clickeada, agregar el bg de activo
+            this.classList.add('bg-gray-800', 'ring-2', 'ring-emerald-600');
+
+            // accion prueba funcion "mostrarDetalles"
+            console.log("Se ejecuta mostrar detalle", this.id);
+            pintarDetalleTarjeta(this.id);
+        })
+    })
+}
+
+
+
+
+// pintar la tabla de detalles
+async function pintarDetalles(nombreTarjeta) {
+    try {
+        // validacion de que el parametro no este vacio
+        if (!nombreTarjeta || nombreTarjeta.trim() === '') {
+            console.warn("No se proporcionó un nombre de tarjeta válido.");
+            return;
+        }
+
+        // fetch al endpoint para obtener detalles de la tarjeta seleccionada
+        const response = await fetch(`http://localhost:3000/api/detallesClase?nombre=${encodeURIComponent(nombreTarjeta)}`)
+
+        // validacion
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+
+        // ordena los resultados en formato json
+        const responseData = await response.json();
+        const data = responseData.data;
+        // elemento HTML que se va a pintar
+        const tbody = document.querySelector('#tablaDetallestarjeta tbody')
+
+        // si data esta vacio
+        // if (data.length === 0) {
+        //     tbody.innerHTML = `<tr><td colspan="3">No hay datos disponibles para esta tarjeta.</td></tr>`;
+        //     return;
+        // }
+
+        // limpia el contenido previo
+        tbody.innerHTML = '';
+
+        let filaHTML = '';
+        data.forEach(element => {
+            filaHTML += `<tr class="bg-gray-100 border-b border-gray-50"> 
+            <td class="text-gray-800 text-left pl-4">${element.lote_codigo}</td>
+            <td class="text-gray-800 text-left pl-4">${element.marca_nombre}</td>
+            <td class="text-gray-800 text-left pl-4">${element.cantidad}</td>
+            </tr>`
+
+        })
+        tbody.innerHTML = filaHTML;
+
+    } catch (error) {
+        console.error("Error al pintar la tabla de detalles", error);
+    }
+}
+
+
+
+
+
+
+
+
+activacionDeTarjetas();

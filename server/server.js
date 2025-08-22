@@ -8,7 +8,7 @@ const bcryptjs = require('bcryptjs'); // Para comparar contraseñas
 // desestructuración de objetos para importar funciones específicas desde db_qa
 const {
     buscarPorNombreLogin, actualizarUltimoAcceso, obtenerInventarioPorClase, obtenerIdMarca,
-    obtenerIdClase, obtenerIdDestino, registrarIngresoLote, obtenerMarcaPorLote, registrarSalida, obtenerIngresos, obtenerDetallesTarjeta, obtenerUsuarios, obtenerCantidadPorClase } = require('../db/db_qa');
+    obtenerIdClase, obtenerIdDestino, registrarIngresoLote, obtenerMarcaPorLote, registrarSalida, obtenerIngresos, obtenerDetallesTarjeta, obtenerUsuarios, obtenerCantidadPorClase, obtenerDetallesClase } = require('../db/db_qa');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -283,6 +283,26 @@ app.get('/api/cantidadesPorClase', async (req, res) => {
     }
 })
 
+
+// endpoint para detalles de la clase
+app.get('/api/detallesClase', async (req, res) => {
+    try {
+        // extrae el parametro "nombre" desde la URL de la solicitud HTTP
+        const { nombre } = req.query;
+        // valida el valor del nombre
+        if (!nombre || nombre.trim() === '') {
+            return res.status(400).json({ success: false, message: "Falta el parámetro 'nombre'" });
+        }
+
+        // dispara la funcion que obtiene los detalles por la clase
+        const resultados = await obtenerDetallesClase(nombre);
+        // responde los resultados en JSON
+        return res.json({ success: true, data: resultados });
+    } catch (error) {
+        console.error("Error en la obtencion de los detalles desde server ", error);
+        return res.status(500).json({ success: false, message: error.message });
+    }
+})
 
 
 

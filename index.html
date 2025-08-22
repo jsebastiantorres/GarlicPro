@@ -236,14 +236,14 @@
 
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-800  hover:bg-gray-800 ">
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-600 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-700  hover:bg-gray-700 card cursor-pointer select-none">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
                                 </div>
                             </div>
                             <div class="col-span-2 flex">
-                                <p class="text-white flex items-end">Granel</p>
+                                <h4 class="text-white flex items-end text-xl">Granel</h4>
                             </div>
                             <div class="col-span-2 flex items-center justify-between pb-2">
                                 <div id="cantidad_granel">
@@ -257,15 +257,14 @@
                         </div>
                         <!-- Tarjeta caja kilo -->
                         <div id="tarjeta_kilo"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-800  hover:bg-gray-800 ">
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-600 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-700 hover:bg-gray-700 card cursor-pointer select-none">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
                                 </div>
                             </div>
                             <div class="col-span-2 flex">
-
-                                <p class="text-white flex items-end">Kilo</p>
+                                <h4 class="text-white flex items-end text-xl">Kilo</h4>
                             </div>
                             <div class="col-span-2 flex items-center justify-between pb-2">
                                 <div id="cantidad_kilo">
@@ -278,14 +277,14 @@
                         </div>
                         <!-- Tarjeta caja malla -->
                         <div id="tarjeta_malla"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-800  hover:bg-gray-800 ">
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-600 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-700 hover:bg-gray-700 card cursor-pointer select-none">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
                                 </div>
                             </div>
                             <div class="col-span-2 flex">
-                                <p class="text-white flex items-end">Malla</p>
+                                <h4 class="text-white flex items-end text-xl">Malla</h4>
                             </div>
                             <div class="col-span-2 flex items-center justify-between pb-2">
                                 <div id="cantidad_malla">
@@ -298,14 +297,14 @@
                         </div>
                         <!-- Tarjeta caja tula -->
                         <div id="tarjeta_tula"
-                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-700 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-800  hover:bg-gray-800 ">
+                            class="col-span-1 grid grid-flow-col grid-rows-2 bg-gray-600 px-6 md:px-4 py-2 rounded-lg w-full dark:hover:bg-gray-700 hover:bg-gray-700 card cursor-pointer select-none">
                             <div class="row-span-2 flex items-center justify-center mr-2">
                                 <div class="bg-gray-500 rounded-md px-4 py-4">
                                     <i class="fa-solid fa-box text-white text-xl"></i>
                                 </div>
                             </div>
                             <div class="col-span-2 flex">
-                                <p class="text-white flex items-end">Tula</p>
+                                <h4 class="text-white flex items-end text-xl">Tula</h4>
                             </div>
                             <div class="col-span-2 flex items-center justify-between pb-2">
                                 <div id="cantidad_tula">
@@ -328,30 +327,27 @@
                         <div id="detalle_tarjeta_inventario" class="col-span-2 bg-white rounded-md">
                             <!-- Tabla detalles de la clase SELECCIONADA -->
                             <!-- Encabezado tabla -->
-                            <div class="px-4 py-2">
-                                <h4 class="font-medium text-xl text-gray-800 self-center">Inventario Detallado
-                                </h4>
-                                <p class="font-light">Detalle de la tarjeta seleccionada</p>
+                            <div id="encabezado_tabla_detalle" class="px-4 py-2">
+                                <h4 class="font-medium text-xl text-gray-800 self-center">Inventario Detallado</h4>
+                                <p class="font-light">Detalle de la tarjeta <strong></strong></p>
                             </div>
                             <!-- Tabla -->
                             <div class="px-4">
-                                <div id="div_tabla_detalle_tarjeta" class="relative overflow-x-auto rounded-sm">
+                                <div id="div_tabla_detalle_tarjeta" class="mb-6 rounded-xl sm:rounded-lg overflow-auto">
                                     <table id="tablaDetallestarjeta"
-                                        class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                        class="w-full table-auto md:table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-2xl">
                                         <thead
-                                            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
+                                            class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
                                             <tr>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="text-left px-4 py-2">
                                                     Lote
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="text-left px-4 sm:pl-2 py-2">
                                                     Marca
                                                 </th>
-                                                <th scope="col" class="px-6 py-3">
+                                                <th scope="col" class="text-left px-4 sm:pl-2 py-2">
                                                     Cantidad
                                                 </th>
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -384,13 +380,14 @@
                                         </ul> -->
 
                                     </table>
+
                                 </div>
                             </div>
                         </div>
 
                         <div id="detalle_tarjeta_movimientos" class="col-span-2 bg-white rounded-md">
                             <div class="px-4 py-2">
-                                <h4 class="font-medium text-xl text-gray-800 self-center">Tabla Inventario Detallado
+                                <h4 class="font-medium text-xl text-gray-800 self-center">Movimientos de la clase
                                 </h4>
                                 <p class="font-light">Detalle de la tarjeta seleccionada</p>
                             </div>
