@@ -272,8 +272,8 @@ async function registrarSalida(vale, nombreDestino, lote_codigo, nombreMarca, no
         // 🟢 Insertar salida en la base de datos
 
         const resultado = await connection.execute(`
-            INSERT INTO salidas (lote_codigo, marca_id, clase_id, vale, destino_id, cantidad, fecha_salida, login_id)
-            VALUES (?, ?, ?, ?, ?, ?, CURDATE(), ?)
+            INSERT INTO salidas (lote_codigo, marca_id, clase_id, vale, destino_id, cantidad, login_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
             `, [lote_codigo, marca_id, clase_id, vale, destino_id, cantidad, usuario_id]);
 
         console.log("✅ Salida registrada correctamente:", resultado);

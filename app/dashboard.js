@@ -336,7 +336,7 @@ async function pintarDetalles(nombreTarjeta) {
 
         let filaHTML = '';
         data.forEach(element => {
-            filaHTML += `<tr class="bg-gray-100 border-b border-gray-50"> 
+            filaHTML += `<tr class="bg-gray-100 border-b border-white"> 
             <td class="text-gray-800 text-left pl-4">${element.lote_codigo}</td>
             <td class="text-gray-800 text-left pl-4">${element.marca_nombre}</td>
             <td class="text-gray-800 text-left pl-4">${element.cantidad}</td>

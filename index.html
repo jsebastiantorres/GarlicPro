@@ -232,7 +232,7 @@
 
                     <!-- Grid tarjetas simplificadas -->
                     <div id="grid_tarjetas"
-                        class="grid grid-cols-4 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 pt-2 ">
+                        class="grid gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 pt-2 ">
 
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
@@ -323,8 +323,11 @@
                 <!-- Detalles de la tarjeta -->
                 <section id="seccion_detalle_tarjeta" class="px-2">
 
-                    <div id="detalle_tarjeta" class="grid grid-cols-4 gap-2 ml-2 mt-2 mr-2 rounded-md">
-                        <div id="detalle_tarjeta_inventario" class="col-span-2 bg-white rounded-md">
+                    <div id="detalle_tarjeta"
+                        class="grid md:grid-cols-6 lg:grid-cols-4 grid-rows-4 gap-2 ml-2 mt-2 mr-2 rounded-md md:h-[300px] lg:h-[400px] ">
+
+                        <div id="detalle_tarjeta_inventario"
+                            class="md:col-span-2 lg:col-span-1  row-start-1 row-span-4 bg-white rounded-md">
                             <!-- Tabla detalles de la clase SELECCIONADA -->
                             <!-- Encabezado tabla -->
                             <div id="encabezado_tabla_detalle" class="px-4 py-2">
@@ -332,20 +335,21 @@
                                 <p class="font-light">Detalle de la tarjeta <strong></strong></p>
                             </div>
                             <!-- Tabla -->
-                            <div class="px-4">
-                                <div id="div_tabla_detalle_tarjeta" class="mb-6 rounded-xl sm:rounded-lg overflow-auto">
+                            <div class="sm:px-2 md:px-4">
+                                <div id="div_tabla_detalle_tarjeta"
+                                    class=" mb-2 rounded-xl sm:rounded-lg overflow-y-auto md:h-[200px] lg:h-[300px]">
                                     <table id="tablaDetallestarjeta"
-                                        class="w-full table-auto md:table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-2xl">
+                                        class="w-full table-auto md:table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-2xl ">
                                         <thead
-                                            class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
+                                            class="text-sm md:text-xs lg:text-md text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
                                             <tr>
-                                                <th scope="col" class="text-left px-4 py-2">
+                                                <th scope="col" class="text-left px-2 lg:px-4 py-2">
                                                     Lote
                                                 </th>
-                                                <th scope="col" class="text-left px-4 sm:pl-2 py-2">
+                                                <th scope="col" class="text-left px-2 lg:px-4 py-2">
                                                     Marca
                                                 </th>
-                                                <th scope="col" class="text-left px-4 sm:pl-2 py-2">
+                                                <th scope="col" class="text-left sm:px-0 md:px-2 lg:px-4 py-2">
                                                     Cantidad
                                                 </th>
                                             </tr>
@@ -385,34 +389,43 @@
                             </div>
                         </div>
 
-                        <div id="detalle_tarjeta_movimientos" class="col-span-2 bg-white rounded-md">
+                        <div id="detalle_tarjeta_movimientos"
+                            class="md:col-span-4 lg:col-span-3 col-start-3 row-start-1 row-span-4 bg-white rounded-md">
+
                             <div class="px-4 py-2">
                                 <h4 class="font-medium text-xl text-gray-800 self-center">Movimientos de la clase
                                 </h4>
                                 <p class="font-light">Detalle de la tarjeta seleccionada</p>
                             </div>
+                            <div class="sm:px-2 md:px-4 ">
+                                <div class="mb-2 rounded-xl sm:rounded-lg overflow-y-auto md:h-[200px] lg:h-[300px]">
 
-                            <div>Tabla Prueba de solicitud HTTP
-
-                                <table id="tablaUsuariosPrueba"
-                                    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                                    <thead
-                                        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
-                                        <tr>
-                                            <th scope="col" class="px-6 py-3">
-                                                nombre
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                apellido
-                                            </th>
-                                            <th scope="col" class="px-6 py-3">
-                                                documento
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <!-- aqui cargan los registros de la tabla "ingresos" -->
-                                    </tbody>
+                                    <table id="tablaUsuariosPrueba"
+                                        class="w-full table-auto md:table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-2xl ">
+                                        <thead
+                                            class="text-sm md:text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
+                                            <tr>
+                                                <th scope="col" class="text-left px-4 py-2">
+                                                    Lote
+                                                </th>
+                                                <th scope="col" class="text-left px-4 py-2">
+                                                    Movimiento
+                                                </th>
+                                                <th scope="col" class="text-left px-4 py-2">
+                                                    Marca
+                                                </th>
+                                                <th scope="col" class="text-left px-4 py-2">
+                                                    Cantidad
+                                                </th>
+                                                <th scope="col" class="text-left px-4 py-2">
+                                                    Fecha | Hora
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- aqui cargan los registros de la tabla "ingresos" -->
+                                        </tbody>
+                                </div>
                             </div>
                         </div>
                     </div>
