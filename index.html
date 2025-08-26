@@ -20,7 +20,7 @@
         <!-- Barra de navegación -->
         <div class="max-w-screen">
             <section class="barra_navegacion ">
-                <nav class="max-w-screen bg-emerald-700 p-2 rounded-xl shadow-md ">
+                <nav class="max-w-screen bg-emerald-700 p-2 rounded-xl">
                     <ul class="flex justify-between">
                         <li class="p-2 text-white">
                             <div class="w-8">
@@ -232,7 +232,7 @@
 
                     <!-- Grid tarjetas simplificadas -->
                     <div id="grid_tarjetas"
-                        class="grid gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 pt-2 ">
+                        class="grid md:grid-cols-4 lg:grid-cols-4 gap-2  pt-2 ">
 
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
@@ -330,9 +330,9 @@
                             class="md:col-span-2 lg:col-span-1  row-start-1 row-span-4 bg-white rounded-md">
                             <!-- Tabla detalles de la clase SELECCIONADA -->
                             <!-- Encabezado tabla -->
-                            <div id="encabezado_tabla_detalle" class="px-4 py-2">
+                            <div class="px-4 py-2">
                                 <h4 class="font-medium text-xl text-gray-800 self-center">Inventario Detallado</h4>
-                                <p class="font-light">Detalle de la tarjeta <strong></strong></p>
+                                <p class="font-light">Detalle de la clase <strong class="encabezados_tablas_clase"></strong></p>
                             </div>
                             <!-- Tabla -->
                             <div class="sm:px-2 md:px-4">
@@ -392,33 +392,32 @@
                         <div id="detalle_tarjeta_movimientos"
                             class="md:col-span-4 lg:col-span-3 col-start-3 row-start-1 row-span-4 bg-white rounded-md">
 
-                            <div class="px-4 py-2">
-                                <h4 class="font-medium text-xl text-gray-800 self-center">Movimientos de la clase
-                                </h4>
-                                <p class="font-light">Detalle de la tarjeta seleccionada</p>
+                            <div class="px-4 py-2 ">
+                                <h4 class="font-medium text-xl text-gray-800 self-center">Movimientos de la clase</h4>
+                                <p class="font-light">Movimientos de la clase <strong class="encabezados_tablas_clase"></strong></p>
                             </div>
                             <div class="sm:px-2 md:px-4 ">
                                 <div class="mb-2 rounded-xl sm:rounded-lg overflow-y-auto md:h-[200px] lg:h-[300px]">
 
-                                    <table id="tablaUsuariosPrueba"
+                                    <table id="tablaMovimientosClase"
                                         class="w-full table-auto md:table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-2xl ">
                                         <thead
                                             class="text-sm md:text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-200 dark:text-gray-800">
                                             <tr>
                                                 <th scope="col" class="text-left px-4 py-2">
-                                                    Lote
+                                                    Fecha | Hora
                                                 </th>
                                                 <th scope="col" class="text-left px-4 py-2">
                                                     Movimiento
+                                                </th>
+                                                <th scope="col" class="text-left px-4 py-2">
+                                                    Lote
                                                 </th>
                                                 <th scope="col" class="text-left px-4 py-2">
                                                     Marca
                                                 </th>
                                                 <th scope="col" class="text-left px-4 py-2">
                                                     Cantidad
-                                                </th>
-                                                <th scope="col" class="text-left px-4 py-2">
-                                                    Fecha | Hora
                                                 </th>
                                             </tr>
                                         </thead>

@@ -383,6 +383,35 @@ async function obtenerDetallesClase(nombreClase) {
 }
 
 
+async function obtenerMovimientosClase(nombreClase) {
+    // conectar base de datos
+    const conection = await connectToDatabase();
+
+    // resultados al ejecutar la consulta
+    try {
+        const [rows] = await conection.execute(`
+            SELECT movimientos.id, fecha, lote_codigo, id_tipo_movimiento, tipo_movimientos.nombre AS tipo_movimiento, marca_id, marcas.nombre AS marca, clase_id, clases.nombre AS clase, login_id, login.username_alias AS login, cantidad FROM movimientos
+            JOIN tipo_movimientos ON tipo_movimientos.id = id_tipo_movimiento
+            JOIN marcas ON marcas.id = marca_id
+            JOIN clases ON clases.id = clase_id
+            JOIN login ON login.id = login_id
+            WHERE clases.nombre = ?
+            ORDER BY fecha;
+            `, [nombreClase])
+
+            console.log("Se envian los datos", rows);
+            
+        // retornamos los resultados
+        return rows
+    } catch (error) {
+        console.error("Error al obtener los movimientos de la clase desde DB", error);
+        throw error;
+    }finally{
+        // cerrar la conexion a DB
+        if(conection) await conection.end()
+    }
+}
+
 
 
 
@@ -482,7 +511,8 @@ module.exports = {
     // obtenerDetallesTarjeta,
     obtenerUsuarios,
     obtenerCantidadPorClase,
-    obtenerDetallesClase
+    obtenerDetallesClase,
+    obtenerMovimientosClase
 }
 
 

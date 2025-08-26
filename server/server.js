@@ -8,7 +8,7 @@ const bcryptjs = require('bcryptjs'); // Para comparar contraseñas
 // desestructuración de objetos para importar funciones específicas desde db_qa
 const {
     buscarPorNombreLogin, actualizarUltimoAcceso, obtenerInventarioPorClase, obtenerIdMarca,
-    obtenerIdClase, obtenerIdDestino, registrarIngresoLote, obtenerMarcaPorLote, registrarSalida, obtenerIngresos, obtenerDetallesTarjeta, obtenerUsuarios, obtenerCantidadPorClase, obtenerDetallesClase } = require('../db/db_qa');
+    obtenerIdClase, obtenerIdDestino, registrarIngresoLote, obtenerMarcaPorLote, registrarSalida, obtenerIngresos, obtenerDetallesTarjeta, obtenerUsuarios, obtenerCantidadPorClase, obtenerDetallesClase, obtenerMovimientosClase } = require('../db/db_qa');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -255,18 +255,18 @@ app.get('/api/tablaIngresos', async (req, res) => {
 
 
 
-// endpoint de prueba
-app.get('/api/usuarios', async (req, res) => {
-    try {
-        // dispara la funcion en el backend y recibe los resultados la variable resultados;
-        const resultados = await obtenerUsuarios();
-        // responde los resultados convertidos en JSON
-        res.json(resultados);
-    } catch (error) {
-        console.error("Error en la obtencion de los usuarios");
-        res.status(500).json({ success: false, message: error.message });
-    }
-})
+// endpoint de prueba usuarios
+// app.get('/api/usuarios', async (req, res) => {
+//     try {
+//         // dispara la funcion en el backend y recibe los resultados la variable resultados;
+//         const resultados = await obtenerUsuarios();
+//         // responde los resultados convertidos en JSON
+//         res.json(resultados);
+//     } catch (error) {
+//         console.error("Error en la obtencion de los usuarios");
+//         res.status(500).json({ success: false, message: error.message });
+//     }
+// })
 
 
 
@@ -306,6 +306,24 @@ app.get('/api/detallesClase', async (req, res) => {
 
 
 
+app.get('/api/movimientosClase', async (req, res) => {
+    try {
+        // extraer el parametro nombre desde la URL de la solicitud HTTP
+        const { nombre } = req.query;
+        // calidar el valor del nombre
+        if (!nombre || nombre.trim() === '') {
+            return res.status(400).json({ success: false, mesage: "Falta el parametro 'nombre'" });
+        }
+
+        // dispara la funcion que optiene los movimientos de la clase
+        const resultados = await obtenerMovimientosClase(nombre);
+        // responde los resultados en JSON
+        return res.json({ success: true, data: resultados });
+    } catch (error) {
+        console.error("Errir en la obtención de los movimientos desde server");
+        return res.status(500).json({ success: false, mesage: error.mesage });
+    }
+})
 
 
 
