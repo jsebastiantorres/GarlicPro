@@ -12,6 +12,10 @@
     <link href="./src/output.css" rel="stylesheet">
     <link rel="stylesheet" href="src/custom.css">
     <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
+    <!-- Load de AJAX API -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 </head>
 
 <body>
@@ -108,6 +112,7 @@
 
             <!-- Contenido principal -->
             <section id="dashboar" class="contenido block ml-2 bg-gray-200  rounded-xl w-screen">
+                <!-- Titulo de la seccion principal -->
                 <div class="px-4 py-4">
                     <h3 class="font-medium text-3xl text-gray-800 self-center">Inventario</h3>
                 </div>
@@ -229,10 +234,8 @@
 
                 <!-- Tarjetas simplificadas -->
                 <section id="taretas_simplificadas" class="px-4 ">
-
                     <!-- Grid tarjetas simplificadas -->
-                    <div id="grid_tarjetas"
-                        class="grid md:grid-cols-4 lg:grid-cols-4 gap-2  pt-2 ">
+                    <div id="grid_tarjetas" class="grid md:grid-cols-4 lg:grid-cols-4 gap-2 pt-2 ">
 
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
@@ -320,7 +323,7 @@
                 <!-- Fin seccion tarjetas simplificadas -->
 
 
-                <!-- Detalles de la tarjeta -->
+                <!-- Detalles y Movimientos de la tarjeta -->
                 <section id="seccion_detalle_tarjeta" class="px-2">
 
                     <div id="detalle_tarjeta"
@@ -332,7 +335,8 @@
                             <!-- Encabezado tabla -->
                             <div class="px-4 py-2">
                                 <h4 class="font-medium text-xl text-gray-800 self-center">Inventario Detallado</h4>
-                                <p class="font-light">Detalle de la clase <strong class="encabezados_tablas_clase"></strong></p>
+                                <p class="font-light">Detalle de la clase <strong
+                                        class="encabezados_tablas_clase"></strong></p>
                             </div>
                             <!-- Tabla -->
                             <div class="sm:px-2 md:px-4">
@@ -355,34 +359,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <!-- aqui cargan los registros de la tabla "ingresos" -->
+                                            <!-- aqui cargan los lotes disponibles de la "clase" -->
                                         </tbody>
-
-
-                                        <!-- Tarjeta granel -->
-                                        <!-- <ul id="lista_granel" class="flex flex-col">
-                                            <li class="pl-2 pt-2">
-                                                <a href="#"
-                                                    class="p-2 flex bg-white border border-gray-200 shadow-md shadow-gray-400 rounded-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                                                    <div class="flex flex-col justify-between px-2 leading-normal">
-
-                                                        <ul id="lista_lotes_granel" class="flex flex-col">
-                                                            <li class="item_granel flex space-x-2 ml-auto">
-                                                                <p class="font-bold text-lg text-white dark:text-white">
-                                                                    lote</p>
-                                                                <p
-                                                                    class="font-normal text-left text-lg text-gray-200 dark:text-gray-200">
-                                                                    marca
-                                                                </p>
-                                                                <p class="font-bold text-lg text-white dark:text-white">
-                                                                    cantidad</p>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul> -->
-
                                     </table>
 
                                 </div>
@@ -390,15 +368,17 @@
                         </div>
 
                         <div id="detalle_tarjeta_movimientos"
-                            class="md:col-span-4 lg:col-span-3 col-start-3 row-start-1 row-span-4 bg-white rounded-md">
+                            class="md:col-span-6 lg:col-span-3 col-start-3 row-start-1 row-span-4 bg-white rounded-md">
 
-                            <div class="px-4 py-2 ">
+                            <!-- Titulo movimientos -->
+                            <div class="px-4 py-2 col-span-2 ">
                                 <h4 class="font-medium text-xl text-gray-800 self-center">Movimientos de la clase</h4>
-                                <p class="font-light">Movimientos de la clase <strong class="encabezados_tablas_clase"></strong></p>
+                                <p class="font-light">Movimientos de la clase <strong
+                                        class="encabezados_tablas_clase"></strong></p>
                             </div>
+
                             <div class="sm:px-2 md:px-4 ">
                                 <div class="mb-2 rounded-xl sm:rounded-lg overflow-y-auto md:h-[200px] lg:h-[300px]">
-
                                     <table id="tablaMovimientosClase"
                                         class="w-full table-auto md:table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-2xl ">
                                         <thead
@@ -424,18 +404,35 @@
                                         <tbody>
                                             <!-- aqui cargan los registros de la tabla "ingresos" -->
                                         </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
+                <!-- Fin seccion tarjetas simplificadas -->
 
 
+                <!-- Detalles y Movimientos de la tarjeta -->
+                <section id="seccion_barras" class="px-2">
 
-                <section>
-                    <div id="contenedor_tarjetas" class="flex flex-wrap gap-4"></div>
+                    <div id="detalle_tarjeta"
+                        class="grid gid-cols-3 gap-2 ml-2 mt-2 mr-2 rounded-md md:h-[300px] lg:h-[200px]">
+
+                        <div class="flex col-span-1 col-start-1  bg-white rounded-md p-2 items-center justify-center">
+                            <div id="chart_div" class=""></div>
+                        </div>
+
+                        <div class="flex col-span-1 col-start-2 bg-white rounded-md p-2 items-center justify-center">
+                            <div id="chart_div2" class=""></div>
+                        </div>
+
+                        <div class="flex col-span-1 col-start-3 bg-white rounded-md p-2 items-center justify-center">
+                            <div id="chart_div3" class=""></div>
+                        </div>
+
+                    </div>
                 </section>
-
             </section>
 
 
@@ -456,13 +453,16 @@
     <!-- Script dashboard -->
     <script src="app/dashboard.js"></script>
 
+
+
+
     <!-- Reload -->
     <!-- <script>
         setTimeout(() => {
             window.history.replaceState({}, document.title, window.location.href); // Modifica la URL sin recargar
             location.reload(); // Recarga la página
-        }, 50000); // Ejecuta cada 5 minutos
-    </script> -->
+            }, 50000); // Ejecuta cada 5 minutos
+        </script> -->
 
 </body>
 

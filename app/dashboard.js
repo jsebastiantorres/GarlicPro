@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             const tarjetaMalla = document.querySelector('#cantidad_malla p');
             const tarjetaTula = document.querySelector('#cantidad_tula p');
 
-            
+
             // iterar sobre cada elemento para preparar la insersion <p>
             data.forEach(element => {
                 const fila = `<p>${element.sumaXclase}</p>`
@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const tarjetas = document.querySelectorAll('.card');
 
         // Define el ID de la tarjeta por defecto
-        const defaultCardId = 'tarjeta_granel'; 
+        const defaultCardId = 'tarjeta_granel';
 
         tarjetas.forEach(tarjeta => {
             tarjeta.addEventListener('click', function () {
@@ -308,15 +308,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     pintarTarjetasClases();
 
 })
-
-
-
-
-
-
-
-
-
 
 
 // pintar la tabla de detalles
@@ -431,6 +422,62 @@ async function pintarMovimientosClase(nombreTarjeta) {
 }
 
 
+
+// Load the Visualization API and the corechart package.
+google.charts.load('current', { 'packages': ['corechart'] });
+
+// Set a callback to run when the Google Visualization API is loaded.
+google.charts.setOnLoadCallback(drawChart);
+
+// Callback that creates and populates a data table,
+// instantiates the pie chart, passes in the data and
+// draws it.
+function drawChart() {
+
+    // Create the data table.
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+    data.addRows([
+        ['Mushrooms', 3],
+        ['Onions', 1],
+        ['Olives', 1],
+        ['Zucchini', 1],
+        ['Pepperoni', 2]
+    ]);
+
+    // Set chart options
+    var options = {
+        'title': 'How Much Pizza I Ate Last Night',
+        'titleTextStyle': {
+            'textAlign': 'center', // Centra el título del gráfico
+        },
+        'width': 400,
+        'height': 300,
+        'legend': {
+            'position': 'bottom',
+            'maxLines': 20, // Sigue siendo útil para el ajuste de líneas
+            'textStyle': {
+                'fontSize': 10 // Reduce el tamaño de la fuente para que quepa más texto
+            },
+            'alignment': 'center' // Centra los elementos de la leyenda
+        },
+        'chartArea': {
+            'left': '10%',
+            'top': '10%',
+            'width': '90%',
+            'height': '70%' // Ajusta los valores para centrar la gráfica
+        }
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
+    var chart3 = new google.visualization.PieChart(document.getElementById('chart_div3'));
+    chart.draw(data, options);
+    chart2.draw(data, options);
+    chart3.draw(data, options);
+}
 
 
 
