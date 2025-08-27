@@ -121,3 +121,12 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Sansita:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700;1,800;1,900&display=swap"
             rel="stylesheet">
+## Paleta de colores
+        teal-900: #115E59
+        emerald-800: #065F46
+        green-700: #15803D
+        lime-600: #4D7C0F
+        yellow-500: #EAB308
+        amber-400: #F4BF04
+        orange-300: #FDBA74
+        red-200: #FECACA

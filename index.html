@@ -62,12 +62,11 @@
         </div>
 
         <!-- main -->
-        <div class="flex flex-1 py-2">
+        <div class="flex flex-1 py-2 ">
 
             <!-- Sidebar -->
             <section class="sidebar flex">
-                <aside
-                    class="flex flex-col w-16 md:w-32 lg:w-64 md:p-2 lg:p-4 rounded-xl shadow-md bg-gray-800 text-white ">
+                <aside class="flex flex-col md:w-32 lg:w-64 md:p-2 lg:p-4 rounded-xl shadow-md bg-gray-800 text-white ">
                     <!--<h2 class="text-xl font-bold mb-4">Menú</h2>-->
                     <ul class="space-y-3 pb-4 grid justify-items-stretch">
                         <li class="justify-between bg-gray-700 hover:bg-gray-700 px-4 py-2 rounded-lg">
@@ -111,7 +110,7 @@
             </section>
 
             <!-- Contenido principal -->
-            <section id="dashboar" class="contenido block ml-2 bg-gray-200  rounded-xl w-screen">
+            <section id="dashboar" class="contenido block ml-2 bg-gray-200 rounded-xl w-screen">
                 <!-- Titulo de la seccion principal -->
                 <div class="px-4 py-4">
                     <h3 class="font-medium text-3xl text-gray-800 self-center">Inventario</h3>
@@ -235,7 +234,7 @@
                 <!-- Tarjetas simplificadas -->
                 <section id="taretas_simplificadas" class="px-4 ">
                     <!-- Grid tarjetas simplificadas -->
-                    <div id="grid_tarjetas" class="grid md:grid-cols-4 lg:grid-cols-4 gap-2 pt-2 ">
+                    <div id="grid_tarjetas" class="grid md:grid-cols-4 lg:grid-cols-4 gap-2 pt-2">
 
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
@@ -327,7 +326,7 @@
                 <section id="seccion_detalle_tarjeta" class="px-2">
 
                     <div id="detalle_tarjeta"
-                        class="grid md:grid-cols-6 lg:grid-cols-4 grid-rows-4 gap-2 ml-2 mt-2 mr-2 rounded-md md:h-[300px] lg:h-[400px] ">
+                        class="grid md:grid-cols-6 lg:grid-cols-4 grid-rows-4 gap-2 ml-2 mt-2 mr-2 rounded-md md:h-[250px] lg:h-[350px]">
 
                         <div id="detalle_tarjeta_inventario"
                             class="md:col-span-2 lg:col-span-1  row-start-1 row-span-4 bg-white rounded-md">
@@ -341,7 +340,7 @@
                             <!-- Tabla -->
                             <div class="sm:px-2 md:px-4">
                                 <div id="div_tabla_detalle_tarjeta"
-                                    class=" mb-2 rounded-xl sm:rounded-lg overflow-y-auto md:h-[200px] lg:h-[300px]">
+                                    class=" mb-2 rounded-xl sm:rounded-lg overflow-y-auto md:h-[250px] lg:h-[400px]">
                                     <table id="tablaDetallestarjeta"
                                         class="w-full table-auto md:table-fixed text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-2xl ">
                                         <thead
@@ -414,22 +413,29 @@
 
 
                 <!-- Detalles y Movimientos de la tarjeta -->
-                <section id="seccion_barras" class="px-2">
+                <section id="seccion_barras" class="px-2 ">
 
-                    <div id="detalle_tarjeta"
-                        class="grid gid-cols-3 gap-2 ml-2 mt-2 mr-2 rounded-md md:h-[300px] lg:h-[200px]">
+                    <div id="div_graficas"
+                        class="grid gid-cols-3 gap-2 ml-2 mt-2 mr-2 rounded-md md:h-[200px] lg:h-[350px]">
 
-                        <div class="flex col-span-1 col-start-1  bg-white rounded-md p-2 items-center justify-center">
-                            <div id="chart_div" class=""></div>
+                        <div class="col-span-1 col-start-1  bg-white rounded-md px-2">
+                            <p class="px-2 pt-2 text-xl text-gray-800 self-center">Cantidad por marca <strong
+                                    class="encabezados_tablas_clase text-base font-light"></strong></p>
+                            <div id="chart_div" class="flex items-start justify-start "></div>
                         </div>
 
-                        <div class="flex col-span-1 col-start-2 bg-white rounded-md p-2 items-center justify-center">
-                            <div id="chart_div2" class=""></div>
+                        <div class="col-span-1 col-start-2 bg-white rounded-md px-2 ">
+                            <p class="px-2 pt-2 text-xl text-gray-800 self-center">Cantidad por marca <strong
+                                    class="encabezados_tablas_clase text-base font-light"></strong></p>
+                            <div id="chart_div2" class="flex items-center justify-center"></div>
                         </div>
 
-                        <div class="flex col-span-1 col-start-3 bg-white rounded-md p-2 items-center justify-center">
-                            <div id="chart_div3" class=""></div>
+                        <div class="col-span-1 col-start-3 bg-white rounded-md px-2 ">
+                            <p class="px-2 pt-2 text-xl text-gray-800 self-center">Bodega <strong
+                                    class="bg-emerald-600 text-white rounded px-2 font-semibold text-base">General</strong></p>
+                            <div id="chart_div3" class="flex items-center justify-center"></div>
                         </div>
+                        
 
                     </div>
                 </section>

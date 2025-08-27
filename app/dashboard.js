@@ -428,6 +428,7 @@ google.charts.load('current', { 'packages': ['corechart'] });
 
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(pintarGrafica);
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
@@ -435,7 +436,7 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
 
     // Create the data table.
-    var data = new google.visualization.DataTable();
+    let data = new google.visualization.DataTable();
     data.addColumn('string', 'Topping');
     data.addColumn('number', 'Slices');
     data.addRows([
@@ -448,7 +449,7 @@ function drawChart() {
 
     // Set chart options
     var options = {
-        'title': 'How Much Pizza I Ate Last Night',
+        // 'title': 'How Much Pizza I Ate Last Night',
         'titleTextStyle': {
             'textAlign': 'center', // Centra el título del gráfico
         },
@@ -467,19 +468,67 @@ function drawChart() {
             'top': '10%',
             'width': '90%',
             'height': '70%' // Ajusta los valores para centrar la gráfica
-        }
+        },
+        'colors': ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74']
     };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
     var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
     var chart3 = new google.visualization.PieChart(document.getElementById('chart_div3'));
-    chart.draw(data, options);
     chart2.draw(data, options);
     chart3.draw(data, options);
 }
 
 
+function pintarGrafica() {
+    // Datos originales
+    let datosOriginales = [
+        ['Element', 725],
+        ['El Rey', 500],
+        ['Barajas', 200],
+        ['GKMT', 275],
+        ['Nasa', 275]
+    ];
+
+    // Transformar datos: cada marca como una serie con solo su valor, los demás en null
+    let encabezado = ['Marca'].concat(datosOriginales.map(item => item[0]));
+    let filas = datosOriginales.map((item, i) => {
+        let fila = [item[0]];
+        for (let j = 0; j < datosOriginales.length; j++) {
+            fila.push(i === j ? item[1] : null);
+        }
+        return fila;
+    });
+
+    let datosGrafica = [encabezado].concat(filas);
+
+    // Crear DataTable
+    let data = google.visualization.arrayToDataTable(datosGrafica);
+
+    // Opciones con colores por barra
+    let options = {
+        title: "Cantidad por marca",
+        width: 600,
+        height: 300,
+        legend: { position: "none" },
+        bar: { groupWidth: "100%" },
+        fontName: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        fontSize: 16,
+        colors: ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74'],
+        annotations: {
+            alwaysOutside: true,
+            textStyle: {
+                fontSize: 14,
+                color: '#000',
+                auraColor: 'none'
+            }
+        }
+    };
+
+    // Dibujar gráfico
+    let chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
 
 // Manejar las activaciones de las tarjetas
 // async function activacionDeTarjetas() {
