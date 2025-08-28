@@ -4,7 +4,7 @@
 const destinos = ["Ajos Extras", "Dialsa", "De Calidad", "FV", "Hermanos Vasquez"];
 const selectorDestino = document.getElementById("select_destino");
 // listado de clases y selector de clases
-const clases = ["Granel", "Malla", "Kilo", "Tula"];
+const clases = ["Granel", "Kilo", "Malla", "Tula"];
 const selectorClase = document.getElementById("select_clase");
 
 

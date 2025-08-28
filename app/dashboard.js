@@ -507,14 +507,14 @@ function pintarGrafica() {
 
     // Opciones con colores por barra
     let options = {
-        title: "Cantidad por marca",
+        // title: "Cantidad por marca",
         width: 600,
         height: 300,
-        legend: { position: "none" },
-        bar: { groupWidth: "100%" },
+        bar: { groupWidth: "100%" },     
         fontName: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
         fontSize: 16,
         colors: ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74'],
+        legend: { position: "none" },
         annotations: {
             alwaysOutside: true,
             textStyle: {
