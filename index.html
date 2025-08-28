@@ -15,6 +15,7 @@
 
     <!-- Load de AJAX API -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script> -->
 
 </head>
 
@@ -425,14 +426,17 @@
                         </div>
 
                         <div class="col-span-1 col-start-2 bg-white rounded-md px-2 ">
-                            <p class="px-2 pt-2 text-xl text-gray-800 self-center">Cantidad por marca <strong
+                            <p class="px-2 pt-2 text-xl text-gray-800 self-center">Entradas y Salidas <strong
                                     class="encabezados_tablas_clase text-base font-light"></strong></p>
-                            <div id="chart_div2" class="flex items-center justify-center"></div>
+                            <div class="flex flex-col overflow-hidden items-center justify-center px-0 mx-0">
+                                <div id="div_chart2" class=" w-[550px] md:h-[300px] lg:h-[350] mx-0 "></div>
+                            </div>
                         </div>
 
                         <div class="col-span-1 col-start-3 bg-white rounded-md px-2 ">
                             <p class="px-2 pt-2 text-xl text-gray-800 self-center">Bodega <strong
-                                    class="bg-emerald-600 text-white rounded px-2 font-semibold text-base">General</strong></p>
+                                    class="bg-emerald-600 text-white rounded px-2 font-semibold text-base">General</strong>
+                            </p>
                             <div id="chart_div3" class="flex items-center justify-center"></div>
                         </div>
 
@@ -456,9 +460,10 @@
     <script src="app/navbar.js"></script>
 
     <!-- Script dashboard -->
-    <script src="app/dashboard.js"></script>
+    <script type="module" src="app/dashboard.js"></script>
 
-
+    <!-- Script para el archivo de la libreria echarts -->
+    <script src="librerias/echarts.min.js"></script>
 
 
     <!-- Reload -->

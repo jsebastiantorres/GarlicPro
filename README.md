@@ -130,3 +130,11 @@
         amber-400: #F4BF04
         orange-300: #FDBA74
         red-200: #FECACA
+
+
+
+## instalacion de echarts para las graficas dinamicas
+       1.   npm install echarts
+            1. si no funciona descargar el archivo js de echarts 
+                curl https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js -o echarts.min.js
+            2. El archivo quedo almacenado en librerias/echarts.min.js

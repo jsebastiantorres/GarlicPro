@@ -423,12 +423,16 @@ async function pintarMovimientosClase(nombreTarjeta) {
 
 
 
+// GOOGLE CHARTS
+
 // Load the Visualization API and the corechart package.
-google.charts.load('current', { 'packages': ['corechart'] });
+google.charts.load('current', { 'packages': ['corechart', 'bar'] });
 
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(drawChart);
 google.charts.setOnLoadCallback(pintarGrafica);
+// google.charts.setOnLoadCallback(pintarEntradasSalidas);
+
 
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
@@ -440,11 +444,10 @@ function drawChart() {
     data.addColumn('string', 'Topping');
     data.addColumn('number', 'Slices');
     data.addRows([
-        ['Mushrooms', 3],
-        ['Onions', 1],
-        ['Olives', 1],
-        ['Zucchini', 1],
-        ['Pepperoni', 2]
+        ['Granel', 503],
+        ['Kilo', 111],
+        ['Malla', 151],
+        ['Tula', 403]
     ]);
 
     // Set chart options
@@ -469,13 +472,14 @@ function drawChart() {
             'width': '90%',
             'height': '70%' // Ajusta los valores para centrar la gráfica
         },
-        'colors': ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74']
+        'colors': ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74'],
+        'pieHole': 0.4,
+        'pieSliceText': 'value'
+
     };
 
     // Instantiate and draw our chart, passing in some options.
-    var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
     var chart3 = new google.visualization.PieChart(document.getElementById('chart_div3'));
-    chart2.draw(data, options);
     chart3.draw(data, options);
 }
 
@@ -507,14 +511,14 @@ function pintarGrafica() {
 
     // Opciones con colores por barra
     let options = {
-        // title: "Cantidad por marca",
-        width: 600,
+        chart: {
+            title: 'Cantidad por marca',
+            subtitle: 'Visualización estilo Material'
+        },
+        bars: 'horizonal',
         height: 300,
-        bar: { groupWidth: "100%" },     
-        fontName: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-        fontSize: 16,
         colors: ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74'],
-        legend: { position: "none" },
+        legend: { position: 'none' },
         annotations: {
             alwaysOutside: true,
             textStyle: {
@@ -522,13 +526,143 @@ function pintarGrafica() {
                 color: '#000',
                 auraColor: 'none'
             }
-        }
-    };
+        },
+        fontName: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+        fontSize: 16,
+        bar: { groupWidth: '100%' }
+    }
 
     // Dibujar gráfico
     let chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+    chart.draw(data, google.charts.Bar.convertOptions(options));
 }
+
+
+
+
+// function pintarEntradasSalidas() {
+
+//     // optenemos el elemento donde se pintara
+//     let div_chart2 = document.querySelector('#chart_div2')
+
+
+//     // array con la data a pintar
+//     const rawData = [
+//         ['Día', 'Entradas', 'Salidas'],
+//         ['lunes', 897, 800],
+//         ['martes', 100, 99],
+//         ['miércoles', 500, 300],
+//         ['jueves', 987, 508],
+//         ['viernes', 516, 507],
+//         ['sábado', 181, 165],
+//         ['domingo', 205, 100]
+//     ];
+
+//     // cramos la data en Tabla que se pintara con arrayToDataTable
+//     const data = new google.visualization.DataTable();
+//     data.addColumn('string', 'Día');
+//     data.addColumn('number', 'Entradas');
+//     data.addColumn({ type: 'string', role: 'annotation' }); // Anotación automática
+//     data.addColumn('number', 'Salidas');
+//     data.addColumn({ type: 'string', role: 'annotation' }); // Anotación automática
+
+//     for (let i = 1; i < rawData.length; i++) {
+//         const [dia, entradas, salidas] = rawData[i];
+//         data.addRow([dia, entradas, entradas.toString(), salidas, salidas.toString()]);
+//     }
+
+//     // comportamiento de la grafica
+//     const options = {
+//         chart: {
+//             // title: 'Entradas vs Salidas reales'
+//         },
+//         bars: 'vertical',
+//         width: 500,
+//         height: 300,
+//         bar: { groupWidth: "80%" },
+//         colors: ['#EAB308', '#15803D'],
+//         legend: { position: 'none' },
+//         annotations: {
+//             alwaysOutside: false,
+//             textStyle: {
+//                 fontSize: 14,
+//                 color: '#000',
+//                 auraColor: 'none'
+//             }
+//         },
+//         hAxis: {
+//             title: '', // 👈 Oculta el texto "Día"
+//             titleTextStyle: { color: 'transparent' } // 👈 Asegura que no se renderice
+//         }
+//     };
+
+//     const chart = new google.charts.Bar(div_chart2);
+//     chart.draw(data, google.charts.Bar.convertOptions(options));
+// }
+
+// import * as echarts from 'echarts';
+
+window.onload = function () {
+    var chartDom = document.getElementById('div_chart2');
+    if (!chartDom) {
+        console.error('No se encontró el div_chart2');
+        return;
+    }
+    if (typeof echarts === 'undefined') {
+        console.error('ECharts no está definido. ¿Se cargó bien el script?');
+        return;
+    }
+
+    var myChart = echarts.init(chartDom);
+    var option = {
+        legend: { position: 'none' },
+        tooltip: {},
+        dataset: {
+            dimensions: ['dia', 'Entradas', 'Salidas'],
+            source: [
+                { dia: 'lunes', 'Entradas': 1000, 'Salidas': 500 },
+                { dia: 'martes', 'Entradas': 1000, 'Salidas': 500 },
+                { dia: 'miercoles', 'Entradas': 789, 'Salidas': 500 },
+                { dia: 'jueves', 'Entradas': 800, 'Salidas': 500 },
+                { dia: 'viernes', 'Entradas': 1987, 'Salidas': 500 },
+                { dia: 'sabado', 'Entradas': 1532, 'Salidas': 500 },
+                { dia: 'domingo', 'Entradas': 1012, 'Salidas': 500 }
+            ]
+        },
+        xAxis: {
+            type: 'category', axisLabel: {
+                interval: 0 // 👈 Muestra todas las etiquetas sin saltos
+            }
+        },
+        yAxis: {},
+        series: [{ type: 'bar' }, { type: 'bar' }],
+        color: ['#065F46', '#EAB308',],
+        textStyle: {
+            fontFamily: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+            fontSize: 10,
+            fontWeight: 'normal',
+            color: '#333'
+        }
+    };
+
+    myChart.setOption(option);
+};
+
+
+
+// Redibuja el gráfico si cambia el tamaño del contenedor
+window.addEventListener('resize', () => {
+    myChart.resize();
+});
+
+
+
+// // creamos el tipo de chart que se mostrara
+// let chart = new google.charts.Bar(div_chart2);
+
+// // Dibujar el char
+// chart.draw(data, google.charts.Bar.convertOptions(options));
+
 
 // Manejar las activaciones de las tarjetas
 // async function activacionDeTarjetas() {

@@ -396,7 +396,7 @@ async function obtenerMovimientosClase(nombreClase) {
             JOIN clases ON clases.id = clase_id
             JOIN login ON login.id = login_id
             WHERE clases.nombre = ?
-            ORDER BY fecha;
+            ORDER BY fecha DESC;
             `, [nombreClase])
 
             console.log("Se envian los datos", rows);
