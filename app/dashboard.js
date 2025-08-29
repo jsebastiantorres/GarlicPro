@@ -306,6 +306,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     activacionDeTarjetas();
     // pintarTablaUsuarios();
     pintarTarjetasClases();
+    // pintarGraficaCantidadPorMarca();
 
 })
 
@@ -430,7 +431,9 @@ google.charts.load('current', { 'packages': ['corechart', 'bar'] });
 
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(drawChart);
-google.charts.setOnLoadCallback(pintarGrafica);
+// google.charts.setOnLoadCallback(pintarGrafica);
+
+//GRAFICAS CON ECHARTS
 // google.charts.setOnLoadCallback(pintarEntradasSalidas);
 
 
@@ -484,58 +487,59 @@ function drawChart() {
 }
 
 
-function pintarGrafica() {
-    // Datos originales
-    let datosOriginales = [
-        ['Element', 725],
-        ['El Rey', 500],
-        ['Barajas', 200],
-        ['GKMT', 275],
-        ['Nasa', 275]
-    ];
+// Gafica Cantidad por marca
+// function pintarGrafica() {
+//     // Datos originales
+//     let datosOriginales = [
+//         ['Element', 725],
+//         ['El Rey', 500],
+//         ['Barajas', 200],
+//         ['GKMT', 275],
+//         ['Nasa', 275]
+//     ];
 
-    // Transformar datos: cada marca como una serie con solo su valor, los demás en null
-    let encabezado = ['Marca'].concat(datosOriginales.map(item => item[0]));
-    let filas = datosOriginales.map((item, i) => {
-        let fila = [item[0]];
-        for (let j = 0; j < datosOriginales.length; j++) {
-            fila.push(i === j ? item[1] : null);
-        }
-        return fila;
-    });
+//     // Transformar datos: cada marca como una serie con solo su valor, los demás en null
+//     let encabezado = ['Marca'].concat(datosOriginales.map(item => item[0]));
+//     let filas = datosOriginales.map((item, i) => {
+//         let fila = [item[0]];
+//         for (let j = 0; j < datosOriginales.length; j++) {
+//             fila.push(i === j ? item[1] : null);
+//         }
+//         return fila;
+//     });
 
-    let datosGrafica = [encabezado].concat(filas);
+//     let datosGrafica = [encabezado].concat(filas);
 
-    // Crear DataTable
-    let data = google.visualization.arrayToDataTable(datosGrafica);
+//     // Crear DataTable
+//     let data = google.visualization.arrayToDataTable(datosGrafica);
 
-    // Opciones con colores por barra
-    let options = {
-        chart: {
-            title: 'Cantidad por marca',
-            subtitle: 'Visualización estilo Material'
-        },
-        bars: 'horizonal',
-        height: 300,
-        colors: ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74'],
-        legend: { position: 'none' },
-        annotations: {
-            alwaysOutside: true,
-            textStyle: {
-                fontSize: 14,
-                color: '#000',
-                auraColor: 'none'
-            }
-        },
-        fontName: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-        fontSize: 16,
-        bar: { groupWidth: '100%' }
-    }
+//     // Opciones con colores por barra
+//     let options = {
+//         chart: {
+//             title: 'Cantidad por marca',
+//             subtitle: 'Visualización estilo Material'
+//         },
+//         bars: 'horizonal',
+//         height: 300,
+//         colors: ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74'],
+//         legend: { position: 'none' },
+//         annotations: {
+//             alwaysOutside: true,
+//             textStyle: {
+//                 fontSize: 14,
+//                 color: '#000',
+//                 auraColor: 'none'
+//             }
+//         },
+//         fontName: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+//         fontSize: 16,
+//         bar: { groupWidth: '100%' }
+//     }
 
-    // Dibujar gráfico
-    let chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    chart.draw(data, google.charts.Bar.convertOptions(options));
-}
+//     // Dibujar gráfico
+//     let chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+//     chart.draw(data, google.charts.Bar.convertOptions(options));
+// }
 
 
 
@@ -603,57 +607,103 @@ function pintarGrafica() {
 // import * as echarts from 'echarts';
 
 window.onload = function () {
-    var chartDom = document.getElementById('div_chart2');
-    if (!chartDom) {
-        console.error('No se encontró el div_chart2');
-        return;
-    }
-    if (typeof echarts === 'undefined') {
-        console.error('ECharts no está definido. ¿Se cargó bien el script?');
-        return;
+
+    function graficaCantidadXmarcas() {
+        // Elemento del DOM
+        var elemtoDom = document.getElementById('chart_div4');
+        // validacion DOM
+        if (!elemtoDom) {
+            console.error('No se encontró el chart_div4');
+            return;
+        }
+
+        // Se inicializa la instancia del Chart 
+        let myCharts = echarts.init(elemtoDom);
+
+        var option = {
+            xAxis: {
+                type: 'value',
+            },
+            yAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            series: [
+                {
+                    data: [120, 200, 150, 80, 70, 110, 130],
+                    type: 'bar'
+                }
+            ]
+        };
+
+        myCharts.setOption(option);
     }
 
-    var myChart = echarts.init(chartDom);
-    var option = {
-        legend: { position: 'none' },
-        tooltip: {},
-        dataset: {
-            dimensions: ['dia', 'Entradas', 'Salidas'],
-            source: [
-                { dia: 'lunes', 'Entradas': 1000, 'Salidas': 500 },
-                { dia: 'martes', 'Entradas': 1000, 'Salidas': 500 },
-                { dia: 'miercoles', 'Entradas': 789, 'Salidas': 500 },
-                { dia: 'jueves', 'Entradas': 800, 'Salidas': 500 },
-                { dia: 'viernes', 'Entradas': 1987, 'Salidas': 500 },
-                { dia: 'sabado', 'Entradas': 1532, 'Salidas': 500 },
-                { dia: 'domingo', 'Entradas': 1012, 'Salidas': 500 }
-            ]
-        },
-        xAxis: {
-            type: 'category', axisLabel: {
-                interval: 0 // 👈 Muestra todas las etiquetas sin saltos
-            }
-        },
-        yAxis: {},
-        series: [{ type: 'bar' }, { type: 'bar' }],
-        color: ['#065F46', '#EAB308',],
-        textStyle: {
-            fontFamily: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-            fontSize: 10,
-            fontWeight: 'normal',
-            color: '#333'
+
+    // GRAFICAS ECHARTS
+    // Grafica Entradas y Salidas
+    function graficaEntradasSalidas() {
+        var chartDom = document.getElementById('div_chart2');
+        if (!chartDom) {
+            console.error('No se encontró el div_chart2');
+            return;
         }
+        if (typeof echarts === 'undefined') {
+            console.error('ECharts no está definido. ¿Se cargó bien el script?');
+            return;
+        }
+
+        var myChart = echarts.init(chartDom);
+        var option = {
+            legend: { position: 'none' },
+            tooltip: {},
+            dataset: {
+                dimensions: ['dia', 'Entradas', 'Salidas'],
+                source: [
+                    { dia: 'lunes', 'Entradas': 1000, 'Salidas': 500 },
+                    { dia: 'martes', 'Entradas': 1000, 'Salidas': 500 },
+                    { dia: 'miercoles', 'Entradas': 789, 'Salidas': 500 },
+                    { dia: 'jueves', 'Entradas': 800, 'Salidas': 500 },
+                    { dia: 'viernes', 'Entradas': 1987, 'Salidas': 500 },
+                    { dia: 'sabado', 'Entradas': 1532, 'Salidas': 500 },
+                    { dia: 'domingo', 'Entradas': 1012, 'Salidas': 500 }
+                ]
+            },
+            xAxis: {
+                type: 'category', axisLabel: {
+                    interval: 0 // 👈 Muestra todas las etiquetas sin saltos
+                }
+            },
+            yAxis: {},
+            series: [{ type: 'bar' }, { type: 'bar' }],
+            color: ['#065F46', '#EAB308',],
+            textStyle: {
+                fontFamily: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+                fontSize: 10,
+                fontWeight: 'normal',
+                color: '#333'
+            }
+        };
+
+        myChart.setOption(option);
     };
 
-    myChart.setOption(option);
-};
+    graficaCantidadXmarcas();
+    graficaEntradasSalidas();
+
+}
+
+
+
+
+
 
 
 
 // Redibuja el gráfico si cambia el tamaño del contenedor
-window.addEventListener('resize', () => {
-    myChart.resize();
-});
+// window.addEventListener('resize', () => {
+//     myChart.resize();
+// });
 
 
 
