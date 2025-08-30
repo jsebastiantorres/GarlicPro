@@ -354,6 +354,9 @@
   .w-48 {
     width: calc(var(--spacing) * 48);
   }
+  .w-\[400px\] {
+    width: 400px;
+  }
   .w-\[550px\] {
     width: 550px;
   }

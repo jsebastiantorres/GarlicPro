@@ -606,92 +606,92 @@ function drawChart() {
 
 // import * as echarts from 'echarts';
 
-window.onload = function () {
+// window.onload = function () {
 
-    function graficaCantidadXmarcas() {
-        // Elemento del DOM
-        var elemtoDom = document.getElementById('chart_div4');
-        // validacion DOM
-        if (!elemtoDom) {
-            console.error('No se encontró el chart_div4');
-            return;
-        }
+    // function graficaCantidadXmarcas() {
+    //     // Elemento del DOM
+    //     var elemtoDom = document.getElementById('chart_div1');
+    //     // validacion DOM
+    //     if (!elemtoDom) {
+    //         console.error('No se encontró el chart_div1');
+    //         return;
+    //     }
 
-        // Se inicializa la instancia del Chart 
-        let myCharts = echarts.init(elemtoDom);
+    //     // Se inicializa la instancia del Chart 
+    //     let myCharts = echarts.init(elemtoDom);
 
-        var option = {
-            xAxis: {
-                type: 'value',
-            },
-            yAxis: {
-                type: 'category',
-                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-            },
-            series: [
-                {
-                    data: [120, 200, 150, 80, 70, 110, 130],
-                    type: 'bar'
-                }
-            ]
-        };
+    //     var option = {
+    //         xAxis: {
+    //             type: 'value',
+    //         },
+    //         yAxis: {
+    //             type: 'category',
+    //             data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    //         },
+    //         series: [
+    //             {
+    //                 data: [120, 200, 150, 80, 70, 110, 130],
+    //                 type: 'bar'
+    //             }
+    //         ]
+    //     };
 
-        myCharts.setOption(option);
-    }
+    //     myCharts.setOption(option);
+    // }
 
 
     // GRAFICAS ECHARTS
     // Grafica Entradas y Salidas
-    function graficaEntradasSalidas() {
-        var chartDom = document.getElementById('div_chart2');
-        if (!chartDom) {
-            console.error('No se encontró el div_chart2');
-            return;
-        }
-        if (typeof echarts === 'undefined') {
-            console.error('ECharts no está definido. ¿Se cargó bien el script?');
-            return;
-        }
+//     function graficaEntradasSalidas() {
+//         var chartDom = document.getElementById('div_chart2');
+//         if (!chartDom) {
+//             console.error('No se encontró el div_chart2');
+//             return;
+//         }
+//         if (typeof echarts === 'undefined') {
+//             console.error('ECharts no está definido. ¿Se cargó bien el script?');
+//             return;
+//         }
 
-        var myChart = echarts.init(chartDom);
-        var option = {
-            legend: { position: 'none' },
-            tooltip: {},
-            dataset: {
-                dimensions: ['dia', 'Entradas', 'Salidas'],
-                source: [
-                    { dia: 'lunes', 'Entradas': 1000, 'Salidas': 500 },
-                    { dia: 'martes', 'Entradas': 1000, 'Salidas': 500 },
-                    { dia: 'miercoles', 'Entradas': 789, 'Salidas': 500 },
-                    { dia: 'jueves', 'Entradas': 800, 'Salidas': 500 },
-                    { dia: 'viernes', 'Entradas': 1987, 'Salidas': 500 },
-                    { dia: 'sabado', 'Entradas': 1532, 'Salidas': 500 },
-                    { dia: 'domingo', 'Entradas': 1012, 'Salidas': 500 }
-                ]
-            },
-            xAxis: {
-                type: 'category', axisLabel: {
-                    interval: 0 // 👈 Muestra todas las etiquetas sin saltos
-                }
-            },
-            yAxis: {},
-            series: [{ type: 'bar' }, { type: 'bar' }],
-            color: ['#065F46', '#EAB308',],
-            textStyle: {
-                fontFamily: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-                fontSize: 10,
-                fontWeight: 'normal',
-                color: '#333'
-            }
-        };
+//         var myChart = echarts.init(chartDom);
+//         var option = {
+//             legend: { position: 'none' },
+//             tooltip: {},
+//             dataset: {
+//                 dimensions: ['dia', 'Entradas', 'Salidas'],
+//                 source: [
+//                     { dia: 'lunes', 'Entradas': 1000, 'Salidas': 500 },
+//                     { dia: 'martes', 'Entradas': 1000, 'Salidas': 500 },
+//                     { dia: 'miercoles', 'Entradas': 789, 'Salidas': 500 },
+//                     { dia: 'jueves', 'Entradas': 800, 'Salidas': 500 },
+//                     { dia: 'viernes', 'Entradas': 1987, 'Salidas': 500 },
+//                     { dia: 'sabado', 'Entradas': 1532, 'Salidas': 500 },
+//                     { dia: 'domingo', 'Entradas': 1012, 'Salidas': 500 }
+//                 ]
+//             },
+//             xAxis: {
+//                 type: 'category', axisLabel: {
+//                     interval: 0 // 👈 Muestra todas las etiquetas sin saltos
+//                 }
+//             },
+//             yAxis: {},
+//             series: [{ type: 'bar' }, { type: 'bar' }],
+//             color: ['#065F46', '#EAB308',],
+//             textStyle: {
+//                 fontFamily: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+//                 fontSize: 10,
+//                 fontWeight: 'normal',
+//                 color: '#333'
+//             }
+//         };
 
-        myChart.setOption(option);
-    };
+//         myChart.setOption(option);
+//     };
 
-    graficaCantidadXmarcas();
-    graficaEntradasSalidas();
+//     // graficaCantidadXmarcas();
+//     graficaEntradasSalidas();
 
-}
+// }
 
 
 
