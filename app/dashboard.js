@@ -1,5 +1,5 @@
 
-import {formateandoDataMarcas} from './graficas.js';
+import { formateandoDataMarcas, pintarDonaBodegaGeneral } from './graficas.js';
 
 // al seleccionar tarjeta
 // pintar el detalle y movimientos de la Tarjeta
@@ -64,20 +64,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     //     }
     // }
 
+
+    // Pinta el elemento total cajas en dashboard
     async function pintarTotalClases(dataClases) {
-        let totalCajas = dataClases.reduce((acumulador, objetoActual) =>{
+        let totalCajas = dataClases.reduce((acumulador, objetoActual) => {
             return acumulador += parseInt(objetoActual.sumaXclase);
         }, 0)
 
         let elementoDomTotalCajas = document.getElementById('total_cajas');
 
-        elementoDomTotalCajas.innerHTML = totalCajas;    
+        elementoDomTotalCajas.innerHTML = totalCajas;
 
         console.log(dataClases);
         console.log(totalCajas);
     }
 
-
+    // Pinta la informacion de las clases en las tarjetas del dashboard
     async function pintarTarjetasClases() {
         try {
             // fetch al endpoint para obtener los datos de las cantidades
@@ -86,7 +88,9 @@ document.addEventListener("DOMContentLoaded", async () => {
             const data = await response.json();
 
             await pintarTotalClases(data);
-
+            await pintarDonaBodegaGeneral(data);
+            console.log(data);
+            
 
             // seleccionar los elementos HTML donde se va a pintar las sumas de cada clase
             const tarjetaGranel = document.querySelector('#cantidad_granel p');

@@ -65,6 +65,69 @@ async function graficaCantidadXmarcas(arrMarcaCantidad) {
 }
 
 
+// Grafica Bodega General
+async function graficaBodegaGeneral(arrCantidadClase) {
+
+    let dataCantidadClase = arrCantidadClase;
+    console.log(dataCantidadClase);
+    
+    // Elemento del DOM 
+    let charDom = document.getElementById('chart_div3');
+    // validacion del elemento
+    if (!charDom) {
+        console.error("No se encontró el elemento chart_div3");
+        return
+    }
+
+    // Inicializa el chart
+    let myChart = echarts.init(charDom);
+
+    // Comportamiento del Chart
+    let option = {
+        tooltip: {
+            trigger: 'item'
+        },
+        legend: { position: 'none' },
+        series: [
+            {
+                name: 'Bodega General',
+                type: 'pie',
+                radius: ['40%', '70%'],
+                avoidLabelOverlap: false,
+                itemStyle: {
+                    borderRadius: 8,
+                    borderColor: '#fff',
+                    borderWidth: 4
+                },
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: 24,
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: dataCantidadClase
+            }
+        ],
+        color: ['#065F46', '#15803D', '#EAB308', '#FDE047', '#FECACA'],
+        textStyle: {
+            fontFamily: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+            fontSize: 10,
+            fontWeight: 'normal',
+            color: '#333'
+        },
+    };
+
+    myChart.setOption(option);
+
+}
 
 
 
@@ -119,77 +182,7 @@ window.onload = function () {
         myChart.setOption(option);
     };
 
-    // graficaCantidadXmarcas();
     graficaEntradasSalidas();
-
-
-
-    // Grafica Bodega General
-    function graficaBodegaGeneral() {
-        // Elemento del DOM 
-        let charDom = document.getElementById('chart_div3');
-        // validacion del elemento
-        if (!charDom) {
-            console.error("No se encontró el elemento chart_div3");
-            return
-        }
-
-        // Inicializa el chart
-        let myChart = echarts.init(charDom);
-
-        // Comportamiento del Chart
-        let option = {
-            tooltip: {
-                trigger: 'item'
-            },
-            legend: { position: 'none' },
-            series: [
-                {
-                    name: 'Bodega General',
-                    type: 'pie',
-                    radius: ['40%', '70%'],
-                    avoidLabelOverlap: false,
-                    itemStyle: {
-                        borderRadius: 8,
-                        borderColor: '#fff',
-                        borderWidth: 4
-                    },
-                    label: {
-                        show: false,
-                        position: 'center'
-                    },
-                    emphasis: {
-                        label: {
-                            show: true,
-                            fontSize: 24,
-                            fontWeight: 'bold'
-                        }
-                    },
-                    labelLine: {
-                        show: false
-                    },
-                    data: [
-                        { value: 156, name: 'Granel' },
-                        { value: 307, name: 'Kilo' },
-                        { value: 501, name: 'Malla' },
-                        { value: 154, name: 'Tula' }
-                    ]
-                }
-            ],
-            color: ['#065F46', '#15803D', '#EAB308', '#FDE047', '#FECACA'],
-            textStyle: {
-                fontFamily: '"Segoe UI", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-                fontSize: 10,
-                fontWeight: 'normal',
-                color: '#333'
-            },
-        };
-
-        myChart.setOption(option);
-
-    }
-
-    graficaBodegaGeneral();
 }
 
 
@@ -197,19 +190,19 @@ window.onload = function () {
 // Se exporta la funcion que Formatea la Data de las Marcas para pintar en la grafica Cantidad por marca
 // Esta funcion se invoca en dashboard y envia la data como argumento
 export async function formateandoDataMarcas(arrMarcas) {
-    const sumaPorMarca = arrMarcas.reduce((acumulador, elemento) => {
+    const sumaPorMarca = arrMarcas.reduce((acumulador, element) => {
         // si la marca no existe el acumulador la crea
-        if (!acumulador[elemento.marca_nombre]) {
-            acumulador[elemento.marca_nombre] = {
+        if (!acumulador[element.marca_nombre]) {
+            acumulador[element.marca_nombre] = {
                 sumaMarca: 0,
                 items: []
             };
         }
 
         // Suma el precio al total de la marca
-        acumulador[elemento.marca_nombre].sumaMarca += elemento.cantidad;
-        // Adreda la marca a la lista de los elementos
-        acumulador[elemento.marca_nombre].items.push(elemento);
+        acumulador[element.marca_nombre].sumaMarca += element.cantidad;
+        // Adreda la marca a la lista de los elements
+        acumulador[element.marca_nombre].items.push(element);
         return acumulador
     }, {});
 
@@ -227,3 +220,21 @@ export async function formateandoDataMarcas(arrMarcas) {
     graficaCantidadXmarcas(arrayNombreCantidad);
 
 }
+
+
+
+// Se exporta 
+// Se importa desde dashboard y se envia la data como argumento
+export async function pintarDonaBodegaGeneral(arrClaseTotal) {
+
+    let data = [];
+
+    arrClaseTotal.forEach(element => {
+        let barra = { value: element.sumaXclase, name: element.nombre }
+        data.push(barra);
+    });
+
+    console.log(data);
+    graficaBodegaGeneral(data);
+}
+
