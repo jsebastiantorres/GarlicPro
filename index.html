@@ -113,8 +113,14 @@
             <!-- Contenido principal -->
             <section id="dashboar" class="contenido block ml-2 bg-gray-200 rounded-xl w-screen">
                 <!-- Titulo de la seccion principal -->
-                <div class="px-4 py-4">
+                <div class="px-4 py-4 flex justify-between">
                     <h3 class="font-medium text-3xl text-gray-800 self-center">Inventario</h3>
+                    <div
+                        class="py-2 px-4 bg-gray-800 rounded-lg flex justify-center items-center ring-2 ring-emerald-600 hover:bg-emerald-600 text-white  hover:ring-gray-800">
+                        <p class=" select-none ">
+                            Total cajas: <strong id="total_cajas">1234</strong>
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Tarjetas funcionales -->
@@ -235,7 +241,7 @@
                 <!-- Tarjetas simplificadas -->
                 <section id="taretas_simplificadas" class="px-4 ">
                     <!-- Grid tarjetas simplificadas -->
-                    <div id="grid_tarjetas" class="grid md:grid-cols-4 lg:grid-cols-4 gap-2 pt-2">
+                    <div id="grid_tarjetas" class="grid md:grid-cols-4 lg:grid-cols-4 gap-2">
 
                         <!-- Tarjeta caja granel -->
                         <div id="tarjeta_granel"
@@ -253,7 +259,7 @@
                                     <!-- id trae la cantidad total de la clase -->
                                     <p class="text-white flex items-start font-bold text-xl"></p>
                                 </div>
-                                <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                <div class="bg-yellow-300 flex ml-6 rounded-md px-2">
                                     <p class="text-yellow-800">-200</p>
                                 </div>
                             </div>
@@ -273,7 +279,7 @@
                                 <div id="cantidad_kilo">
                                     <p class="text-white flex items-start font-bold text-xl"></p>
                                 </div>
-                                <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                <div class="bg-yellow-300 flex ml-6 rounded-md px-2">
                                     <p class="text-yellow-800">-200</p>
                                 </div>
                             </div>
@@ -293,7 +299,7 @@
                                 <div id="cantidad_malla">
                                     <p class="text-white flex items-start font-bold text-xl"></p>
                                 </div>
-                                <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                <div class="bg-yellow-300 flex ml-6 rounded-md px-2">
                                     <p class="text-yellow-800">-200</p>
                                 </div>
                             </div>
@@ -313,7 +319,7 @@
                                 <div id="cantidad_tula">
                                     <p class="text-white flex items-start font-bold text-xl"></p>
                                 </div>
-                                <div class="bg-yellow-400 flex ml-6 rounded-md px-2">
+                                <div class="bg-yellow-300 flex ml-6 rounded-md px-2">
                                     <p class="text-yellow-800">-200</p>
                                 </div>
                             </div>
@@ -432,8 +438,7 @@
                             <p class="px-2 pt-2 text-xl text-gray-800 self-center">Entradas y Salidas <strong
                                     class="encabezados_tablas_clase text-base font-light"></strong></p>
                             <div class="flex flex-col overflow-hidden items-center justify-center px-0 mx-0">
-                                <div id="div_chart2" class=" w-[550px] md:h-[300px] lg:h-[350] mx-0 ">
-                                </div>
+                                <div id="div_chart2" class=" w-[550px] md:h-[300px] lg:h-[350] mx-0 "></div>
                             </div>
                         </div>
 
@@ -441,7 +446,9 @@
                             <p class="px-2 pt-2 text-xl text-gray-800 self-center">Bodega <strong
                                     class="bg-emerald-600 text-white rounded px-2 font-semibold text-base">General</strong>
                             </p>
-                            <div id="chart_div3" class="flex items-center justify-center"></div>
+                            <div class="flex flex-col overflow-hidden items-center justify-center px-0 mx-0">
+                                <div id="chart_div3" class="w-[300px] md:h-[300px] lg:h-[350] mx-0 "></div>
+                            </div>
                         </div>
 
                     </div>

@@ -1,3 +1,6 @@
+
+import {formateandoDataMarcas} from './graficas.js';
+
 // document.addEventListener("DOMContentLoaded", async () => {
 //     // 📌 Obtener referencias a las tarjetas en el DOM
 //     const tarjetas = {
@@ -175,27 +178,27 @@ async function pintarDetalleTarjeta(idTarjeta) {
 
     switch (idTarjeta) {
         case "tarjeta_granel":
-            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Granel</strong>`)
+            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Granel</strong>`)
             pintarDetalles("Granel");
             pintarMovimientosClase("Granel");
             break;
         case "tarjeta_kilo":
-            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Kilo</strong>`)
+            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Kilo</strong>`)
             pintarDetalles("Kilo");
             pintarMovimientosClase("Kilo");
             break;
         case "tarjeta_malla":
-            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Malla</strong>`)
+            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Malla</strong>`)
             pintarDetalles("Malla");
             pintarMovimientosClase("Malla");
             break;
         case "tarjeta_tula":
-            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Tula</strong>`)
+            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Tula</strong>`)
             pintarDetalles("Tula");
             pintarMovimientosClase("Tula");
             break;
         default:
-            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold">Tula</strong>`)
+            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Tula</strong>`)
             pintarDetalles("Granel");
             pintarMovimientosClase("Granel");
             break;
@@ -230,6 +233,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     //     }
     // }
 
+    async function pintarTotalClases(dataClases) {
+        let totalCajas = dataClases.reduce((acumulador, objetoActual) =>{
+            return acumulador += parseInt(objetoActual.sumaXclase);
+        }, 0)
+
+        let elementoDomTotalCajas = document.getElementById('total_cajas');
+
+        elementoDomTotalCajas.innerHTML = totalCajas;    
+
+        console.log(dataClases);
+        console.log(totalCajas);
+    }
+
+
     async function pintarTarjetasClases() {
         try {
             // fetch al endpoint para obtener los datos de las cantidades
@@ -237,7 +254,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             // convertir en json los datos
             const data = await response.json();
 
-            // seleccionar los elementos HTML donde se van a pintar
+            await pintarTotalClases(data);
+
+
+            // seleccionar los elementos HTML donde se va a pintar las sumas de cada clase
             const tarjetaGranel = document.querySelector('#cantidad_granel p');
             const tarjetaKilo = document.querySelector('#cantidad_kilo p');
             const tarjetaMalla = document.querySelector('#cantidad_malla p');
@@ -301,13 +321,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     // 
 
-
-
     activacionDeTarjetas();
     // pintarTablaUsuarios();
     pintarTarjetasClases();
     // pintarGraficaCantidadPorMarca();
-
 })
 
 
@@ -331,6 +348,11 @@ async function pintarDetalles(nombreTarjeta) {
         // ordena los resultados en formato json
         const responseData = await response.json();
         const data = responseData.data;
+
+
+        console.log(data);
+        formateandoDataMarcas(data);
+
         // elemento HTML que se va a pintar
         const tbody = document.querySelector('#tablaDetallestarjeta tbody')
 
@@ -376,20 +398,18 @@ async function pintarMovimientosClase(nombreTarjeta) {
             throw new Error(`Error en la solicitud: "${response.status}`);
         }
 
-
         // ordenar los resultados en JSON
         const responseData = await response.json();
         const data = responseData.data;
         // elemento HTML de la tabla que se va a pintar
         const tbody = document.querySelector('#tablaMovimientosClase tbody')
 
-        // // si data esta vacio
+        // si data esta vacio
         if (data.length === 0) {
             console.log("Data vacio");
             tbody.innerHTML = `<tr><td colspan="5">No hay datos disponibles para esta tarjeta.</td></tr>`;
             return;
         }
-
 
         // limpiar el contenido previo
         tbody.innerHTML = '';
@@ -427,10 +447,10 @@ async function pintarMovimientosClase(nombreTarjeta) {
 // GOOGLE CHARTS
 
 // Load the Visualization API and the corechart package.
-google.charts.load('current', { 'packages': ['corechart', 'bar'] });
+// google.charts.load('current', { 'packages': ['corechart', 'bar'] });
 
 // Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
+// google.charts.setOnLoadCallback(drawChart);
 // google.charts.setOnLoadCallback(pintarGrafica);
 
 //GRAFICAS CON ECHARTS
@@ -440,51 +460,51 @@ google.charts.setOnLoadCallback(drawChart);
 // Callback that creates and populates a data table,
 // instantiates the pie chart, passes in the data and
 // draws it.
-function drawChart() {
+// function drawChart() {
 
-    // Create the data table.
-    let data = new google.visualization.DataTable();
-    data.addColumn('string', 'Topping');
-    data.addColumn('number', 'Slices');
-    data.addRows([
-        ['Granel', 503],
-        ['Kilo', 111],
-        ['Malla', 151],
-        ['Tula', 403]
-    ]);
+//     // Create the data table.
+//     let data = new google.visualization.DataTable();
+//     data.addColumn('string', 'Topping');
+//     data.addColumn('number', 'Slices');
+//     data.addRows([
+//         ['Granel', 503],
+//         ['Kilo', 111],
+//         ['Malla', 151],
+//         ['Tula', 403]
+//     ]);
 
-    // Set chart options
-    var options = {
-        // 'title': 'How Much Pizza I Ate Last Night',
-        'titleTextStyle': {
-            'textAlign': 'center', // Centra el título del gráfico
-        },
-        'width': 400,
-        'height': 300,
-        'legend': {
-            'position': 'bottom',
-            'maxLines': 20, // Sigue siendo útil para el ajuste de líneas
-            'textStyle': {
-                'fontSize': 10 // Reduce el tamaño de la fuente para que quepa más texto
-            },
-            'alignment': 'center' // Centra los elementos de la leyenda
-        },
-        'chartArea': {
-            'left': '10%',
-            'top': '10%',
-            'width': '90%',
-            'height': '70%' // Ajusta los valores para centrar la gráfica
-        },
-        'colors': ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74'],
-        'pieHole': 0.4,
-        'pieSliceText': 'value'
+//     // Set chart options
+//     var options = {
+//         // 'title': 'How Much Pizza I Ate Last Night',
+//         'titleTextStyle': {
+//             'textAlign': 'center', // Centra el título del gráfico
+//         },
+//         'width': 400,
+//         'height': 300,
+//         'legend': {
+//             'position': 'bottom',
+//             'maxLines': 20, // Sigue siendo útil para el ajuste de líneas
+//             'textStyle': {
+//                 'fontSize': 10 // Reduce el tamaño de la fuente para que quepa más texto
+//             },
+//             'alignment': 'center' // Centra los elementos de la leyenda
+//         },
+//         'chartArea': {
+//             'left': '10%',
+//             'top': '10%',
+//             'width': '90%',
+//             'height': '70%' // Ajusta los valores para centrar la gráfica
+//         },
+//         'colors': ['#065F46', '#15803D', '#4D7C0F', '#EAB308', '#FDBA74'],
+//         'pieHole': 0.4,
+//         'pieSliceText': 'value'
 
-    };
+//     };
 
-    // Instantiate and draw our chart, passing in some options.
-    var chart3 = new google.visualization.PieChart(document.getElementById('chart_div3'));
-    chart3.draw(data, options);
-}
+//     // Instantiate and draw our chart, passing in some options.
+//     var chart3 = new google.visualization.PieChart(document.getElementById('chart_div3'));
+//     chart3.draw(data, options);
+// }
 
 
 // Gafica Cantidad por marca
