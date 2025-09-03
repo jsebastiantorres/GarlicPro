@@ -1,31 +1,17 @@
 
 
+
+// GRAFICA: CANTIDAD POR MARCA
 async function graficaCantidadXmarcas(arrMarcaCantidad) {
 
-    // DATA prueba 
-    // var data = [
-    //     { marca: 'Nasa', cantidad: 120 },
-    //     { marca: 'Surti Abarrotes BJ', cantidad: 200 },
-    //     { marca: 'Fruyt Garlic', cantidad: 150 },
-    //     { marca: 'PAG', cantidad: 80 },
-    //     { marca: 'Posso', cantidad: 70 },
-    //     { marca: 'El Rey', cantidad: 110 },
-    //     { marca: 'Barajas', cantidad: 130 },
-    //     { marca: 'Import chiki', cantidad: 157 }
-    // ]
-
-    // DATA REAL
+    // Data contiene el array con las Marcas y sus cantidades 
     var data = arrMarcaCantidad;
-
     // Ordena el array
     data.sort((a, b) => a.cantidad - b.cantidad);
-
     // Creamos un array con solo las cantidades
     var cantidades = data.map(element => element.cantidad);
-
     // Creamos un array con solo las marcas 
     var marcas = data.map(element => element.marca);
-
     // Elemento del DOM
     var elemtoDom = document.getElementById('chart_div1');
     // validacion DOM
@@ -36,7 +22,6 @@ async function graficaCantidadXmarcas(arrMarcaCantidad) {
 
     // Se inicializa la instancia del Chart 
     let myCharts = echarts.init(elemtoDom);
-
     // Comportamiento de la grafica
     var option = {
         // valor en x
@@ -62,7 +47,6 @@ async function graficaCantidadXmarcas(arrMarcaCantidad) {
                         color: '#EAB308'
                     }
                 }
-
             }
         ],
         color: '#065F46',
@@ -77,26 +61,15 @@ async function graficaCantidadXmarcas(arrMarcaCantidad) {
             borderColor: '#EAB308'
         }
     }
-
     myCharts.setOption(option);
 }
 
 
 
 
-console.log("Escuchando desde graficas.js");
-
 
 // Dashboard Graficas
 window.onload = function () {
-
-
-
-    // GRAFICA
-    // Pintar la grafica
-
-
-    // graficaCantidadXmarcas();
 
 
     // Grafica Entradas VS Salidas
@@ -221,6 +194,8 @@ window.onload = function () {
 
 
 
+// Se exporta la funcion que Formatea la Data de las Marcas para pintar en la grafica Cantidad por marca
+// Esta funcion se invoca en dashboard y envia la data como argumento
 export async function formateandoDataMarcas(arrMarcas) {
     const sumaPorMarca = arrMarcas.reduce((acumulador, elemento) => {
         // si la marca no existe el acumulador la crea
@@ -238,22 +213,17 @@ export async function formateandoDataMarcas(arrMarcas) {
         return acumulador
     }, {});
 
-
-    console.log(sumaPorMarca);
-
+    // array Formateado con lo necesario para pintar la grafica 
     let arrayNombreCantidad = [];
 
-    // Creando array para pintar la grafica
+    // Iterando el objeto para crear alimentar el array con los datos Marca y Cantidad
     for (const [nombreMarca, cantidad] of Object.entries(sumaPorMarca)) {
         const totalMarca = cantidad.sumaMarca;
         const barra = { marca: nombreMarca, cantidad: totalMarca }
-        console.log(`nombre de objeto ${nombreMarca}, cantidad: ${totalMarca}`);
         arrayNombreCantidad.push(barra);
     }
 
-    // Se envia ell array a la funcion que pinta la grafica
-    console.log(arrayNombreCantidad);
-
+    // Se envia el array a la funcion que pinta la grafica
     graficaCantidadXmarcas(arrayNombreCantidad);
 
 }
