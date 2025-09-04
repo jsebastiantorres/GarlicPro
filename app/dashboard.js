@@ -87,6 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // convertir en json los datos
             const data = await response.json();
 
+            // se pintan las graficas con la data correspondiente a la clase seleccionada
             await pintarTotalClases(data);
             await pintarDonaBodegaGeneral(data);
             console.log(data);
@@ -253,7 +254,7 @@ async function pintarMovimientosClase(nombreTarjeta) {
         let filaHTML = '';
         data.forEach(element => {
             filaHTML += `<tr class="bg-gray-100 border-b border-white">
-            <td class="text-gray-800 text-left pl-4">${new Date(element.fecha).toLocaleString('es-CO', {
+            <td class="text-gray-800 text-left pl-4 py-1">${new Date(element.fecha).toLocaleString('es-CO', {
                 weekday: 'long',   // día de la semana
                 year: 'numeric', // año
                 month: '2-digit', //mes
@@ -263,10 +264,10 @@ async function pintarMovimientosClase(nombreTarjeta) {
                 second: '2-digit', // seguntos
                 hour12: true // formato
             })}</td>
-            <td class="text-gray-800 text-left pl-4">${element.tipo_movimiento}</td>
-            <td class="text-gray-800 text-left pl-4">${element.lote_codigo}</td>
-            <td class="text-gray-800 text-left pl-4">${element.marca}</td>
-            <td class="text-gray-800 text-left pl-4">${element.cantidad}</td>
+            <td class="text-gray-800 text-left pl-4 py-1">${element.tipo_movimiento}</td>
+            <td class="text-gray-800 text-left pl-4 py-1">${element.lote_codigo}</td>
+            <td class="text-gray-800 text-left pl-4 py-1">${element.marca}</td>
+            <td class="text-gray-800 text-left pl-4 py-1">${element.cantidad}</td>
             </tr>`
         })
 
