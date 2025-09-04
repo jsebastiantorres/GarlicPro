@@ -4,7 +4,7 @@ const marcas = ["Nasa", "Surti Abarrotes BJ", "Fruyt Garlic", "PAG", "Posso", "E
 const selectorMarca = document.getElementById("select_marca");
 
 // listado de clases y selector de clases
-const clases = ["Granel", "Kilo", "Malla", "Tula"];
+const clases = ["Granel", "Malla", "Kilo", "Tula"];
 const selectorClase = document.getElementById("select_clase");
 
 

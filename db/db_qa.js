@@ -345,7 +345,8 @@ async function obtenerCantidadPorClase() {
             `SELECT lotes.clase_id, clases.nombre, SUM(cantidad) AS sumaXclase 
             FROM lotes 
             JOIN clases ON lotes.clase_id = clases.id 
-            GROUP BY lotes.clase_id, clases.nombre;`)
+            GROUP BY lotes.clase_id, clases.nombre
+            ORDER BY clase_id;`)
         return rows
     } catch (error) {
         console.error("Error al obtener las cantidades de las clases desde BD", error);

@@ -91,12 +91,12 @@ document.addEventListener("DOMContentLoaded", async () => {
             await pintarTotalClases(data);
             await pintarDonaBodegaGeneral(data);
             console.log(data);
-            
+
 
             // seleccionar los elementos HTML donde se va a pintar las sumas de cada clase
             const tarjetaGranel = document.querySelector('#cantidad_granel p');
-            const tarjetaKilo = document.querySelector('#cantidad_kilo p');
             const tarjetaMalla = document.querySelector('#cantidad_malla p');
+            const tarjetaKilo = document.querySelector('#cantidad_kilo p');
             const tarjetaTula = document.querySelector('#cantidad_tula p');
 
 
@@ -108,11 +108,11 @@ document.addEventListener("DOMContentLoaded", async () => {
                     case "Granel":
                         tarjetaGranel.innerHTML += fila
                         break;
-                    case "Kilo":
-                        tarjetaKilo.innerHTML += fila
-                        break;
                     case "Malla":
                         tarjetaMalla.innerHTML += fila
+                        break;
+                    case "Kilo":
+                        tarjetaKilo.innerHTML += fila
                         break;
                     case "Tula":
                         tarjetaTula.innerHTML += fila
