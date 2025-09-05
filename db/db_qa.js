@@ -384,13 +384,14 @@ async function obtenerDetallesClase(nombreClase) {
 }
 
 
+// Obtener los movimientos por Clase
 async function obtenerMovimientosClase(nombreClase) {
     // conectar base de datos
-    const conection = await connectToDatabase();
+    const connection = await connectToDatabase();
 
     // resultados al ejecutar la consulta
     try {
-        const [rows] = await conection.execute(`
+        const [rows] = await connection.execute(`
             SELECT movimientos.id, fecha, lote_codigo, id_tipo_movimiento, tipo_movimientos.nombre AS tipo_movimiento, marca_id, marcas.nombre AS marca, clase_id, clases.nombre AS clase, login_id, login.username_alias AS login, cantidad FROM movimientos
             JOIN tipo_movimientos ON tipo_movimientos.id = id_tipo_movimiento
             JOIN marcas ON marcas.id = marca_id
@@ -400,21 +401,57 @@ async function obtenerMovimientosClase(nombreClase) {
             ORDER BY fecha DESC;
             `, [nombreClase])
 
-            console.log("Se envian los datos", rows);
-            
+        console.log("Se envian los datos", rows);
+
         // retornamos los resultados
         return rows
     } catch (error) {
         console.error("Error al obtener los movimientos de la clase desde DB", error);
         throw error;
-    }finally{
+    } finally {
         // cerrar la conexion a DB
-        if(conection) await conection.end()
+        if (connection) await connection.end()
     }
 }
 
 
+// Obtener los movimientos de los ultimos 7 dias registrados para la clase
+async function obtenerMovimientosUltimosSieteDias(nombreClase) {
+    // Conectamos la base de datos
+    const connection = await connectToDatabase();
+    // Ejecutamos la consulta para traer los movimientos de los ultimos 7 dias registrados para la clase
+    try {
+        const [rows] = await connection.execute(`
+            SELECT m.*
+            FROM movimientos m
+            JOIN (
+                SELECT DISTINCT DATE(fecha) AS fecha
+                FROM movimientos
+                WHERE clase_id = (
+                    SELECT id FROM clases WHERE nombre = ? LIMIT 1
+                )
+                ORDER BY fecha DESC
+                LIMIT 7
+            ) ultimos ON DATE(m.fecha) = ultimos.fecha
+            WHERE m.clase_id = (
+                SELECT id FROM clases WHERE nombre = ? LIMIT 1
+            )
+            ORDER BY m.fecha DESC;
+            `, [nombreClase, nombreClase])
 
+        console.log("Se envianlos datos desde DB", rows);
+
+        // retornamos los resultados
+        return rows
+
+    } catch (error) {
+        console.error("Error al obtener los movimientos de los ultimos 7 dias registrados", error);
+        throw error;
+    } finally {
+        // cerrar la conexion a DB
+        if (connection) await connection.end();
+    }
+}
 
 
 
@@ -513,7 +550,8 @@ module.exports = {
     obtenerUsuarios,
     obtenerCantidadPorClase,
     obtenerDetallesClase,
-    obtenerMovimientosClase
+    obtenerMovimientosClase,
+    obtenerMovimientosUltimosSieteDias
 }
 
 

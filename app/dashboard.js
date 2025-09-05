@@ -11,27 +11,34 @@ async function pintarDetalleTarjeta(idTarjeta) {
             divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Granel</strong>`)
             pintarDetalles("Granel");
             pintarMovimientosClase("Granel");
-            break;
-        case "tarjeta_kilo":
-            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Kilo</strong>`)
-            pintarDetalles("Kilo");
-            pintarMovimientosClase("Kilo");
+            obtenerMovimientosUltimosSieteDias("Granel");
             break;
         case "tarjeta_malla":
             divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Malla</strong>`)
             pintarDetalles("Malla");
             pintarMovimientosClase("Malla");
+            obtenerMovimientosUltimosSieteDias("Malla");
+
+            break;
+        case "tarjeta_kilo":
+            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Kilo</strong>`)
+            pintarDetalles("Kilo");
+            pintarMovimientosClase("Kilo");
+            obtenerMovimientosUltimosSieteDias("Kilo");
+
             break;
         case "tarjeta_tula":
             divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Tula</strong>`)
             pintarDetalles("Tula");
             pintarMovimientosClase("Tula");
+            obtenerMovimientosUltimosSieteDias("Granel");
             break;
         default:
             // Se establece la clase por defecto para evitar que los elementos queden vacios
             divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Tula</strong>`)
             pintarDetalles("Granel");
             pintarMovimientosClase("Granel");
+            obtenerMovimientosUltimosSieteDias("Granel");
             break;
     }
 }
@@ -75,8 +82,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         elementoDomTotalCajas.innerHTML = totalCajas;
 
-        console.log(dataClases);
-        console.log(totalCajas);
+        // console.log(dataClases);
+        // console.log(totalCajas);
     }
 
     // Pinta la informacion de las clases en las tarjetas del dashboard
@@ -90,7 +97,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             // se pintan las graficas con la data correspondiente a la clase seleccionada
             await pintarTotalClases(data);
             await pintarDonaBodegaGeneral(data);
-            console.log(data);
+            // console.log(data);
 
 
             // seleccionar los elementos HTML donde se va a pintar las sumas de cada clase
@@ -186,7 +193,7 @@ async function pintarDetalles(nombreTarjeta) {
         const data = responseData.data;
 
 
-        console.log(data);
+        // console.log(data);
         formateandoDataMarcas(data);
 
         // elemento HTML que se va a pintar
@@ -218,6 +225,8 @@ async function pintarDetalles(nombreTarjeta) {
 }
 
 
+
+// 
 async function pintarMovimientosClase(nombreTarjeta) {
     try {
         // validacion de que el parametro no este vacio
@@ -231,7 +240,7 @@ async function pintarMovimientosClase(nombreTarjeta) {
 
         // validacion resultados
         if (!response.ok) {
-            throw new Error(`Error en la solicitud: "${response.status}`);
+            throw new Error(`Error en la solicitud: ${response.status}`);
         }
 
         // ordenar los resultados en JSON
@@ -279,3 +288,33 @@ async function pintarMovimientosClase(nombreTarjeta) {
 }
 
 
+
+// pintar los ultimos siete movimientos
+async function obtenerMovimientosUltimosSieteDias(nombreTarjeta) {
+    try {
+        // validacion del parametro
+        if (!nombreTarjeta || nombreTarjeta.trim() === '') {
+            console.warn("No se proporciono un nombre de tarjeta valido para cargar los movimientos");
+            return
+        }
+
+        // fetch al endpoint para obtener los movimientos de los ultimos siete dias registrados
+        const response = await fetch(`http://localhost:3000/api/movimientosUltimosSieteDias?nombre=${encodeURIComponent(nombreTarjeta)}`)
+
+        // validacion resultados
+        if (!response.ok) {
+            throw new Error(`Error en la solicitud: ${response.status}`);
+        }
+
+        // ordenar los resultados en JSON
+        const responseData = await response.json();
+        const data = responseData.data;
+        // Elemento HTML 
+        console.log(data);
+
+
+
+    } catch (error) {
+        console.error("Error al obtener movimientos ultimos siete dias", error);
+    }
+}

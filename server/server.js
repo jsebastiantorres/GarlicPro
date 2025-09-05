@@ -8,7 +8,7 @@ const bcryptjs = require('bcryptjs'); // Para comparar contraseñas
 // desestructuración de objetos para importar funciones específicas desde db_qa
 const {
     buscarPorNombreLogin, actualizarUltimoAcceso, obtenerInventarioPorClase, obtenerIdMarca,
-    obtenerIdClase, obtenerIdDestino, registrarIngresoLote, obtenerMarcaPorLote, registrarSalida, obtenerIngresos, obtenerDetallesTarjeta, obtenerUsuarios, obtenerCantidadPorClase, obtenerDetallesClase, obtenerMovimientosClase } = require('../db/db_qa');
+    obtenerIdClase, obtenerIdDestino, registrarIngresoLote, obtenerMarcaPorLote, registrarSalida, obtenerIngresos, obtenerDetallesTarjeta, obtenerUsuarios, obtenerCantidadPorClase, obtenerDetallesClase, obtenerMovimientosClase, obtenerMovimientosUltimosSieteDias } = require('../db/db_qa');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -17,6 +17,7 @@ const PORT = process.env.PORT || 3000;
 // Permitir solicitudes desde el frontend (localhost:5500)a nuestro servidor (servidor localhost:3000)
 const cors = require('cors');
 const connectToDatabase = require('../db/db_qa');
+const { log } = require('console');
 app.use(cors({
     origin: 'http://127.0.0.1:5500', // Permite solicitudes desde el frontend
     methods: ['GET', 'POST'], // Métodos permitidos
@@ -305,12 +306,12 @@ app.get('/api/detallesClase', async (req, res) => {
 })
 
 
-
+// endpoint para movimientos por clase
 app.get('/api/movimientosClase', async (req, res) => {
     try {
         // extraer el parametro nombre desde la URL de la solicitud HTTP
         const { nombre } = req.query;
-        // calidar el valor del nombre
+        // validar el valor del nombre
         if (!nombre || nombre.trim() === '') {
             return res.status(400).json({ success: false, mesage: "Falta el parametro 'nombre'" });
         }
@@ -320,11 +321,34 @@ app.get('/api/movimientosClase', async (req, res) => {
         // responde los resultados en JSON
         return res.json({ success: true, data: resultados });
     } catch (error) {
-        console.error("Errir en la obtención de los movimientos desde server");
+        console.error("Error en la obtención de los movimientos desde server");
         return res.status(500).json({ success: false, mesage: error.mesage });
     }
 })
 
+
+// endpoint para movimientos de los ultimos 7 dias
+app.get('/api/movimientosUltimosSieteDias', async (req, res) => {
+    try {
+        // extraer el parametro nombre desde la URL de la solicitud HTTP
+        const { nombre } = req.query;
+        // validar el valor de nombre
+        if (!nombre || nombre.trim() === '') {
+            return res.status(400).json({ success: false, mesage: "Falta el parametro 'nombre'" });
+        }
+
+        // dispara la funcion que optiene los movimientos de los ultimos 7 dias
+        const resultados = await obtenerMovimientosUltimosSieteDias(nombre);
+        // responde los reultados de JSON
+        console.log(resultados);
+        
+        return res.json({ success: true, data: resultados });
+
+    } catch (error) {
+        console.error("Error en la obtención de los movimientos desde server");
+        return res.status(500).json({ success: false, mesage: error.mesage })
+    }
+})
 
 
 

@@ -69,8 +69,8 @@ async function graficaCantidadXmarcas(arrMarcaCantidad) {
 async function graficaBodegaGeneral(arrCantidadClase) {
 
     let dataCantidadClase = arrCantidadClase;
-    console.log(dataCantidadClase);
-    
+    // console.log(dataCantidadClase);
+
     // Elemento del DOM 
     let charDom = document.getElementById('chart_div3');
     // validacion del elemento
@@ -143,6 +143,11 @@ window.onload = function () {
             return;
         }
 
+        // Formato para formatear las fechas de la data
+        const hoy = new Date(); 
+        const data = `${hoy.getDate()}/${hoy.getMonth() + 1} \n${['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'][hoy.getDay()]}`;
+
+
         var myChart = echarts.init(chartDom);
         var option = {
             legend: { position: 'none' },
@@ -151,15 +156,15 @@ window.onload = function () {
                 borderColor: '#065F46'
             },
             dataset: {
-                dimensions: ['dia', 'Entradas', 'Salidas'],
+                dimensions: ['dia', 'Ingresos', 'Salidas'],
                 source: [
-                    { dia: 'lunes', 'Entradas': 1000, 'Salidas': 500 },
-                    { dia: 'martes', 'Entradas': 1000, 'Salidas': 500 },
-                    { dia: 'miercoles', 'Entradas': 789, 'Salidas': 1500 },
-                    { dia: 'jueves', 'Entradas': 800, 'Salidas': 500 },
-                    { dia: 'viernes', 'Entradas': 1987, 'Salidas': 500 },
-                    { dia: 'sabado', 'Entradas': 1532, 'Salidas': 500 },
-                    { dia: 'domingo', 'Entradas': 1012, 'Salidas': 500 }
+                    { dia: `${data}`, 'Ingresos': 1000, 'Salidas': 500 },
+                    { dia: 'martes', 'Ingresos': 1000, 'Salidas': 500 },
+                    { dia: 'miercoles', 'Ingresos': 789, 'Salidas': 1500 },
+                    { dia: 'jueves', 'Ingresos': 800, 'Salidas': 500 },
+                    { dia: 'viernes', 'Ingresos': 1987, 'Salidas': 500 },
+                    { dia: 'sabado', 'Ingresos': 1532, 'Salidas': 500 },
+                    { dia: 'domingo', 'Ingresos': 1012, 'Salidas': 500 }
                 ]
             },
             xAxis: {
@@ -234,7 +239,10 @@ export async function pintarDonaBodegaGeneral(arrClaseTotal) {
         data.push(barra);
     });
 
-    console.log(data);
+    // console.log(data);
     graficaBodegaGeneral(data);
 }
+
+
+
 
