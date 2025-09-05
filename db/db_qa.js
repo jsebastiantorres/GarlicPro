@@ -422,21 +422,22 @@ async function obtenerMovimientosUltimosSieteDias(nombreClase) {
     // Ejecutamos la consulta para traer los movimientos de los ultimos 7 dias registrados para la clase
     try {
         const [rows] = await connection.execute(`
-            SELECT m.*
-            FROM movimientos m
-            JOIN (
-                SELECT DISTINCT DATE(fecha) AS fecha
-                FROM movimientos
-                WHERE clase_id = (
-                    SELECT id FROM clases WHERE nombre = ? LIMIT 1
-                )
-                ORDER BY fecha DESC
-                LIMIT 7
-            ) ultimos ON DATE(m.fecha) = ultimos.fecha
-            WHERE m.clase_id = (
-                SELECT id FROM clases WHERE nombre = ? LIMIT 1
-            )
-            ORDER BY m.fecha DESC;
+            SELECT  m.id, m.fecha, m.id_tipo_movimiento, tipo_movimientos.nombre AS movimiento, m.cantidad, clases.nombre AS clase
+                FROM movimientos m
+                JOIN clases ON clases.id = clase_id
+                JOIN tipo_movimientos ON tipo_movimientos.id = id_tipo_movimiento
+                JOIN (
+                    SELECT DISTINCT DATE(fecha) AS fecha
+                    FROM movimientos
+                    WHERE clase_id = (
+                        SELECT id FROM clases WHERE nombre = ? LIMIT 1
+                    )
+                    ORDER BY fecha DESC
+                    LIMIT 7
+                ) ultimos ON DATE(m.fecha) = ultimos.fecha
+                WHERE clases.nombre = ?
+
+                ORDER BY m.fecha DESC;
             `, [nombreClase, nombreClase])
 
         console.log("Se envianlos datos desde DB", rows);
