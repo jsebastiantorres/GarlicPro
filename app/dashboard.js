@@ -1,5 +1,5 @@
 
-import { formateandoDataMarcas, pintarDonaBodegaGeneral } from './graficas.js';
+import { formateandoDataMarcas, pintarDonaBodegaGeneral, formateandoDataUltimos7Dias } from './graficas.js';
 
 // al seleccionar tarjeta
 // pintar el detalle y movimientos de la Tarjeta
@@ -31,7 +31,7 @@ async function pintarDetalleTarjeta(idTarjeta) {
             divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Tula</strong>`)
             pintarDetalles("Tula");
             pintarMovimientosClase("Tula");
-            obtenerMovimientosUltimosSieteDias("Granel");
+            obtenerMovimientosUltimosSieteDias("Tula");
             break;
         default:
             // Se establece la clase por defecto para evitar que los elementos queden vacios
@@ -312,7 +312,7 @@ async function obtenerMovimientosUltimosSieteDias(nombreTarjeta) {
         // Elemento HTML 
         console.log(data);
 
-
+        formateandoDataUltimos7Dias(data);
 
     } catch (error) {
         console.error("Error al obtener movimientos ultimos siete dias", error);
