@@ -35,7 +35,7 @@ async function pintarDetalleTarjeta(idTarjeta) {
             break;
         default:
             // Se establece la clase por defecto para evitar que los elementos queden vacios
-            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Tula</strong>`)
+            divPintar.forEach(elemento => elemento.innerHTML = `<strong class="bg-gray-600 text-white rounded px-2 font-semibold select-none">Granel</strong>`)
             pintarDetalles("Granel");
             pintarMovimientosClase("Granel");
             obtenerMovimientosUltimosSieteDias("Granel");
