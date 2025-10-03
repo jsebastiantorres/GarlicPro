@@ -2,7 +2,7 @@
 
 // Valores de stock
 var topesStock = {
-    stockReal: 300,
+    stockReal: 4901,
     stockOptimo: 2000,
     stockMaximo: 5000,
     stockAlerta: 300
@@ -15,19 +15,28 @@ function validarStock(objetoTopes) {
     let diferenciaStockOptimo = 0;
     let mensaje = "";
 
-    diferenciaStockOptimo = topesStock.stockOptimo - topesStock.stockReal; // calcular la diferencia con el stock Optimo
+    diferenciaStockOptimo = objetoTopes.stockOptimo - objetoTopes.stockReal; // calcular la diferencia con el stock Optimo
+
+    // Validación tope maximo
+    let topeMaxPrecaucion = objetoTopes.stockMaximo - 100;
+    if (objetoTopes.stockReal >= topeMaxPrecaucion) {
+        let diferenciaStockMaximo = objetoTopes.stockMaximo - objetoTopes.stockReal;
+        mensaje = `Stock cercano al tope máximo de la bodega: ${objetoTopes.stockMaximo} diferencia ${diferenciaStockMaximo}`
+        console.log(mensaje);
+        return
+    }
 
     // Validación stock critico
-    if (topesStock.stockReal < topesStock.stockOptimo) {
+    if (objetoTopes.stockReal < objetoTopes.stockOptimo) {
         // mostar el mensaje
         mensaje = `Stock Bajo! Diferencia: - ${diferenciaStockOptimo}`
 
 
-        if (topesStock.stockReal < topesStock.stockAlerta) {
+        if (objetoTopes.stockReal < objetoTopes.stockAlerta) {
             mensaje = `Stock Alerta! Diferencia: - ${diferenciaStockOptimo}`
         }
     } else {
-        diferenciaStockOptimo = topesStock.stockReal - topesStock.stockOptimo; // calcular la diferencia con el stock Optimo
+        diferenciaStockOptimo = objetoTopes.stockReal - objetoTopes.stockOptimo; // calcular la diferencia con el stock Optimo
         mensaje = `Stock Optimo! Diferencia: + ${diferenciaStockOptimo}`
     }
 
