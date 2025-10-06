@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mostrar/Ocultar Sección</title>
+  <style>
+    /* Estilo básico */
+    #miSeccion {
+      display: none; /* Oculta la sección por defecto */
+      padding: 20px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ejemplo de Mostrar/Ocultar Sección</h1>
+  <button onclick="toggleSeccion()">Mostrar/Ocultar Sección</button>
+
+  <div id="miSeccion">
+    <p>¡Hola! Esta es la sección que puedes mostrar u ocultar.</p>
+  </div>
+
+  <script>
+    // Función para mostrar/ocultar la sección
+    function toggleSeccion() {
+      const seccion = document.getElementById('miSeccion');
+      if (seccion.style.display === 'none' || seccion.style.display === '') {
+        seccion.style.display = 'block'; // Muestra la sección
+      } else {
+        seccion.style.display = 'none'; // Oculta la sección
+      }
+    }
+    s
+  </script>
+</body>
+</html>
