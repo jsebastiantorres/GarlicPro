@@ -143,3 +143,7 @@
             1. si no funciona descargar el archivo js de echarts 
                 curl https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js -o echarts.min.js
             2. El archivo quedo almacenado en librerias/echarts.min.js
+
+
+## Se revierte la reorganización
+    Se revierten commits que afectaron el proyecto buscando una organización del mismo
